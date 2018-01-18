@@ -6,6 +6,8 @@
 
 namespace Miiverse\Pages\Titles;
 
+use Miiverse\Helpers\ParamPack;
+
 /**
  * Home page.
  * @package Miiverse
@@ -18,7 +20,7 @@ class Show extends Page
 	 * @return string
 	 */
 	public function init() : string {
-		var_dump($_REQUEST);
+		ParamPack::unpack();
 		return '';
 	}
 }
