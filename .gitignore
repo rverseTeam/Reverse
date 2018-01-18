@@ -1,0 +1,23 @@
+# Libraries
+/vendor
+/node_modules
+/npm-debug.log
+
+# Configuration
+/config.php
+
+# Storage
+/store/*
+!/store/.gitkeep
+/store/cache/*
+!/store/cache/.gitkeep
+
+# OS specific shit
+[Tt]humbs.db
+[Dd]esktop.ini
+
+# IDE specific shit
+.vscode
+
+# Extra stuff
+/stuff/*

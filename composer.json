@@ -1,0 +1,27 @@
+{
+    "require": {
+        "doctrine/dbal": "~2.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "hashids/hashids": "^2.0",
+        "illuminate/database": "5.2.*",
+        "illuminate/filesystem": "5.2.*",
+        "nesbot/carbon": "^1.21",
+        "php": ">=7.1.7",
+        "phroute/phroute": "^2.1",
+        "symfony/console": "^3.3",
+        "twig/extensions": "~1.0",
+        "twig/twig": "~2.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Miiverse\\": "src/"
+        },
+        "files": [
+            "utility.php"
+        ]
+    }
+}
