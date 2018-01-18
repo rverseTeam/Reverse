@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+/*
+ * TestVerse Topia
+ * Handles console interaction.
+ */
+
+namespace Miiverse;
+
+use Symfony\Component\Console\Application;;
+
+require_once 'core.php';
+
+$application = new Application(config('general.name'));
+
+// Declare commands
+$application->add(new Console\Command\DatabaseInstallCommand);
+$application->add(new Console\Command\DatabaseMigrateCommand);
+$application->add(new Console\Command\DatabaseResetCommand);
+$application->add(new Console\Command\DatabaseRollbackCommand);
+$application->add(new Console\Command\DatabaseStatusCommand);
+
+$application->add(new Console\Command\ServeCommand);
+
+// Run the application
+$application->run();
