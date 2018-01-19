@@ -1143,9 +1143,8 @@ var Olv = Olv || {};
         events: {
             "click .slide-button": "onSlideClick",
             "click .welcome-exit-button": "onExitClick",
-            "click .welcome-luminous_opt_in-button": "onLuminousOptInClick",
+            "click .welcome-luminous_user_data-button": "onLuminousUserDataClick",
             "click .welcome-finish-button": "onFinishClick",
-            'click input[name="luminous_opt_in"]': "onLuminousOptInButtonClick",
             "olv:welcome:slide .slide-page": "onSlide"
         },
         initialize: function() {
@@ -1186,10 +1185,11 @@ var Olv = Olv || {};
                 cave.exitApp()
             }, 0)
         },
-        onLuminousOptInClick: function(t) {
+        onLuminousUserDataClick: function(t) {
             t.preventDefault();
             var i = $(t.currentTarget);
-            $('input[name="luminous_opt_in"]:checked').length ? this.slideByButton(i) : e.deferredAlert(null, e.loc("olv.portal.welcome.select_luminous_opt_in"))
+            cave.boss_unregist();
+            //$('input[name="luminous_opt_in"]:checked').length ? this.slideByButton(i) : e.deferredAlert(null, e.loc("olv.portal.welcome.select_luminous_opt_in"))
         },
         onLuminousOptInButtonClick: function(e) {
             +$(e.currentTarget).val() ? cave.boss_registEx(1, 336) : cave.boss_unregist()
