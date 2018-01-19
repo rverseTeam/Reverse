@@ -20,5 +20,15 @@ CurrentSession::start(
 	Net::ip()
 );
 
+// Set base variables
+Template::vars([
+    'get' => $_GET,
+    'user' => CurrentSession::$user,
+    'post' => $_POST,
+    'server' => $_SERVER,
+    'request' => $_REQUEST,
+    'session' => $_SESSION,
+]);
+
 // Handle requests
 echo Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
