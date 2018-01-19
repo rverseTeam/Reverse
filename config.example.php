@@ -67,4 +67,14 @@ return [
 		// Reporting host address
 		'report_host'		=> '',
 	],
+
+	// Ranks ids, these ranks are used by automated procedures in the backend
+	// If you're using the setup command in topia, these are already set correctly for you!
+	'rank'			=> [
+		'regular'			=> 1,
+		'verified'			=> 2,
+		'mod'				=> 3,
+		'admin'				=> 4,
+		'banned'			=> 5,
+	],
 ];

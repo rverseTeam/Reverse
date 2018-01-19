@@ -22,5 +22,7 @@ $application->add(new Console\Command\DatabaseStatusCommand);
 
 $application->add(new Console\Command\ServeCommand);
 
+$application->add(new Console\Command\SetupCommand);
+
 // Run the application
 $application->run();
