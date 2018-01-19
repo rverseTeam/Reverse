@@ -15,7 +15,7 @@
         <script src="/js/n3ds/olv.js"></script>
         <script src="/js/n3ds/olv.locale-en.js"></script>
     </head>
-    <body data-user-id="{{ hashid(user.id) }}" data-is-first-favorite="0" data-profile-url="/users/{{ hashid(user.id) }}">
+    <body data-user-id="{{ user.username_clean }}" data-is-first-post="{{ firstPost }}" data-is-first-favorite="{{ firstFavorite }}" data-profile-url="/users/{{ user.username_clean }}">
         <div id="body" data-region-id="{{ console.region_id }}">
             {% block content %}
             {% endblock %}

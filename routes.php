@@ -20,6 +20,7 @@ Router::group(['before' => 'maintenance'], function () {
 	Router::group(['before' => 'auth'], function () {
 		// Welcome page
 		Router::get('/welcome', 'Gate@welcome', 'gate.welcome');
+		Router::post('/welcome', 'Gate@signup', 'gate.signup');
 
 		// Titles
 		Router::group(['prefix' => 'titles'], function () {

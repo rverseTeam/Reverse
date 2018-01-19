@@ -1,0 +1,80 @@
+{% set firstPost,firstFavorite = 1,1 %}
+{% extends '_master.twig' %}
+
+{% block content %}
+			<div id="welcome-3ds_start" class="start-page slide-page" data-slide-number="1" style="">
+				<div class="window-page">
+					<div class="window welcome-window">
+						<div class="window-title">
+							<h1 class="window-title-inner">Welcome to Miiverse!</h1>
+						</div>
+						<div class="window-body">
+							<div class="window-body-inner message">
+								<p>Miiverse lets you share your in-game experiences with people from all over the world.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="fixed-bottom-button left exit-button welcome-exit-button" data-sound="SE_CTR_COMMON_SYSAPPLET_END">Close</a>
+				<a href="#" class="fixed-bottom-button right next-button slide-button" data-slide="#welcome-feature">Next</a>
+			</div>
+			<div id="welcome-feature" class="slide-page" data-slide-number="11" style="display: none;">
+				<div class="window-page">
+					<div class="window welcome-window">
+						<div class="window-title">
+							<h1 class="window-title-inner">Miiverse Features on Systems in the Nintendo 3DS Family</h1>
+						</div>
+						<div class="window-body">
+							<div class="window-body-inner message">
+								<p class="p1">If you are unable to connect to the Internet, you can launch Miiverse in offline mode to write posts and save them for later. </p>
+								<p>Miiverse for systems in the Nintendo 3DS family does not currently support friend features.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="fixed-bottom-button left back-button slide-button accesskey-B" data-slide="#welcome-3ds_start" data-sound="SE_OLV_CANCEL">Back</a>
+				<a href="#" class="fixed-bottom-button right next-button slide-button" data-slide="#welcome-luminous_opt_in">Next</a>
+			</div>
+			<div id="welcome-luminous_opt_in" class="slide-page" data-slide-number="10" style="display: none;">
+				<div class="window-page">
+					<div class="window welcome-window with-button">
+						<div class="window-title">
+							<h1 class="window-title-inner">Configuring Notification Alerts</h1>
+						</div>
+						<div class="window-body">
+							<div class="window-body-inner message">
+								<p>Do you want to be alerted via the Miiverse icon when you receive notifications?<br>This setting can be changed later.</p>
+							</div>
+						</div>
+						<div class="window-bottom-buttons">
+							<div class="radio-buttons-2">
+								<label>
+									<input type="radio" name="luminous_opt_in" value="1" data-sound="SE_OLV_SELECT_TAB">
+									Alert
+								</label>
+								<label>
+									<input type="radio" name="luminous_opt_in" value="0" data-sound="SE_OLV_SELECT_TAB">
+									Don't Alert
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="fixed-bottom-button left back-button slide-button accesskey-B" data-slide="#welcome-feature" data-sound="SE_OLV_CANCEL">Back</a>
+				<a href="#" class="fixed-bottom-button right next-button welcome-luminous_opt_in-button" data-slide="#welcome-finish">Next</a>
+			</div>
+			<div id="welcome-finish" class="slide-page" data-bgm="BGM_CAVE_SYOKAI2" data-slide-number="9" style="display: none;">
+				<div class="window-page">
+					<div class="window welcome-window">
+						<div class="window-title">
+							<h1 class="window-title-inner">Have fun in Miiverse!</h1>
+						</div>
+						<div class="window-body">
+							<div class="window-body-inner message">
+								<a href="/" class="fixed-bottom-button right next-button welcome-finish-button" data-activate-url="/welcome/activate?update_with_default=0" data-replace="1">Start</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}
