@@ -4,7 +4,7 @@
  * @package Miiverse
  */
 
-namespace Miiverse\Pages\Titles;
+namespace Miiverse\Pages\Title;
 
 use Miiverse\Pages\Page as BasePage;
 
