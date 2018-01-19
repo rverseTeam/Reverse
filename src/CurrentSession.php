@@ -86,10 +86,17 @@ class CurrentSession
 			])->first();
 
 		if ($user) {
+			$session = CurrentSession::create(
+					$user->user_id,
+					Net::ip(),
+					get_country_code(),
+					clean_string($_SERVER['HTTP_USER_AGENT'] ?? '')
+				);
+
 			self::start(
 				$user->user_id,
-				'',
-				get_country_code()
+				$session->session_key,
+				Net::ip()
 			);
 		}
 	}

@@ -13,7 +13,7 @@ require_once __DIR__ . '/../core.php';
 ob_start(config('performance.compression') ? 'ob_gzhandler' : null);
 
 // Initialise the current session
-$console = ConsoleAuth::check();
+$console = Helpers\ConsoleAuth::check();
 CurrentSession::authByConsole($console);
 
 // Handle requests
