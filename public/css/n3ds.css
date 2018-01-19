@@ -7661,8 +7661,8 @@ ul + .headline {
 .slide-button.left,
 .slide-button.next-button,
 .fixed-bottom-button.next-button,
-.welcome-luminous_opt_in-button.left,
-.welcome-luminous_opt_in-button.next-button,
+.welcome-luminous_user_data-button.left,
+.welcome-luminous_user_data-button.next-button,
 .welcome-settings-button.left,
 .welcome-settings-button.next-button,
 .welcome-exit-button,
@@ -7689,7 +7689,7 @@ ul + .headline {
     text-align: left;
 }
 .slide-button.left,
-.welcome-luminous_opt_in-button.left,
+.welcome-luminous_user_data-button.left,
 .welcome-settings-button.left,
 .welcome-exit-button {
     -webkit-border-top-right-radius: 9px;
@@ -7699,7 +7699,7 @@ ul + .headline {
 }
 .slide-button.next-button,
 .fixed-bottom-button.next-button,
-.welcome-luminous_opt_in-button.next-button,
+.welcome-luminous_user_data-button.next-button,
 .welcome-settings-button.next-button {
     -webkit-border-top-left-radius: 9px;
     position: absolute;
@@ -7908,34 +7908,34 @@ ul + .headline {
     bottom: 0;
     left: -5px;
 }
-#welcome-notice_opt_in .window-body,
-#welcome-luminous_opt_in .window-body,
+#welcome-notice_user_data .window-body,
+#welcome-luminous_user_data .window-body,
 #welcome-settings .window-body {
     min-height: 140px;
     margin-top: 10px;
     padding: 0;
 }
-#welcome-notice_opt_in .window-bottom-buttons,
-#welcome-luminous_opt_in .window-bottom-buttons,
+#welcome-notice_user_data .window-bottom-buttons,
+#welcome-luminous_user_data .window-bottom-buttons,
 #welcome-settings .window-bottom-buttons {
     width: 290px;
     margin: 0 auto;
 }
-#welcome-notice_opt_in .window-bottom-buttons .radio-buttons-2 label,
-#welcome-luminous_opt_in .window-bottom-buttons .radio-buttons-2 label,
+#welcome-notice_user_data .window-bottom-buttons .radio-buttons-2 label,
+#welcome-luminous_user_data .window-bottom-buttons .radio-buttons-2 label,
 #welcome-settings .window-bottom-buttons .radio-buttons-2 label {
     width: 145px;
 }
-#welcome-notice_opt_in .window-bottom-buttons .radio-buttons-3 label,
-#welcome-luminous_opt_in .window-bottom-buttons .radio-buttons-3 label,
+#welcome-notice_user_data .window-bottom-buttons .radio-buttons-3 label,
+#welcome-luminous_user_data .window-bottom-buttons .radio-buttons-3 label,
 #welcome-settings .window-bottom-buttons .radio-buttons-3 label {
     width: 97px;
 }
-#welcome-notice_opt_in .window-title {
+#welcome-notice_user_data .window-title {
     background-image: url('/img/welcome/welcome7.jpg');
     background-position: center 90px;
 }
-#welcome-luminous_opt_in .window-title {
+#welcome-luminous_user_data .window-title {
     background-image: url('/img/welcome/welcome8.jpg');
     background-position: 136px 70px;
 }
