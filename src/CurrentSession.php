@@ -89,13 +89,12 @@ class CurrentSession
 			$session = CurrentSession::create(
 					$user->user_id,
 					Net::ip(),
-					get_country_code(),
-					clean_string($_SERVER['HTTP_USER_AGENT'] ?? '')
+					get_country_code()
 				);
 
 			self::start(
 				$user->user_id,
-				$session->session_key,
+				$session->key,
 				Net::ip()
 			);
 		}
