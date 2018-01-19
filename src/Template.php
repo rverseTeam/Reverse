@@ -55,6 +55,8 @@ class Template
 		'route',
 		'config',
 		'session_id',
+		'hashid',
+		'dehashid',
 	];
 
 	/**

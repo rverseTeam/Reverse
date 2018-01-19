@@ -5,6 +5,7 @@
 
 use Miiverse\Config;
 use Miiverse\FileSystem;
+use Miiverse\Hashid;
 use Miiverse\Net;
 use Miiverse\Router;
 use Miiverse\CurrentSession;
@@ -218,4 +219,12 @@ function checkConsoleAuth() {
 	$console = ConsoleAuth::check();
 	Template::vars(['user' => $console['paramPack']]);
 	CurrentSession::authByConsole($console);
+}
+
+function hashid($items) {
+	return Hashid::encode($items);
+}
+
+function dehashid($hash) {
+	return Hashid::decode($hash);
 }
