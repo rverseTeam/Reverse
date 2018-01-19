@@ -55,8 +55,6 @@ class Template
 		'route',
 		'config',
 		'session_id',
-		'css',
-		'js',
 	];
 
 	/**
