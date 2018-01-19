@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>foxverse - {{title}}</title>
+        <link rel="stylesheet" type="text/css" href="/css/n3ds.css">
+        <!-- Cave emulation layer -->
+        <script src="/js/src/cave-emulation.js"></script>
+        <!-- These were extracted from olv.js -->
+        <script src="/js/n3ds/zepto.min.js"></script>
+        <script src="/js/n3ds/deferred.min.js"></script>
+        <script src="/js/n3ds/lodash.min.js"></script>
+        <script src="/js/n3ds/backbone.min.js"></script>
+        <!-- Now we get to the good stuff -->
+        <script src="/js/n3ds/olv.js"></script>
+        <script src="/js/n3ds/olv.locale-en.js"></script>
+    </head>
+    <body data-user-id="{{ hashid(user.id) }}" data-is-first-favorite="0" data-profile-url="/users/{{ hashid(user.id) }}">
+        <div id="body" data-region-id="{{ user.region_id }}">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

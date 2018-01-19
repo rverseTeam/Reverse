@@ -20,6 +20,6 @@ class Show extends Page
 	 * @return string
 	 */
 	public function init() : string {
-		return '';
+		return view('titles/show');
 	}
 }
