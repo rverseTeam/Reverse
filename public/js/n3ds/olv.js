@@ -1148,9 +1148,7 @@ var Olv = Olv || {};
             "olv:welcome:slide .slide-page": "onSlide"
         },
         initialize: function() {
-            e.View.Page.Common.prototype.initialize.call(this), this.widgets.push(new e.View.Widget.CheckableControls({
-                el: this.$(".window-bottom-buttons")
-            })), this.slideByButton($("<button/>").attr("data-slide", ".start-page")), this.showScrollGuideTimer = null
+            e.View.Page.Common.prototype.initialize.call(this), this.widgets.push(), this.slideByButton($("<button/>").attr("data-slide", ".start-page")), this.showScrollGuideTimer = null
         },
         slideByButton: function(t) {
             document.activeElement.blur();
