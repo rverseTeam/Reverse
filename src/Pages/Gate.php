@@ -24,9 +24,10 @@ class Gate extends Page
 	}
 
 	/**
-	 * Activates an account (maybe?)
+	 * Activates an account (stubbed)
+	 * @return string
 	 */
 	public function activate() {
-		Net::request('', 'POST', $_POST);
+		return '';
 	}
 }
