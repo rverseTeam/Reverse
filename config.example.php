@@ -34,6 +34,9 @@ return [
 
 		// Date formatting string
 		'date_format'       => 'D Y-m-d H:i:s T',
+
+		// Hashids salt
+		'link_salt'			=> 'pleasechangme',
 	],
 
 	// Cookie settings

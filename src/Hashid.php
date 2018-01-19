@@ -27,7 +27,7 @@ class Hashid
 	 * @return void
 	 */
 	public static function init(string $salt) : void {
-		self::$hashids = Hashids($salt);
+		self::$hashids = Hashids($salt, 20);
 	}
 
 	/**
