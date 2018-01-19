@@ -86,15 +86,11 @@ class CurrentSession
 			])->first();
 
 		if ($user) {
-			$session = self::create(
+			self::start(
 				$user->user_id,
-				Net::ip(),
+				'',
 				get_country_code()
 			);
-
-			$cookiePrefix = config('cookie.prefix');
-			setcookie("{$cookiePrefix}id", $user->id, time() + 604800, '/');
-			setcookie("{$cookiePrefix}session", $session->key, time() + 604800, '/');
 		}
 	}
 }
