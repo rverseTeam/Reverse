@@ -19,8 +19,8 @@ Router::group(['before' => 'maintenance'], function () {
 	// 3DS required to load these pages
 	Router::group(['before' => 'auth'], function () {
 		// Welcome page
-		Router::get('/welcome', 'Gate@welcome', 'gate.welcome');
-		Router::post('/welcome', 'Gate@signup', 'gate.signup');
+		Router::get('/welcome/3ds', 'Gate@welcome', 'gate.welcome');
+		Router::post('/welcome/activate', 'Gate@activate', 'gate.activate');
 
 		// Titles
 		Router::group(['prefix' => 'titles'], function () {

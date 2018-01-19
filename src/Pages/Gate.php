@@ -6,6 +6,8 @@
 
 namespace Miiverse\Pages;
 
+use Miiverse\Net;
+
 /**
  * User gate.
  * @package Miiverse
@@ -19,5 +21,12 @@ class Gate extends Page
 	 */
 	public function welcome() : string {
 		return view('gate/welcome');
+	}
+
+	/**
+	 * Activates an account (maybe?)
+	 */
+	public function activate() {
+		Net::request('', 'POST', $_POST);
 	}
 }
