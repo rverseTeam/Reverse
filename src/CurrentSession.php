@@ -82,15 +82,14 @@ class CurrentSession
 	 */
 	public static function authByConsole(array $console) : void {
 		$user = DB::table('console_auth')->where([
-				'friend_pid' => $user,
+				'friend_pid' => $console['friendPID'],
 			])->first();
 
 		if ($user) {
-			$session = CurrentSession::create(
+			$session = self::create(
 				$user->user_id,
 				Net::ip(),
-				get_country_code(),
-				clean_string($_SERVER['HTTP_USER_AGENT'] ?? '')
+				get_country_code()
 			);
 
 			$cookiePrefix = config('cookie.prefix');
