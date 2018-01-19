@@ -27,7 +27,7 @@ class Hashid
 	 * @return void
 	 */
 	public static function init(string $salt) : void {
-		self::$hashids = Hashids($salt, 20);
+		self::$hashids = new Hashids($salt, 20);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Hashid
 	}
 
 	/**
-	 * Decode the current Hasid to array
+	 * Decode the current Hashid to array
 	 * @param string $hashid
 	 * @return sring|array
 	 */
