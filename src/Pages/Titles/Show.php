@@ -20,7 +20,6 @@ class Show extends Page
 	 * @return string
 	 */
 	public function init() : string {
-		ParamPack::unpack();
 		return '';
 	}
 }

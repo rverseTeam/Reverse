@@ -36,6 +36,11 @@ return [
 		'date_format'       => 'D Y-m-d H:i:s T',
 	],
 
+	// Cookie settings
+	'cookie'        => [
+		'prefix'            => 'miiverse_',
+	],
+
 	// Performance settings
 	'performance'   => [
 		// Compress output using gzip, recommended to turn this off while debugging

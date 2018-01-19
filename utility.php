@@ -7,7 +7,9 @@ use Miiverse\Config;
 use Miiverse\FileSystem;
 use Miiverse\Net;
 use Miiverse\Router;
+use Miiverse\CurrentSession;
 use Miiverse\Template;
+use Miiverse\Helpers\ConsoleAuth;
 
 // Sort of alias for Config::get
 function config($value) {
@@ -210,4 +212,9 @@ function checkMaintenance() {
 		http_response_code(503);
 		return view('errors/503');
 	}
+}
+
+function checkConsoleAuth() {
+	$console = ConsoleAuth::check();
+	CurrentSession::authByConsole($console);
 }
