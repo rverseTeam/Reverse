@@ -1187,13 +1187,13 @@ var Olv = Olv || {};
             t.preventDefault();
             var i = $(t.currentTarget);
             cave.boss_unregist();
-            if ($('input[name="welcome_display_name"]').val > 0 && $('input[name="welcome_nnid"]').val > 0) {
-                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val));
-                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val))
+            if ($('input[name="welcome_display_name"]').val() > 0 && $('input[name="welcome_nnid"]').val() > 0) {
+                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val()));
+                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_nnid"]').val()))
                 //this.slideByButton(i)
             } else {
-                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val));
-                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val))
+                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_display_name"]').val()));
+                e.deferredAlert(null, e.loc("testverse.debug", $('input[name="welcome_nnid"]').val()))
                 //e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
             }
         },
