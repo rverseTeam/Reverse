@@ -1188,9 +1188,13 @@ var Olv = Olv || {};
             var i = $(t.currentTarget);
             cave.boss_unregist();
             if ($('input[name="welcome_display_name"]').length > 0 && $('input[name="welcome_nnid"]').length > 0) {
-                this.slideByButton(i)
+                e.deferredAlert(null, e.loc("olv.portal.followlist.confirm_unfollow_to", $('input[name="welcome_display_name"]').length));
+                e.deferredAlert(null, e.loc("olv.portal.followlist.confirm_unfollow_to", $('input[name="welcome_display_name"]').length))
+                //this.slideByButton(i)
             } else {
-                e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
+                e.deferredAlert(null, e.loc("olv.portal.followlist.confirm_unfollow_to", $('input[name="welcome_display_name"]').length));
+                e.deferredAlert(null, e.loc("olv.portal.followlist.confirm_unfollow_to", $('input[name="welcome_display_name"]').length))
+                //e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
             }
         },
         onLuminousOptInButtonClick: function(e) {

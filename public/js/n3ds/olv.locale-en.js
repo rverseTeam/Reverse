@@ -417,12 +417,16 @@ Olv.Locale.Data = {
         "value": "Please select a notification option."
     },
     "olv.portal.welcome.user_data": {
-        "value": "Please input both your Display Name and your Nintendo Network ID."
+        "value": "Please input your Display Name and your Nintendo Network ID."
     },
     "olv.portal.yes": {
         "value": "Yes"
     },
     "olv.potal.n3ds.youtube.jump": {
         "value": "Do you want to close Miiverse and launch YouTube?"
-    }
+    },
+    "testverse.debug": {
+        "args": [1],
+        "value": "DEBUG:\n%s"
+    },
 };
