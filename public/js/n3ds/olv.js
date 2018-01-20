@@ -1166,7 +1166,7 @@ var Olv = Olv || {};
             else if ("welcome-finish" === i) {
                 var o = this.$(".welcome-finish-button"),
                     n = o.attr("data-activate-url");
-                e.Form.post(n, $("#user_data").serialize(), o, !0).done(function() {
+                e.Form.post(n, $("#user_data").serialize(), o, !0).done(function(done) {
                     e.OneTime.updatePlayedTitles()
                 }).fail(function() {
                     e.Browsing.reload()
@@ -1188,7 +1188,14 @@ var Olv = Olv || {};
             var i = $(t.currentTarget);
             cave.boss_unregist();
             if ($('input[name="welcome_display_name"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
-                this.slideByButton(i)
+                var o = this.$(".welcome-finish-button"),
+                    n = o.attr("data-activate-url");
+                e.Form.post(n, $("#user_data").serialize(), o, !0).done(function(data) {
+                    e.deferredAlert(null, e.loc("testverse.debug", data))
+                    //this.slideByButton(i)
+                }).fail(function() {
+                    e.deferredAlert(null, e.loc("olv.portal.error.500.for_n3ds"))
+                })
             } else {
                 e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
             }
