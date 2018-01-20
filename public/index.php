@@ -30,9 +30,7 @@ Template::vars([
     'session' => $_SESSION,
 ]);
 
-// Handle requests
-$out = Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
-// Make a content-lenght header all the time.
-header("Content-Length: " . strlen($out));
-echo $out;
+
+// Handle requests
+echo Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
