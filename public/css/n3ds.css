@@ -7779,7 +7779,7 @@ ul + .headline {
     text-align: left;
     margin: 0;
 }
-.welcome-window .window-bottom-input > input {
+.welcome-window .window-bottom-input input {
     font-size: 16px;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
