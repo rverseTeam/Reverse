@@ -1187,7 +1187,11 @@ var Olv = Olv || {};
             t.preventDefault();
             var i = $(t.currentTarget);
             cave.boss_unregist();
-            //$('input[name="luminous_opt_in"]:checked').length ? this.slideByButton(i) : e.deferredAlert(null, e.loc("olv.portal.welcome.select_luminous_opt_in"))
+            if ($('input[name="welcome_display_name"]').length > 0 && $('input[name="nnid"]').length > 0) {
+                this.slideByButton(i)
+            } else {
+                e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
+            }
         },
         onLuminousOptInButtonClick: function(e) {
             +$(e.currentTarget).val() ? cave.boss_registEx(1, 336) : cave.boss_unregist()

@@ -416,6 +416,9 @@ Olv.Locale.Data = {
     "olv.portal.welcome.select_luminous_opt_in": {
         "value": "Please select a notification option."
     },
+    "olv.portal.welcome.user_data": {
+        "value": "Please input both your Display Name and your Nintendo Network ID."
+    },
     "olv.portal.yes": {
         "value": "Yes"
     },
