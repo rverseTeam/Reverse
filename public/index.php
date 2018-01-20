@@ -31,4 +31,8 @@ Template::vars([
 ]);
 
 // Handle requests
-echo Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$out = Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+
+// Make a content-lenght header all the time.
+header("Content-Length: " . strlen($out));
+echo $ds;
