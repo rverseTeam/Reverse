@@ -1187,7 +1187,7 @@ var Olv = Olv || {};
             t.preventDefault();
             var i = $(t.currentTarget);
             cave.boss_unregist();
-            if ($('input[name="welcome_display_name"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
+            if ($('input[name="welcome_username"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
                 var o = this.$(".welcome-finish-button"),
                     n = o.attr("data-activate-url");
                 e.Form.post(n, $("#user_data").serialize(), o, !0).done(function(data) {
