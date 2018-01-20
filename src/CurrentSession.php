@@ -77,12 +77,12 @@ class CurrentSession
 
 	/**
 	 * Auth a user based on their console info.
-	 * @param array $console
+	 * @param string $pid
 	 * @return void
 	 */
-	public static function authByConsole(array $console) : void {
+	public static function authByConsole(string $pid) : void {
 		$user = DB::table('console_auth')->where([
-				'friend_pid' => $console['friendPID'],
+				'friend_pid' => $pid,
 			])->first();
 
 		if ($user) {
