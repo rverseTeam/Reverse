@@ -1189,7 +1189,8 @@ var Olv = Olv || {};
             cave.boss_unregist();
             if ($('input[name="welcome_username"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
                 var o = this.$("#user_data"),
-                    n = o.attr("data-check-url");
+                    n = o.attr("data-check-url")
+                    self = this;
                 e.Form.post(n, o.serialize(), o, !0).done(function(data) {
                     switch (data) {
                         case 'username':
@@ -1199,7 +1200,7 @@ var Olv = Olv || {};
                             e.deferredAlert(null, e.loc("olv.welcome.check.nnid"));
                             break;
                         case 'ok':
-                            this.slideByButton(i);
+                            self.slideByButton(i);
                             break;
                         default:
                             e.deferredAlert(null, e.loc("olv.portal.error.500.for_n3ds"));
