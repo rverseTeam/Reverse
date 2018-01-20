@@ -7769,6 +7769,9 @@ ul + .headline {
     text-align: left;
     margin: 0;
 }
+.welcome-window .window-bottom-input {
+    margin-top: -11px;
+}
 .welcome-window .window-bottom-input > input {
     font-size: 16px;
     border-top: 1px solid #ddd;
