@@ -7771,6 +7771,11 @@ ul + .headline {
 }
 .welcome-window .window-bottom-input > input {
     font-size: 16px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #b7b7b7;
+    border-bottom: 1px solid #b7b7b7;
+    -webkit-border-radius: 4px;
 }
 #welcome-finish .welcome-window .window-body-inner {
     padding: 0;
