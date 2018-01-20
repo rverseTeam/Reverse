@@ -1166,7 +1166,7 @@ var Olv = Olv || {};
             else if ("welcome-finish" === i) {
                 var o = this.$(".welcome-finish-button"),
                     n = o.attr("data-activate-url");
-                e.Form.post(n, null, o, !0).done(function() {
+                e.Form.post(n, $("#user_data").serialize(), o, !0).done(function() {
                     e.OneTime.updatePlayedTitles()
                 }).fail(function() {
                     e.Browsing.reload()
