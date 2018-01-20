@@ -1,0 +1,93 @@
+{% set firstPost,firstFavorite = 1,1 %}
+{% extends '_master.twig' %}
+
+{% block content %}
+<div class="title-header text-header">
+  <div class="header-banner-container">
+    <div class="header-banner">
+      <p>Check out the communities for games that you play or games that you're curious about!</p>
+    </div>
+  </div>
+  <h1 class="info-content">
+    <span class="icon-container"></span>
+    <span class="title-container">
+      <span class="title">Communities</span>
+    </span>
+  </h1>
+</div>
+<div class="community-top-top-container">
+  <span class="top-left-button title-search-button"><span class="symbol">Search</span><input data-action="/titles/search" name="query" class="title-search-title-id" minlength="2" maxlength="20" type="text" monospace="on" guide="Search Communities" cave_oninput="$(document.activeElement).trigger('input')" value=""></span>
+  <a href="/communities/favorites" class="favorites-button top-right-button" data-pjax="1"><span class="symbol">Favorite Communities</span></a>
+
+</div>
+
+<div class="body-content" id="community-top" data-region="USA">
+
+  <div class="close-announce-content test-close-announce">
+    <a href="">End of Miiverse Service Announcement</a>
+  </div>
+
+  <div class="news-label-content">
+
+  </div>
+
+  <div id="identified-user-banner" class="news-label us">
+    <a href="/identified_user_posts?view_region_id=2" data-pjax="#body">
+      <span class="title">Get the latest news here!</span>
+      <span class="text">Posts from Verified Users</span>
+    </a>
+  </div>
+  <div class="community-list">
+    <div class="headline with-filter headline-wiiu">
+      <h2>New Communities</h2>
+
+<div class="with-filter-right">
+  <div class="select-button">
+    <label id="community-filter" class="">
+      <span class="select-button-content">Filter</span>
+      <select name="filter">
+        <option value="" selected="">Please make a selection.</option>
+        <option value="/communities/categories/wiiu_all">All Software</option>
+        <option value="/communities/categories/wiiu_game">Wii U Games</option>
+        <option value="/communities/categories/wiiu_virtualconsole">Virtual Console</option>
+        <option value="/communities/categories/wiiu_other">Others</option>
+      </select>
+    </label>
+  </div>
+</div>
+    </div>
+    <ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
+
+<li id="community-14938538520099162232" class=" has-other-communities">
+  <span class="icon-container"><img src="" class="icon" width="48" height="48"></span>
+  <a href="/titles/14938538520099162231/14938538520099162232" class="arrow-button scroll" data-pjax="1"></a>
+  <div class="body">
+    <span class="community-name title">GameName (UniqueID: 0x0101D)</span>
+        <span class="platform-tag platform-tag-wiiu"></span>
+      <span class="text">Wii U Games</span>
+  </div>
+  <div class="list-button-container"><a href="/titles/14938538520099162231" class="button list-button" data-pjax="1"><span class="symbol"><span class="symbol-label">Related Communities</span></span></a></div>
+</li>
+
+    </ul>
+    <a href="/communities/categories/wiiu_all" class="more-button scroll" data-pjax="1">Show More</a>
+    <h2 class="headline headline-special">Special</h2>
+    <ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
+    </ul>
+  </div>
+
+</div>
+
+<div class="community-list-footer">
+  <div class="select-button"><span class="select-button-content">Americas</span>
+    <label id="view-region-selector" class="selected">
+    <select name="type">
+      <option value="/communities?view_region_id=4">Europe and Oceania</option>
+      <option value="/communities?view_region_id=1">Japan</option>
+      <option value="/communities?view_region_id=2" selected="">Americas</option>
+    </select>
+    </label>
+  </div>
+  <a href="/communities?view_platform=3ds" class="platform-button" data-pjax="1">3DS Communities</a>
+</div>
+{% endblock %}
