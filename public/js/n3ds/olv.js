@@ -1188,7 +1188,7 @@ var Olv = Olv || {};
             var i = $(t.currentTarget);
             cave.boss_unregist();
             if ($('input[name="welcome_username"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
-                var o = this.$(".welcome-finish-button"),
+                var o = this.$("#user_data"),
                     n = o.attr("data-check-url");
                 e.Form.post(n, $("#user_data").serialize(), o, !0).done(function(data) {
                     e.deferredAlert(null, e.loc("testverse.debug", data))
