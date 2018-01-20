@@ -1187,7 +1187,7 @@ var Olv = Olv || {};
             t.preventDefault();
             var i = $(t.currentTarget);
             cave.boss_unregist();
-            if ($('input[name="welcome_display_name"]').length > 0 && $('input[name="nnid"]').length > 0) {
+            if ($('input[name="welcome_display_name"]').length > 0 && $('input[name="welcome_nnid"]').length > 0) {
                 this.slideByButton(i)
             } else {
                 e.deferredAlert(null, e.loc("olv.portal.welcome.user_data"))
