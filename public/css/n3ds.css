@@ -7916,7 +7916,7 @@ ul + .headline {
     padding: 0;
 }
 #welcome-notice_user_data .window-bottom-buttons,
-#welcome-luminous_user_data .window-bottom-buttons,
+#welcome-luminous_user_data .window-bottom-input,
 #welcome-settings .window-bottom-buttons {
     width: 290px;
     margin: 0 auto;
