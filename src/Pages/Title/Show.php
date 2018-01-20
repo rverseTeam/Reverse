@@ -19,7 +19,7 @@ class Show extends Page
 	 * Serves the site index.
 	 */
 	public function init() {
-		if (CurrentSession::$user === 0) {
+		if (CurrentSession::$user->id === 0) {
 			// No user, redirect them to the welcome page
 			redirect(route('gate.welcome'));
 		} else {
