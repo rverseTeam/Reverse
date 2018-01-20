@@ -7779,7 +7779,7 @@ ul + .headline {
     text-align: left;
     margin: 0;
 }
-.welcome-window .window-bottom-input > input {
+.welcome-window .window-bottom-input {
     font-size: 16px;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
@@ -7787,6 +7787,9 @@ ul + .headline {
     border-bottom: 1px solid #b7b7b7;
     -webkit-border-radius: 4px;
     padding: 3px;
+}
+.welcome-window .window-bottom-input label {
+    font-size: 6px;
 }
 #welcome-finish .welcome-window .window-body-inner {
     padding: 0;
@@ -7934,7 +7937,7 @@ ul + .headline {
     padding: 0;
 }
 #welcome-luminous_user_data .window-body-user_data {
-    min-height: 120px;
+    min-height: 105px;
     margin-top: 10px;
     padding: 0;
 }
