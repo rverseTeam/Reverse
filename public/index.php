@@ -30,7 +30,5 @@ Template::vars([
     'session' => $_SESSION,
 ]);
 
-
-
 // Handle requests
 echo Router::handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

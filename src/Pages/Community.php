@@ -16,10 +16,16 @@ use Miiverse\DB;
 class Community extends Page
 {
 	/**
-	 * Community index
+	 * Community index.
 	 * @return string
 	 */
 	public function index() : string {
-		return view('community/index');
+		// Fetch the last 10 communities
+		$communities = DB::table('communities')
+			->where('type', '=', 0)
+			->latest('created')
+			->limit(10);
+
+		return view('community/index', compact('communities');
 	}
 }
