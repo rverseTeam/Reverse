@@ -7928,9 +7928,13 @@ ul + .headline {
     left: -5px;
 }
 #welcome-notice_user_data .window-body,
-#welcome-luminous_user_data .window-body-user_data,
 #welcome-settings .window-body {
     min-height: 140px;
+    margin-top: 10px;
+    padding: 0;
+}
+#welcome-luminous_user_data .window-body-user_data {
+    min-height: 120px;
     margin-top: 10px;
     padding: 0;
 }
