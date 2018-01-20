@@ -6,7 +6,7 @@
 
 namespace Miiverse\Pages;
 
-use Miiverse\Net;
+use Miiverse\DB;
 
 /**
  * User gate.

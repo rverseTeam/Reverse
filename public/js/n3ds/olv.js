@@ -1190,9 +1190,21 @@ var Olv = Olv || {};
             if ($('input[name="welcome_username"]').val().length > 0 && $('input[name="welcome_nnid"]').val().length > 0) {
                 var o = this.$("#user_data"),
                     n = o.attr("data-check-url");
-                e.Form.post(n, $("#user_data").serialize(), o, !0).done(function(data) {
-                    e.deferredAlert(null, e.loc("testverse.debug", data))
-                    //this.slideByButton(i)
+                e.Form.post(n, o.serialize(), o, !0).done(function(data) {
+                    switch (data) {
+                        case 'username':
+                            e.deferredAlert(null, e.loc("olv.welcome.check.username"));
+                            break;
+                        case 'nnid':
+                            e.deferredAlert(null, e.loc("olv.welcome.check.nnid"));
+                            break;
+                        case 'ok':
+                            this.slideByButton(i);
+                            break;
+                        default:
+                            e.deferredAlert(null, e.loc("olv.portal.error.500.for_n3ds"));
+                            break;
+                    }
                 }).fail(function() {
                     e.deferredAlert(null, e.loc("olv.portal.error.500.for_n3ds"))
                 })

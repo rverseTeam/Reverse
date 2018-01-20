@@ -425,6 +425,12 @@ Olv.Locale.Data = {
     "olv.potal.n3ds.youtube.jump": {
         "value": "Do you want to close Miiverse and launch YouTube?"
     },
+    "olv.welcome.check.username": {
+        "value": "This username is already in use, please select another."
+    },
+    "olv.welcome.check.nnid": {
+        "value": "This Nintendo Network ID is already in use, please select another."
+    },
     "testverse.debug": {
         "args": [1],
         "value": "DEBUG:\n%s"
