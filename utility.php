@@ -216,8 +216,8 @@ function checkMaintenance() {
 }
 
 function checkConsoleAuth() {
-	$console = ConsoleAuth::check();
-	Template::vars(['console' => $console['paramPack']]);
+	ConsoleAuth::check();
+	Template::vars(['console' => ConsoleAuth::$paramPack]);
 	CurrentSession::authByConsole($console);
 }
 
