@@ -21,3 +21,11 @@
 
 # Extra stuff
 /stuff/*
+
+# Public stuff
+/public/img/banners/*
+!/public/img/banners/.gitkeep
+/public/img/drawings/*
+!/public/img/drawings/.gitkeep
+/public/img/icons/*
+!/public/img/icons/.gitkeep
