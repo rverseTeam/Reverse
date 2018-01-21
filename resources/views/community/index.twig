@@ -28,7 +28,7 @@
 					<div class="headline">
 						<h2>General Communities</h2>
 					</div>
-					<ul class="list-content-with-icon-and-text" id="community-top-content">
+					<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 						{% for community in communities.general %}
 							{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 							<li id="community-{{ id }}" class="">
