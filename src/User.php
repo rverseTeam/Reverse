@@ -145,6 +145,18 @@ class User
 	public $restricted = false;
 
 	/**
+	 * Has this user made at least a post already?
+	 * @var bool
+	 */
+	public $posted = false;
+
+	/**
+	 * Has this user favorited anything at least once?
+	 * @var bool
+	 */
+	public $favorited = false;
+
+	/**
 	 * The user's birthday.
 	 * @var string
 	 */
@@ -238,6 +250,8 @@ class User
 			$this->systems = boolval($userRow->user_systems);
 			$this->activated = boolval($userRow->user_activated);
 			$this->restricted = boolval($userRow->user_restricted);
+			$this->posted = boolval($userRow->posted);
+			$this->favorited = boolval($userRow->favorited);
 			$this->registerIp = Net::ntop($userRow->register_ip);
 			$this->lastIp = Net::ntop($userRow->last_ip);
 		}
