@@ -38,6 +38,11 @@ Router::group(['before' => 'maintenance'], function () {
 			Router::get('/{tid:a}/{id:a}/post_memo', 'Title.Community@post_memo', 'title.postmemo');
 		});
 
+		// Post handler
+		Router::group(['prefix' => 'posts'], function () {
+			Router::post('/', 'Post@create', 'post.submit');
+		});
+
 		// Communities
 		Router::group(['prefix' => 'communities'], function () {
 			Router::get('/', 'Community@index', 'community.index');
