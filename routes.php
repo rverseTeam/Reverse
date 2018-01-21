@@ -22,11 +22,9 @@ Router::group(['before' => 'maintenance'], function () {
 		Router::get('/local_list.json', 'Dummy@dummy', 'local.list');
 		Router::get('/check_update.json', 'Dummy@dummy', 'check.update');
 
-		// Welcome
-		Router::group(['prefix' => 'welcome'], function () {
-			Router::get('/3ds', 'Gate@welcome', 'gate.welcome');
-			Router::post('/check', 'Gate@check', 'gate.check');
-			Router::post('/activate', 'Gate@activate', 'gate.activate');
+		// Communities
+		Router::group(['prefix' => 'communities'], function () {
+			Router::get('/', 'Community@index', 'community.index');
 		});
 
 		// Titles
@@ -43,9 +41,16 @@ Router::group(['before' => 'maintenance'], function () {
 			Router::post('/', 'Post@create', 'post.submit');
 		});
 
-		// Communities
-		Router::group(['prefix' => 'communities'], function () {
-			Router::get('/', 'Community@index', 'community.index');
+		// Settings
+		Router::group(['prefix' => 'settings'], function () {
+			Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
+		});
+
+		// Welcome
+		Router::group(['prefix' => 'welcome'], function () {
+			Router::get('/3ds', 'Gate@welcome', 'gate.welcome');
+			Router::post('/check', 'Gate@check', 'gate.check');
+			Router::post('/activate', 'Gate@activate', 'gate.activate');
 		});
 	});
 });
