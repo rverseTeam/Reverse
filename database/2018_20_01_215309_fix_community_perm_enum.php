@@ -16,9 +16,12 @@ class FixCommunityPermEnum extends Migration
 
 		$schema->table('communities', function (Blueprint $table) {
 			$table->dropColumn('permissions');
+		});
 
+		$schema->table('communities', function (Blueprint $table) {
 			$table->smallInteger('permissions')->unsigned()->default(0);
 		});
+
 	}
 
 	/**
@@ -31,7 +34,9 @@ class FixCommunityPermEnum extends Migration
 
 		$schema->table('communities', function (Blueprint $table) {
 			$table->dropColumn('permissions');
+		});
 
+		$schema->table('communities', function (Blueprint $table) {
 			$table->enum('permissions', ['post', 'draw', 'like']);
 		});
 	}
