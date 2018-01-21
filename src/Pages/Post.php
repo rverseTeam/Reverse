@@ -6,7 +6,10 @@
 
 namespace Miiverse\Pages;
 
+use Miiverse\CurrentSession;
 use Miiverse\DB;
+use Miiverse\User;
+use Miiverse\Community\Community;
 
 /**
  * Post handler.
@@ -33,6 +36,7 @@ class Post extends Page
 					'community' => $id,
 					'content' => $body,
 					'feeling' => $feeling,
+					'user_id' => CurrentSession::$user->id,
 					'spoiler' => intval($spoiler),
 				]);
 
@@ -48,6 +52,15 @@ class Post extends Page
 	 * Shows an individual post
 	 */
 	public function show(string $id) : string {
-		return '';
+		$post_id = dehashid($id);
+
+		$post_meta = DB::table('posts')
+						->where('id', $post_id)
+						->first();
+
+		$meta = new Community($post_meta->community);
+		$creator = new User($post_meta->user_id);
+
+		return view('posts/view', compact('post_meta', 'meta', 'creator'));
 	}
 }

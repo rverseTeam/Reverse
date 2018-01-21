@@ -1,0 +1,46 @@
+{% set class = 'post-permalink' %}
+{% extends '_master.twig' %}
+
+{% block content %}
+{% set id,title_id = hashid(meta.id), hashid(meta.title_id) %}
+			<div id="header">
+				<div id="header-body">
+					<h1 id="page-title"><span>{{ creator.username }}'s post</span></h1>
+				</div>
+			</div>
+			<div id="post-permalink-content">
+				<div id="header-meta">
+					<p class="community-container">
+						<a href="{{ route('title.community', [ title_id, id ]) }}" class="community" data-pjax="1">
+							<span class="community-container-inner">
+								<img src="/img/icons/{{ meta.icon }}" class="community-icon" width="14" height="14">{{ meta.name }}
+							</span>
+						</a>
+					</p>
+				</div>
+				<div id="post-permalink-body" class="post scroll post-subtype-default">
+					<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
+						<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
+					</a>
+					<header>
+						<div class="header-inner">
+							<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ creator.username }}</a></p>
+							<p class="timestamp-container">
+								<a class="timestamp">05/06/2017 10:03 PM</a>
+							</p>
+						</div>
+					</header>
+					<div class="post-content">
+						<p class="post-content-text">{{ post_meta.content }}</p>
+					</div>
+					<div class="post-meta">
+						<div class="report-buttons-content">
+							<a href="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/violations.create" role="button" class="report-button" data-pjax="1">Report Violation</a>
+						</div>
+						<div class="expression">
+							<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/empathies" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}
