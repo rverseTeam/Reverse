@@ -10,6 +10,7 @@
 				<h1 class="info-content">
 					<span class="icon-container"><img src="/img/icons/{{ meta.icon }}" class="icon" width="48" height="48"></span>
 					<span class="title-container">
+						<span class="news-community-badge">Main Community</span>
 						<span class="title">{{ meta.name }}</span>
 					</span>
 				</h1>
@@ -32,6 +33,7 @@
 				<div class="tab-body">
 					<div class="post-buttons-content with-memo-button">
 						<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
+						<a href="{{ route('title.postmemo', [ title_id, id ]) }}" class="memo-button" data-pjax="1"><span class="symbol">Saved Posts</span></a>
 					</div>
 				</div>
 			</div>

@@ -29,6 +29,7 @@ Router::group(['before' => 'maintenance'], function () {
 			Router::get('/show', 'Title.Show@init', 'title.init');
 			Router::get('/{tid:a}/{id:a}', 'Title.Community@show', 'title.community');
 			Router::get('/{tid:a}/{id:a}/post', 'Title.Community@post', 'title.post');
+			Router::get('/{tid:a}/{id:a}/post_memo', 'Title.Community@post', 'title.postmemo');
 		});
 
 		// Communities
