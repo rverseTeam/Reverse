@@ -29,7 +29,7 @@ class AddPermsTable extends Migration
 			$table->tinyInteger('perm_comments_close')->nullable()->default(null);
 			$table->tinyInteger('perm_comments_create')->nullable()->default(null);
 			$table->tinyInteger('perm_comments_draw')->nullable()->default(null);
-            $table->tinyInteger('perm_comments_delete')->nullable()->default(null);
+            $table->tinyInteger('perm_comments_close')->nullable()->default(null);
             $table->tinyInteger('perm_comments_vote')->nullable()->default(null);
 
             $table->tinyInteger('perm_is_mod')->nullable()->default(null);
