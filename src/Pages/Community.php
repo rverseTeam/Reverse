@@ -26,7 +26,7 @@ class Community extends Page
 							->where('type', '=', 0)
 							->latest('created')
 							->limit(6)
-							->get(['id', 'title_id', 'name', 'icon', 'type']),
+							->get(['id', 'title_id', 'name', 'icon', 'type', 'platform']),
 			'game' => DB::table('communities')
 						->where([
 							['type', '>', 0],
@@ -34,12 +34,12 @@ class Community extends Page
 						])
 						->latest('created')
 						->limit(6)
-						->get(['id', 'title_id', 'name', 'icon', 'type']),
+						->get(['id', 'title_id', 'name', 'icon', 'type', 'platform']),
 			'special' => DB::table('communities')
 							->where('type', '=', 4)
 							->latest('created')
 							->limit(6)
-							->get(['id', 'title_id', 'name', 'icon', 'type']),
+							->get(['id', 'title_id', 'name', 'icon', 'type', 'platform']),
 		];
 
 		return view('community/index', compact('communities'));
