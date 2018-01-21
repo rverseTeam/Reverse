@@ -39,6 +39,7 @@ class Community extends Page
 
 		$posts_pre = DB::table('posts')
 					->where('community', $community)
+					->orderBy('created', 'desc')
 					->limit(10)
 					->get(['id', 'user_id', 'created', 'edited', 'deleted', 'content', 'image', 'feeling', 'spoiler']);
 
