@@ -14,7 +14,7 @@ use Miiverse\CurrentSession;
  * @package Miiverse
  * @author Repflez
  */
-class Forum
+class Community
 {
     /**
      * The ID of the community.
@@ -32,7 +32,7 @@ class Forum
      * The name of the community.
      * @var string
      */
-    public $name = "Forum";
+    public $name = "Community";
 
     /**
      * The description of the community.

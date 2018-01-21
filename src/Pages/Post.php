@@ -36,7 +36,7 @@ class Post extends Page
 					'spoiler' => intval($spoiler),
 				]);
 
-				redirect(route('post.show', ['id' => hashid($id), 'pid' => hashid($postId)]));
+				redirect(route('post.show', ['id' => hashid($postId)]));
 				break;
 			default:
 				break;
@@ -47,7 +47,7 @@ class Post extends Page
 	/**
 	 * Shows an individual post
 	 */
-	public function show(string $id, string $pid) : string {
+	public function show(string $id) : string {
 		return '';
 	}
 }
