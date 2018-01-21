@@ -29,17 +29,17 @@ class Community extends Page
 							->get(['id', 'title_id', 'name', 'icon', 'type']),
 			'game' => DB::table('communities')
 						->where([
-							['type' '>' 0],
-							['type' '<' 4],
+							['type', '>', 0],
+							['type', '<', 4],
 						])
 						->latest('created')
 						->limit(6)
 						->get(['id', 'title_id', 'name', 'icon', 'type']),
 			'special' => DB::table('communities')
 							->where('type', '=', 4)
-						->latest('created')
-						->limit(6)
-						->get(['id', 'title_id', 'name', 'icon', 'type']),
+							->latest('created')
+							->limit(6)
+							->get(['id', 'title_id', 'name', 'icon', 'type']),
 		];
 
 		return view('community/index', compact('communities'));
