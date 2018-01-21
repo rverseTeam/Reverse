@@ -7,6 +7,7 @@
 namespace Miiverse\Pages\Title;
 
 use Miiverse\DB;
+use Miiverse\User;
 
 /**
  * Community page for rtitles.
@@ -22,6 +23,7 @@ class Community extends Page
 	public function show($tid, $id) : string {
 		$community = dehashid($id);
 		$titileId = dehashid($tid);
+		$posts = [];
 
 		if (!is_array($community) || !is_array($titileId)) {
 			return view('errors/404');
@@ -35,10 +37,22 @@ class Community extends Page
 			return view('errors/404');
 		}
 
-		$posts = DB::table('posts')
+		$posts_pre = DB::table('posts')
 					->where('community', $community)
 					->limit(10)
-					->get(['id', 'user_id', 'created', 'edited', 'deleted', 'content', 'image', 'feeling']);
+					->get(['id', 'user_id', 'created', 'edited', 'deleted', 'content', 'image', 'feeling', 'spoiler']);
+
+		foreach ($posts_pre as $post) {
+			$posts[] = [
+				'id' => hashid($post->id),
+				'user' => User::construct($post->user_id),
+				'created' => $post->created,
+				'content' => $post->content,
+				'image' => $post->image,
+				'feeling' => $post->feeling,
+				'spoiler' => $post->spoiler
+			];
+		}
 
 		return view('titles/view', compact('meta', 'posts'));
 	}

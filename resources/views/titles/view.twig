@@ -35,8 +35,48 @@
 						<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
 						<a href="{{ route('title.postmemo', [ title_id, id ]) }}" class="memo-button" data-pjax="1"><span class="symbol">Saved Posts</span></a>
 					</div>
-					{% for post in posts %}
-					{% endfor %}
+					<div class="post-list list" data-olv-community-id="{{ id }}">
+						{% for post in posts %}
+							<div id="post-{{ post.id }}" data-href-hidden="{{ route('post.show', [ post.id ]) }}" class="post scroll post-subtype-default" data-href="{{ route('post.show', [ post.id ]) }}">
+								<div class="body">
+									<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
+										<img data-savepage-src="/img/icons/{{ meta.icon }}" src="" class="user-icon" width="32" height="32">
+									</a>
+									<div class="post-container">
+										<div class="user-container">
+											<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ post.user.username }}</a></p>
+											<p class="timestamp-container">
+												<span class="timestamp">{{ post.created }}</span>
+												{% if post.spoiler %}
+													·
+													<span class="spoiler">Spoilers</span>
+
+												{% endif %}
+											</p>
+										</div>
+										<div class="post-content">
+											<p class="post-content-text">
+												<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
+											</p>
+											<div class="post-meta">
+												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdKEfjg/empathies">
+													<span class="empathy-button-text">Yeah!</span>
+												</button>
+												<span class="empathy symbol">
+													<span class="symbol-label">Yeahs</span>
+													<span class="empathy-count">1</span>
+												</span>
+												<span class="reply symbol">
+													<span class="symbol-label">Comment</span>
+													<span class="reply-count">1</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 {% endblock %}
