@@ -59,7 +59,7 @@ class Post extends Page
 						->first();
 
 		$meta = new Community($post_meta->community);
-		$creator = new User($post_meta->user_id);
+		$creator = User::construct($post_meta->user_id);
 
 		return view('posts/view', compact('post_meta', 'meta', 'creator'));
 	}
