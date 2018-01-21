@@ -24,8 +24,9 @@ class Community extends Page
 		$communities = DB::table('communities')
 			->where('type', '=', 0)
 			->latest('created')
-			->limit(10);
+			->limit(10)
+			->get(['id', 'name', 'icon', 'type']);
 
-		return view('community/index', compact('communities');
+		return view('community/index', compact('communities'));
 	}
 }
