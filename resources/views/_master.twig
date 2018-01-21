@@ -9,7 +9,7 @@
 		<script src="/js/n3ds/olv.locale-en.js"></script>
 	</head>
 	<body data-user-id="{{ user.usernameClean }}" data-is-first-post="{{ firstPost }}" data-is-first-favorite="{{ firstFavorite }}" data-profile-url="/users/{{ user.usernameClean }}">
-		<div id="body" data-region-id="{{ console.region_id }}">
+		<div id="body" {% if class is defined %}class="{{ class }}" {% endif %}data-region-id="{{ console.region_id }}">
 			{% block content %}
 			{% endblock %}
 		</div>
