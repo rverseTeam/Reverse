@@ -38,11 +38,11 @@
 								<a href="/titles/{{ title_id }}/{{ id }}" class="arrow-button scroll" data-pjax="1"></a>
 								<div class="body">
 									<span class="community-name title">{{ community.name }}</span>
-								{% if community.community_platform == 1 %}
+								{% if community.platform == 1 %}
 									<span class="platform-tag platform-tag-3ds"></span>
-								{% elseif community.community_platform == 2 %}
+								{% elseif community.platform == 2 %}
 									<span class="platform-tag platform-tag-wiiu"></span>
-								{% elseif community.community_platform == 3 %}
+								{% elseif community.platform == 3 %}
 									<span class="platform-tag platform-tag-wiiu-3ds"></span>
 								{% endif %}
 									<span class="text">General Community</span>
