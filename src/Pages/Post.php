@@ -42,6 +42,22 @@ class Post extends Page
 
 				redirect(route('post.show', ['id' => hashid($postId)]));
 				break;
+			case 'painting':
+				$painting = base64_decode($_POST["painting"]);
+				$painting_name = CurrentSession::$user->id . time() . '.png';
+
+				file_put_contents(path('public/img/drawings/' . $painting_name), $painting);
+
+				$postId = DB::table('posts')->insertGetId([
+					'community' => $id,
+					'image' => $painting_name,
+					'feeling' => $feeling,
+					'user_id' => CurrentSession::$user->id,
+					'spoiler' => intval($spoiler),
+				]);
+
+				redirect(route('post.show', ['id' => hashid($postId)]));
+				break;
 			default:
 				break;
 		}

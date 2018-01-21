@@ -55,20 +55,29 @@
 											</p>
 										</div>
 										<div class="post-content">
-											<p class="post-content-text">
-												<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
-											</p>
+											{% if post.content %}
+												<p class="post-content-text">
+													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
+												</p>
+											{% endif %}
+											{% if post.image %}
+												<p class="post-content-memo">
+													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">
+														<img src="/img/drawings/{{ post.image }}" width="192" height="72">
+													</a>
+												</p>
+											{% endif %}
 											<div class="post-meta">
 												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdKEfjg/empathies">
 													<span class="empathy-button-text">Yeah!</span>
 												</button>
 												<span class="empathy symbol">
 													<span class="symbol-label">Yeahs</span>
-													<span class="empathy-count">1</span>
+													<span class="empathy-count">0</span>
 												</span>
 												<span class="reply symbol">
 													<span class="symbol-label">Comment</span>
-													<span class="reply-count">1</span>
+													<span class="reply-count">0</span>
 												</span>
 											</div>
 										</div>
