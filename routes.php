@@ -25,8 +25,9 @@ Router::group(['before' => 'maintenance'], function () {
 
 		// Titles
 		Router::group(['prefix' => 'titles'], function () {
-			// CTR loads this page first at all. Anything else can be done by us.
+			// This is the first page that the applet loads at all after discovery
 			Router::get('/show', 'Title.Show@init', 'title.init');
+			Router::get('/{tid:a}/{id:a}', 'Title.Community@show', 'title.community');
 		});
 
 		// Communities
