@@ -21,14 +21,14 @@ class Community extends Page
 	 */
 	public function show($tid, $id) : string {
 		$community = dehashid($id);
-		$titileId = dehashid($id);
+		$titileId = dehashid($tid);
 
 		if (!is_array($community) || !is_array($titileId)) {
 			return view('errors/404');
 		}
 
 		$meta = DB::table('communities')
-					->where('id', $id)
+					->where('id', $community)
 					->first();
 
 		if (!$meta) {
