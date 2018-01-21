@@ -30,7 +30,7 @@
 				<div id="form-content">
 				</div>
 			</div>
-			<form method="post" action="{{ route('post.submit') }}" data-redirect-to="{{ route('title.community', [ title_id, id ]) }}" data-is-own-title="0" enctype="multipart/form-data">
+			<form method="post" action="{{ route('post.submit') }}" id="test-3ds-post-form" data-redirect-to="{{ route('title.community', [ title_id, id ]) }}" data-is-own-title="0" enctype="multipart/form-data">
 				<input type="hidden" name="olive_title_id" value="{{ meta.title_id }}">
 				<input type="hidden" name="olive_community_id" value="{{ meta.id }}">
 				<input type="hidden" name="view_id" value="">
