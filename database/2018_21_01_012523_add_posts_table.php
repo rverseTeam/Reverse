@@ -19,9 +19,9 @@ class AddPostsTable extends Migration
 
 			$table->timestampTz('created')->useCurrent();
 
-			$table->timestampTz('edited')->useCurrent();
+			$table->timestampTz('edited');
 
-			$table->softDeletesTz();
+			$table->timestampTz('deleted');
 
 			$table->integer('community')->unsigned()->default(0);
 
