@@ -1,0 +1,32 @@
+{% set firstPost,firstFavorite,class = 1,1,'add-post-page' %}
+{% extends '_master.twig' %}
+
+{% block content %}
+			<div class="title-header with-header-banner">
+				<div class="header-banner-container post-subtype-default-container">
+					<div class="post-form-header">
+						<span class="post-subtype-default">Post</span>
+						<span class="count">
+							<span class="count-description">Remaining Posts for Today</span>
+							<span class="remaining-today-post-count">30</span>
+						</span>
+					</div>
+				</div>
+				<h1 class="info-content">
+					<span class="icon-container">
+						<img src="/img/icons/{{ meta.icon }}" class="icon" width="48" height="48">
+					</span>
+					<span class="title-container">
+						<span class="news-community-badge">Main Community</span>
+						<span class="title">{{ meta.name }}</span>
+					</span>
+				</h1>
+				{% if meta.platform == 1 %}
+					<span class="platform-tag platform-tag-3ds"></span>
+				{% elseif meta.platform == 2 %}
+					<span class="platform-tag platform-tag-wiiu"></span>
+				{% elseif meta.platform == 3 %}
+					<span class="platform-tag platform-tag-wiiu-3ds"></span>
+				{% endif %}
+			</div>
+{% endblock %}
