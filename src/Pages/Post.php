@@ -44,7 +44,7 @@ class Post extends Page
 				break;
 			case 'painting':
 				$painting = base64_decode($_POST["painting"]);
-				$painting_name = CurrentSession::$user->id . time() . '.png';
+				$painting_name = CurrentSession::$user->id . '-' . time() . '.png';
 
 				file_put_contents(path('public/img/drawings/' . $painting_name), $painting);
 
