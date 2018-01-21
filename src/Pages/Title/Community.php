@@ -42,4 +42,27 @@ class Community extends Page
 
 		return view('titles/view', compact('meta', 'posts'));
 	}
+
+	/**
+	 * Post form for communities.
+	 * @return string
+	 */
+	public function post($tid, $id) : string {
+		$community = dehashid($id);
+		$titileId = dehashid($tid);
+
+		if (!is_array($community) || !is_array($titileId)) {
+			return view('errors/404');
+		}
+
+		$meta = DB::table('communities')
+					->where('id', $community)
+					->first();
+
+		if (!$meta) {
+			return view('errors/404');
+		}
+
+		return view('titles/post', compact('meta'));
+	}
 }

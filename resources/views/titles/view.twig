@@ -35,6 +35,8 @@
 						<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
 						<a href="{{ route('title.postmemo', [ title_id, id ]) }}" class="memo-button" data-pjax="1"><span class="symbol">Saved Posts</span></a>
 					</div>
+					{% for post in posts %}
+					{% endfor %}
 				</div>
 			</div>
 {% endblock %}
