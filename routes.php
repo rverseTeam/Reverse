@@ -18,10 +18,16 @@ Router::group(['before' => 'maintenance'], function () {
 
 	// 3DS required to load these pages
 	Router::group(['before' => 'auth'], function () {
-		// Welcome page
-		Router::get('/welcome/3ds', 'Gate@welcome', 'gate.welcome');
-		Router::post('/welcome/check', 'Gate@check', 'gate.check');
-		Router::post('/welcome/activate', 'Gate@activate', 'gate.activate');
+		// Local list check
+		Router::get('/local_list.json', 'Dummy@dummy', 'local.list');
+		Router::get('/check_update.json', 'Dummy@dummy', 'check.update');
+
+		// Welcome
+		Router::group(['prefix' => 'welcome'], function () {
+			Router::get('/3ds', 'Gate@welcome', 'gate.welcome');
+			Router::post('/check', 'Gate@check', 'gate.check');
+			Router::post('/activate', 'Gate@activate', 'gate.activate');
+		});
 
 		// Titles
 		Router::group(['prefix' => 'titles'], function () {
