@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Miiverse\DB;
 
-class FixCocmmunityPermEnum extends Migration
+class FixCommunityPermEnum extends Migration
 {
 	/**
 	 * Run the migrations.
