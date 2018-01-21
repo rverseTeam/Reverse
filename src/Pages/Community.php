@@ -25,7 +25,7 @@ class Community extends Page
 			->where('type', '=', 0)
 			->latest('created')
 			->limit(10)
-			->get(['id', 'name', 'icon', 'type']);
+			->get(['id', 'title_id', 'name', 'icon', 'type']);
 
 		return view('community/index', compact('communities'));
 	}

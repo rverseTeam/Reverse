@@ -10,7 +10,7 @@
   </div>
   <h1 class="info-content">
     <span class="title-container">
-      <span class="title">{{ config('general.name') }}Communities</span>
+      <span class="title">{{ config('general.name') }} Communities</span>
     </span>
   </h1>
 </div>
@@ -37,7 +37,7 @@
     </a>
   </div>
   <div class="community-list">
-    <div class="headline with-filter headline-wiiu">
+    <div class="headline with-filter headline-3ds">
       <h2>New Communities</h2>
 
 <div class="with-filter-right">
@@ -46,30 +46,31 @@
       <span class="select-button-content">Filter</span>
       <select name="filter">
         <option value="" selected="">Please make a selection.</option>
-        <option value="/communities/categories/wiiu_all">All Software</option>
-        <option value="/communities/categories/wiiu_game">Wii U Games</option>
-        <option value="/communities/categories/wiiu_virtualconsole">Virtual Console</option>
-        <option value="/communities/categories/wiiu_other">Others</option>
+        <option value="/communities/categories/3ds_all">All Software</option>
+        <option value="/communities/categories/3ds_game">3DS Games</option>
+        <option value="/communities/categories/3ds_virtualconsole">Virtual Console</option>
+        <option value="/communities/categories/3ds_other">Others</option>
       </select>
     </label>
   </div>
 </div>
     </div>
     <ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
-
-<li id="community-14938538520099162232" class=" has-other-communities">
-  <span class="icon-container"><img src="" class="icon" width="48" height="48"></span>
-  <a href="/titles/14938538520099162231/14938538520099162232" class="arrow-button scroll" data-pjax="1"></a>
+{% for community in communities %}
+{% set id,title_id = encode(community.id), encode(community.title_id) %}
+<li id="community-{{ id }}" class="">
+  <span class="icon-container"><img src="/img/icons/{{ community.icon}}" class="icon" width="48" height="48"></span>
+  <a href="/titles/{{ title_id }}/{{ id }}" class="arrow-button scroll" data-pjax="1"></a>
   <div class="body">
-    <span class="community-name title">GameName (UniqueID: 0x0101D)</span>
-        <span class="platform-tag platform-tag-wiiu"></span>
-      <span class="text">Wii U Games</span>
+    <span class="community-name title">{{ community.name }}</span>
+        <span class="platform-tag platform-tag-3ds"></span>
+      <span class="text">3DS Games</span>
   </div>
-  <div class="list-button-container"><a href="/titles/14938538520099162231" class="button list-button" data-pjax="1"><span class="symbol"><span class="symbol-label">Related Communities</span></span></a></div>
 </li>
+{% endfor %}
 
     </ul>
-    <a href="/communities/categories/wiiu_all" class="more-button scroll" data-pjax="1">Show More</a>
+    <a href="/communities/categories/3ds_all" class="more-button scroll" data-pjax="1">Show More</a>
     <h2 class="headline headline-special">Special</h2>
     <ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
     </ul>
@@ -87,6 +88,6 @@
     </select>
     </label>
   </div>
-  <a href="/communities?view_platform=3ds" class="platform-button" data-pjax="1">3DS Communities</a>
+  {#<a href="/communities?view_platform=3ds" class="platform-button" data-pjax="1">3DS Communities</a>#}
 </div>
 {% endblock %}
