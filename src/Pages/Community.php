@@ -21,11 +21,26 @@ class Community extends Page
 	 */
 	public function index() : string {
 		// Fetch the last 10 communities
-		$communities = DB::table('communities')
-			->where('type', '=', 0)
-			->latest('created')
-			->limit(10)
-			->get(['id', 'title_id', 'name', 'icon', 'type']);
+		$communities = [
+			'general' => DB::table('communities')
+							->where('type', '=', 0)
+							->latest('created')
+							->limit(6)
+							->get(['id', 'title_id', 'name', 'icon', 'type']),
+			'game' => DB::table('communities')
+						->where([
+							['type' '>' 0],
+							['type' '<' 4],
+						])
+						->latest('created')
+						->limit(6)
+						->get(['id', 'title_id', 'name', 'icon', 'type']),
+			'special' => DB::table('communities')
+							->where('type', '=', 4)
+						->latest('created')
+						->limit(6)
+						->get(['id', 'title_id', 'name', 'icon', 'type']),
+		];
 
 		return view('community/index', compact('communities'));
 	}
