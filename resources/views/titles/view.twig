@@ -1,0 +1,37 @@
+{% extends '_master.twig' %}
+
+{% block content %}
+{% set id,title_id = hashid(meta.id), hashid(meta.title_id) %}
+			<div class="title-header with-header-banner">
+				<div class="header-banner-container post-subtype-default-container">
+					<img src="/img/banner/{{ meta.banner }}" height="168" width="400">
+				</div>
+				<h1 class="info-content">
+					<span class="icon-container"><img src="{{ meta.icon }}" class="icon" width="48" height="48"></span>
+					<span class="title-container">
+						<span class="title">{{ meta.name }}</span>
+					</span>
+				</h1>
+				{% if meta.platform == 1 %}
+					<span class="platform-tag platform-tag-3ds"></span>
+				{% elseif meta.platform == 2 %}
+					<span class="platform-tag platform-tag-wiiu"></span>
+				{% elseif meta.platform == 3 %}
+					<span class="platform-tag platform-tag-wiiu-3ds"></span>
+				{% endif %}
+			</div>
+			<div id="header-meta" class="header-meta-with-description">
+				<a href="#" class="favorite-button symbol button top-right-button" data-action-favorite="/titles/14938538520099162231/14938538520099162232/favorite.json" data-action-unfavorite="/titles/14938538520099162231/14938538520099162232/unfavorite.json"></a>
+				<a href="/settings/titles/14938538520099162231" class="button symbol setting-button" data-sound="SE_OLV_OK_SUB" data-pjax="1"></a>
+			</div>
+			<div class="community-info">
+				<p class="text">{{ meta.description }}</p>
+			</div>
+			<div class="body-content multi-timeline-body-content">
+				<div class="tab-body">
+					<div class="post-buttons-content with-memo-button">
+						<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
+					</div>
+				</div>
+			</div>
+{% endblock %}

@@ -28,6 +28,7 @@ Router::group(['before' => 'maintenance'], function () {
 			// This is the first page that the applet loads at all after discovery
 			Router::get('/show', 'Title.Show@init', 'title.init');
 			Router::get('/{tid:a}/{id:a}', 'Title.Community@show', 'title.community');
+			Router::get('/{tid:a}/{id:a}/post', 'Title.Community@post', 'title.post');
 		});
 
 		// Communities
