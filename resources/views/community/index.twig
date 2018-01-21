@@ -24,52 +24,34 @@
 				</a>
 			</div>
 			<div class="body-content" id="community-top" data-region="USA">
-				<div class="close-announce-content test-close-announce">
-					<a href="">End of Miiverse Service Announcement</a>
-				</div>
-				<div class="news-label-content">
-				</div>
-				<div id="identified-user-banner" class="news-label us">
-					<a href="/identified_user_posts?view_region_id=2" data-pjax="#body">
-						<span class="title">Get the latest news here!</span>
-						<span class="text">Posts from Verified Users</span>
-					</a>
-				</div>
 				<div class="community-list">
-					<div class="headline with-filter headline-3ds">
-						<h2>New Communities</h2>
-						<div class="with-filter-right">
-							<div class="select-button">
-								<label id="community-filter" class="">
-									<span class="select-button-content">Filter</span>
-									<select name="filter">
-										<option value="" selected="">Please make a selection.</option>
-										<option value="/communities/categories/3ds_all">All Software</option>
-										<option value="/communities/categories/3ds_game">3DS Games</option>
-										<option value="/communities/categories/3ds_virtualconsole">Virtual Console</option>
-										<option value="/communities/categories/3ds_other">Others</option>
-									</select>
-								</label>
-							</div>
-						</div>
+					<div class="headline">
+						<h2>General Communities</h2>
 					</div>
-					<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
-						{% for community in communities %}
+					<ul class="list-content-with-icon-and-text" id="community-top-content">
+						{% for community in communities.general %}
 							{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 							<li id="community-{{ id }}" class="">
-								<span class="icon-container"><img src="/img/icons/{{ community.icon}}" class="icon" width="48" height="48"></span>
+								<span class="icon-container">
+									<img src="/img/icons/{{ community.icon }}" class="icon" width="48" height="48">
+								</span>
 								<a href="/titles/{{ title_id }}/{{ id }}" class="arrow-button scroll" data-pjax="1"></a>
 								<div class="body">
 									<span class="community-name title">{{ community.name }}</span>
+								{% if community.community_platform == 1 %}
 									<span class="platform-tag platform-tag-3ds"></span>
-									<span class="text">3DS Games</span>
+								{% elseif community.community_platform == 2 %}
+									<span class="platform-tag platform-tag-wiiu"></span>
+								{% elseif community.community_platform == 3 %}
+									<span class="platform-tag platform-tag-wiiu-3ds"></span>
+								{% endif %}
+									<span class="text">General Community</span>
 								</div>
 							</li>
+						{% else %}
+							<li>
+							</li>
 						{% endfor %}
-					</ul>
-					<a href="/communities/categories/3ds_all" class="more-button scroll" data-pjax="1">Show More</a>
-					<h2 class="headline headline-special">Special</h2>
-					<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 					</ul>
 				</div>
 			</div>
