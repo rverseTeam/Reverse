@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Miiverse\DB;
 
-class AddUserIdInPostsTable extends Migration
+class AddFavoriteAndPostTracking extends Migration
 {
 	/**
 	 * Run the migrations.
