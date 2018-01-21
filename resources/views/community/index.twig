@@ -57,7 +57,7 @@
     </div>
     <ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 {% for community in communities %}
-{% set id,title_id = encode(community.id), encode(community.title_id) %}
+{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 <li id="community-{{ id }}" class="">
   <span class="icon-container"><img src="/img/icons/{{ community.icon}}" class="icon" width="48" height="48"></span>
   <a href="/titles/{{ title_id }}/{{ id }}" class="arrow-button scroll" data-pjax="1"></a>
