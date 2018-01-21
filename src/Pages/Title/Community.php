@@ -35,6 +35,11 @@ class Community extends Page
 			return view('errors/404');
 		}
 
-		return view('titles/view', compact('meta'));
+		$posts = DB::table('posts')
+					->where('community', $community)
+					->limit(10)
+					->get(['id', 'user_id', 'created', 'edited', 'deleted', 'content', 'image', 'feeling']);
+
+		return view('titles/view', compact('meta', 'posts'));
 	}
 }
