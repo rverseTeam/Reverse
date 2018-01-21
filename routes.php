@@ -38,6 +38,7 @@ Router::group(['before' => 'maintenance'], function () {
 
 		// Post handler
 		Router::group(['prefix' => 'posts'], function () {
+			Router::get('/{id:a}/{pid:a}', 'Post@show', 'post.show');
 			Router::post('/', 'Post@create', 'post.submit');
 		});
 

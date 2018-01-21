@@ -17,9 +17,35 @@ class Post extends Page
 {
 	/**
 	 * Creates a post.
-	 * @return string
 	 */
-	public function create() : string {
+	public function create() {
+		$title_id = $_POST["olive_title_id"];
+		$id = $_POST["olive_community_id"];
+		$feeling = $_POST["feeling_id"];
+		$type = $_POST["_post_type"];
+
+		switch ($type) {
+			case 'body':
+				$body = $_POST["body"];
+
+				$postId = DB::table('posts')->insertGetId([
+					'community' => $id,
+					'content' => $body,
+					'feeling' => $feeling
+				]);
+
+				redirect(route('post.show', ['id' => hashid($id), 'pid' => hashid($postId)]));
+				break;
+			default:
+				break;
+		}
+		return '';
+	}
+
+	/**
+	 * Shows an individual post
+	 */
+	public function show(string $id, string $pid) : string {
 		return '';
 	}
 }
