@@ -22,6 +22,7 @@ class Post extends Page
 		$title_id = $_POST["olive_title_id"];
 		$id = $_POST["olive_community_id"];
 		$feeling = $_POST["feeling_id"];
+		$spoiler = $_POST['is_spoiler'] ?? 0;
 		$type = $_POST["_post_type"];
 
 		switch ($type) {
@@ -31,7 +32,8 @@ class Post extends Page
 				$postId = DB::table('posts')->insertGetId([
 					'community' => $id,
 					'content' => $body,
-					'feeling' => $feeling
+					'feeling' => $feeling,
+					'spoiler' => intval($spoiler),
 				]);
 
 				redirect(route('post.show', ['id' => hashid($id), 'pid' => hashid($postId)]));
