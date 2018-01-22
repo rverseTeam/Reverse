@@ -125,7 +125,7 @@ class Post extends Page
 					->orderBy('created', 'asc')
 					->limit(20);
 
-		return view('posts/view', compact('post_', 'comments'));
+		return view('posts/view', compact('post', 'comments'));
 	}
 
 	/**

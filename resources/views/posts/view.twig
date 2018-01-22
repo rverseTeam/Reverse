@@ -13,14 +13,14 @@
 					<p class="community-container">
 						<a href="{{ route('title.community', [ title_id, id ]) }}" class="community" data-pjax="1">
 							<span class="community-container-inner">
-								<img src="/img/icons/{{ meta.icon }}" class="community-icon" width="14" height="14">{{ meta.name }}
+								<img src="/img/icons/{{ post.community.icon }}" class="community-icon" width="14" height="14">{{ post.community.name }}
 							</span>
 						</a>
 					</p>
 				</div>
 				<div id="post-permalink-body" class="post scroll post-subtype-default">
 					<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
-						<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
+						<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
 					</a>
 					<header>
 						<div class="header-inner">
@@ -59,7 +59,7 @@
 							{% set profile,comment_id = route('user.profile', [ comment.user.username_clean ]), hashid(comment.id) %}
 							<li class="{% if comment.user.id == user.id %}my{% endif %} {% if comment.spoiler %}hidden{% endif %}" {% if comment.spoiler %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
-									<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
+									<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
 								</a>
 								<header>
 									<div class="header-inner">
