@@ -34,7 +34,7 @@
 							</p>
 						</div>
 					</header>
-					<div class="post-content">
+					<div class="post-content{% if post.image %}-memo{% endif %}">
 						{% if post.content != '' %}
 							<p class="post-content-text">{{ post.content }}</p>
 						{% endif %}
@@ -43,11 +43,17 @@
 						{% endif %}
 					</div>
 					<div class="post-meta">
-						<div class="report-buttons-content">
-							<a href="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/violations.create" role="button" class="report-button" data-pjax="1">Report Violation</a>
-						</div>
+						{% if post.user.id != user.id %}
+							<div class="report-buttons-content">
+								<a href="{#{ route('post.report', [ post_id ]) }#}" role="button" class="report-button" data-pjax="1">Report Violation</a>
+							</div>
+						{% else %}
+							<div class="edit-buttons-content">
+								<a href="{#{ route('post.edit', [ post_id ]) }#}" class="button edit-button symbol"><span class="symbol-label">Edit</span></a>
+							</div>
+						{% endif %}
 						<div class="expression">
-							<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/empathies" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+							<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="{#{ route('post.like', [ post_id ]) }#}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
 						</div>
 					</div>
 				</div>
@@ -86,7 +92,7 @@
 										</div>
 									{% endif %}
 									<div class="reply-meta">
-										<button type="button" disabled="" class="symbol submit empathy-button reply disabled" data-feeling="normal" data-action="{#{ route('post.like', [ comment_id ]) }#}"><span class="empathy-button-text">Yeah!</span></button>
+										<button type="button" disabled="" class="symbol submit empathy-button reply disabled" data-feeling="normal" data-action="{#{ route('comment.like', [ comment_id ]) }#}"><span class="empathy-button-text">Yeah!</span></button>
 										<span class="empathy symbol"><span class="symbol-label">Yeahs</span><span class="empathy-count">0</span></span>
 										{% if comment.user.id != user.id %}
 											<div class="report-buttons-content">
