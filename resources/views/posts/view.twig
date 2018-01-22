@@ -80,7 +80,7 @@
 									{% if comment.image %}
 										<p class="reply-content-memo"><img src="/img/drawings/{{ comment.image }}"></p>
 									{% endif %}
-									{% if comment.spoiler %}
+									{% if comment.spoiler and comment.user.id != user.id %}
 										<div class="hidden-content"><p>This comment contains spoilers.</p>
 											<button type="button" class="hidden-content-button">View comment</button>
 										</div>
