@@ -55,7 +55,7 @@
 											</p>
 										</div>
 										<div class="post-content">
-											{% if post.content %}
+											{% if post.content != '' %}
 												<p class="post-content-text">
 													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
 												</p>

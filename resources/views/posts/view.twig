@@ -31,7 +31,16 @@
 						</div>
 					</header>
 					<div class="post-content">
-						<p class="post-content-text">{{ post_meta.content }}</p>
+						{% if post.content != '' %}
+							<p class="post-content-text">
+								{{ post.content }}
+							</p>
+						{% endif %}
+						{% if post.image %}
+							<p class="post-content-memo">
+								<img src="/img/drawings/{{ post.image }}" width="192" height="72">
+							</p>
+						{% endif %}
 					</div>
 					<div class="post-meta">
 						<div class="report-buttons-content">
