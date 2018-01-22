@@ -80,12 +80,17 @@ class CurrentSession
 	 * @param string $pid
 	 * @return void
 	 */
-	public static function authByConsole(string $pid) : void {
-		$user = DB::table('console_auth')->where([
-				'friend_pid' => $pid,
+	public static function authByConsole(string $serviceToken) : void {
+		$consoles = DB::table('console_auth')->where([
+				'short_id' => $serviceToken->short,
+			])->count();
+
+		// TODO: Clean this
+		if ($consoles === 1) {
+			$user = DB::table('console_auth')->where([
+				'short_id' => $serviceToken->short,
 			])->first();
 
-		if ($user) {
 			$session = CurrentSession::create(
 					$user->user_id,
 					Net::ip(),
@@ -97,6 +102,28 @@ class CurrentSession
 				$session->key,
 				Net::ip()
 			);
+		} elseif ($consoles > 1) {
+			$consoles = DB::table('console_auth')->where([
+				'long_id' => $serviceToken->long,
+			])->count();
+
+			if ($consoles === 1) {
+				$user = DB::table('console_auth')->where([
+					'long_id' => $serviceToken->long,
+				])->first();
+
+				$session = CurrentSession::create(
+						$user->user_id,
+						Net::ip(),
+						get_country_code()
+					);
+
+				self::start(
+					$user->user_id,
+					$session->key,
+					Net::ip()
+				);
+			}
 		}
 	}
 }

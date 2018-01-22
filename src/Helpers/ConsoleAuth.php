@@ -6,6 +6,8 @@
 
 namespace Miiverse\Helpers;
 
+use stdClass;
+
 /**
  * Handles the data headers sent by Miiverse.
  * @package Miiverse
@@ -20,15 +22,15 @@ class ConsoleAuth {
 
 	/**
 	 * The friend PID of the current console.
-	 * @var string
+	 * @var object
 	 */
-	public static $friendPID = '';
+	public static $consoleId;
 
 	/**
 	 * Checks the Console Auth
 	 */
 	public static function check() {
-		if (!isset($_SERVER['HTTP_X_NINTENDO_PARAMPACK']) || !isset($_SERVER['HTTP_X_NINTENDO_FRIEND_PID'])) {
+		if (!isset($_SERVER['HTTP_X_NINTENDO_PARAMPACK']) || !isset($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN'])) {
 			echo config('general.name'), ' is only for 3DS consoles at the moment.';
 			exit;
 		}
@@ -50,9 +52,13 @@ class ConsoleAuth {
 		// Set title id and transferable id to hex, just in case we need it
 		$storage['title_id'] = base_convert($storage['title_id'], 10, 16);
 		$storage['transferable_id'] = base_convert($storage['transferable_id'], 10, 16);
+		$serviceToken = bin2hex(base64_decode($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN']));
 
 		// Store the values for later use
 		self::$paramPack = $storage;
-		self::$friendPID = $_SERVER['HTTP_X_NINTENDO_FRIEND_PID'];
+		self::$consoleId = new stdClass;
+
+		self::$consoleId->short = substr($serviceToken, 0, 16);
+		self::$consoleId->long = substr($serviceToken, 0, 64);
 	}
 }

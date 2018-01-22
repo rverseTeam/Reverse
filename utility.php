@@ -218,7 +218,7 @@ function checkMaintenance() {
 function checkConsoleAuth() {
 	ConsoleAuth::check();
 	Template::vars(['console' => ConsoleAuth::$paramPack]);
-	CurrentSession::authByConsole(ConsoleAuth::$friendPID);
+	CurrentSession::authByConsole(ConsoleAuth::$consoleId);
 }
 
 function hashid($items) {
