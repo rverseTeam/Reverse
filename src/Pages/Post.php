@@ -10,6 +10,7 @@ use Miiverse\CurrentSession;
 use Miiverse\DB;
 use Miiverse\User;
 use Miiverse\Community\Community;
+use stdClass;
 
 /**
  * Post handler.
@@ -124,6 +125,10 @@ class Post extends Page
 					->where('post', $post->id)
 					->orderBy('created', 'asc')
 					->limit(20);
+
+		$comments = array_map(function(stdClass $comment) {
+			$comment->user = User::construct($comment->user);
+		}, $comments);
 
 		return view('posts/view', compact('post', 'comments'));
 	}
