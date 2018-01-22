@@ -54,14 +54,12 @@
 											</p>
 										</div>
 										<div class="post-content">
-											<p class="post-content-text">
-												{% if post.content != '' %}
-													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
-												{% endif %}
-												{% if post.image %}
-													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}" width="192" height="72"></a>
-												{% endif %}
-											</p>
+											{% if post.content != '' %}
+												<p class="post-content-text"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a></p>
+											{% endif %}
+											{% if post.image %}
+												<p class="post-content-memo"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}"></a></p>
+											{% endif %}
 											{% if post.spoiler %}
 												<div class="hidden-content"><p>This post contains spoilers.</p>
 													<button type="button" class="hidden-content-button">View Post</button>
