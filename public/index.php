@@ -22,7 +22,8 @@ CurrentSession::start(
 
 // Set base variables
 Template::vars([
-    'get' => $_GET
+    'get' => $_GET,
+    'user' => CurrentSession::$user,
     'post' => $_POST,
     'server' => $_SERVER,
     'request' => $_REQUEST,
