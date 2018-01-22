@@ -37,7 +37,7 @@
 					</div>
 					<div class="post-list list" data-olv-community-id="{{ id }}">
 						{% for post in posts %}
-							<div id="post-{{ post.id }}" data-href-hidden="{{ route('post.show', [ post.id ]) }}" class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
+							<div id="post-{{ post.id }}" {% if post.spoiler %}data-href-hidden="{{ route('post.show', [ id ]) }}"{% endif %} class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
 								<div class="body">
 									<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
 										<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
