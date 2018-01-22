@@ -145,7 +145,7 @@ class Post extends Page
 		}
 
 		$meta = DB::table('posts')
-					->where('id', $posts)
+					->where('id', $post)
 					->first();
 
 		if (!$meta) {
