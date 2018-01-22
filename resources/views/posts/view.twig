@@ -88,7 +88,7 @@
 									<div class="reply-meta">
 										<button type="button" disabled="" class="symbol submit empathy-button reply disabled" data-feeling="normal" data-action="{#{ route('post.like', [ comment_id ]) }#}"><span class="empathy-button-text">Yeah!</span></button>
 										<span class="empathy symbol"><span class="symbol-label">Yeahs</span><span class="empathy-count">0</span></span>
-										{% if comment.user.id == user.id %}
+										{% if comment.user.id != user.id %}
 											<div class="report-buttons-content">
 												<a href="{#{ route('comment.report', [ comment_id ]) }#}" role="button" class="button report-button" data-pjax="1">Report Violation</a>
 											</div>
