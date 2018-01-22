@@ -126,9 +126,13 @@ class Post extends Page
 					->orderBy('created', 'asc')
 					->limit(20);
 
-		$comments = array_map(function(stdClass $comment) {
-			$comment->user = User::construct($comment->user);
-		}, $comments);
+		if ($comments) {
+			$comments = array_map(function(stdClass $comment) {
+				$comment->user = User::construct($comment->user);
+			}, $comments);
+		} else {
+			$comments = [];
+		}
 
 		return view('posts/view', compact('post', 'comments'));
 	}
