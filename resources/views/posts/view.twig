@@ -31,12 +31,12 @@
 						</div>
 					</header>
 					<div class="post-content">
-						{% if post.content != '' %}
+						{% if post_meta.content != '' %}
 							<p class="post-content-text">
-								{{ post.content }}
+								{{ post_meta.content }}
 							</p>
 						{% endif %}
-						{% if post.image %}
+						{% if post_meta.image %}
 							<p class="post-content-memo">
 								<img src="/img/drawings/{{ post.image }}" width="192" height="72">
 							</p>
