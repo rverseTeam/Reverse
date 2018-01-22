@@ -27,6 +27,10 @@
 							<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ creator.username }}</a></p>
 							<p class="timestamp-container">
 								<a class="timestamp">{{ post_meta.created }}</a>
+								{% if post_meta.spoiler %}
+									·
+									<span class="spoiler">Spoilers</span>
+								{% endif %}
 							</p>
 						</div>
 					</header>
@@ -37,13 +41,18 @@
 						{% if post_meta.image %}
 							<p class="post-content-memo"><img src="/img/drawings/{{ post_meta.image }}" width="192" height="72"></p>
 						{% endif %}
-					</div>
-					<div class="post-meta">
-						<div class="report-buttons-content">
-							<a href="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/violations.create" role="button" class="report-button" data-pjax="1">Report Violation</a>
-						</div>
-						<div class="expression">
-							<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/empathies" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+						{% if post_meta.spoiler %}
+							<div class="hidden-content"><p>This post contains spoilers.</p>
+								<button type="button" class="hidden-content-button">View Post</button>
+							</div>
+						{% endif %}
+						<div class="post-meta">
+							<div class="report-buttons-content">
+								<a href="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/violations.create" role="button" class="report-button" data-pjax="1">Report Violation</a>
+							</div>
+							<div class="expression">
+								<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdJ0K7Q/empathies" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+							</div>
 						</div>
 					</div>
 				</div>
