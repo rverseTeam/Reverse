@@ -56,7 +56,7 @@
 				<div id="post-permalink-comments">
 					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
 						{% for comment in comments %}
-							{% set profile,comment_id = route('user.profile', [ comment.user.username_clean ]), hashid(comment.id) %}
+							{% set profile,comment_id = route('user.profile', [ comment.user.usernameClean ]), hashid(comment.id) %}
 							<li class="{% if comment.user.id == user.id %}my{% endif %} {% if comment.spoiler %}hidden{% endif %}" {% if comment.spoiler %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
 									<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
