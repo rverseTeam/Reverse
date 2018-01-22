@@ -122,7 +122,7 @@ class Post extends Page
 
 		$comments = DB::table('comments')
 					->where('post', $post->id)
-					->sortBy('created', 'asc')
+					->orderBy('created', 'asc')
 					->limit(20);
 
 		return view('posts/view', compact('post_', 'comments'));
