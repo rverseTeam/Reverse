@@ -113,14 +113,19 @@ class Post extends Page
 	public function show(string $id) : string {
 		$post_id = dehashid($id);
 
-		$post_meta = DB::table('posts')
+		$post = DB::table('posts')
 						->where('id', $post_id)
 						->first();
 
-		$meta = new Community($post_meta->community);
-		$creator = User::construct($post_meta->user_id);
+		$post->community = new Community($post->community);
+		$post->user = User::construct($post->user_id);
 
-		return view('posts/view', compact('post_meta', 'meta', 'creator'));
+		$comments = DB::table('comments')
+					->where('post', $post->id)
+					->sortBy('created', 'asc')
+					->limit(20);
+
+		return view('posts/view', compact('post_', 'comments'));
 	}
 
 	/**

@@ -2,10 +2,10 @@
 {% extends '_master.twig' %}
 
 {% block content %}
-{% set id,title_id,post_id = hashid(meta.id), hashid(meta.title_id), hashid(post_meta.id) %}
+{% set id,title_id,post_id = hashid(post.community.id), hashid(post.community.title_id), hashid(post.id) %}
 			<div id="header">
 				<div id="header-body">
-					<h1 id="page-title"><span>{{ creator.username }}'s post</span></h1>
+					<h1 id="page-title"><span>{{ post.user.username }}'s post</span></h1>
 				</div>
 			</div>
 			<div id="post-permalink-content">
@@ -24,10 +24,10 @@
 					</a>
 					<header>
 						<div class="header-inner">
-							<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ creator.username }}</a></p>
+							<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ post.user.username }}</a></p>
 							<p class="timestamp-container">
-								<a class="timestamp">{{ post_meta.created }}</a>
-								{% if post_meta.spoiler %}
+								<a class="timestamp">{{ post.created }}</a>
+								{% if post.spoiler %}
 									·
 									<span class="spoiler">Spoilers</span>
 								{% endif %}
@@ -35,11 +35,11 @@
 						</div>
 					</header>
 					<div class="post-content">
-						{% if post_meta.content != '' %}
-							<p class="post-content-text">{{ post_meta.content }}</p>
+						{% if post.content != '' %}
+							<p class="post-content-text">{{ post.content }}</p>
 						{% endif %}
-						{% if post_meta.image %}
-							<p class="post-content-memo"><img src="/img/drawings/{{ post_meta.image }}"></p>
+						{% if post.image %}
+							<p class="post-content-memo"><img src="/img/drawings/{{ post.image }}"></p>
 						{% endif %}
 					</div>
 					<div class="post-meta">
