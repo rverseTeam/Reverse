@@ -56,16 +56,10 @@
 										</div>
 										<div class="post-content">
 											{% if post.content != '' %}
-												<p class="post-content-text">
-													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a>
-												</p>
+												<p class="post-content-text"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a></p>
 											{% endif %}
 											{% if post.image %}
-												<p class="post-content-memo">
-													<a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">
-														<img src="/img/drawings/{{ post.image }}" width="192" height="72">
-													</a>
-												</p>
+												<p class="post-content-memo"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}" width="192" height="72"></a></p>
 											{% endif %}
 											<div class="post-meta">
 												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdKEfjg/empathies">
