@@ -57,23 +57,23 @@
 					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
 						{% for comment in comments %}
 							{% set profile,comment_id = route('user.profile', [ comment.user.usernameClean ]), hashid(comment.id) %}
-							<li class="{% if comment.user.id == user.id %}my{% endif %} {% if comment.spoiler %}hidden{% endif %}" {% if comment.spoiler %}data-href-hidden="#"{% endif %}>
+							<li class="test-reply scroll {% if comment.user.id == post.user.id %}my{% else %}other{% endif %} {% if comment.spoiler %}hidden{% endif %}" {% if comment.spoiler %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
 									<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
 								</a>
-								<header>
-									<div class="header-inner">
-										<p class="user-name"><a href="{{ profile }}" data-pjax="1">{{ comment.user.username }}</a></p>
-										<p class="timestamp-container">
-											{{ comment.created }}
-											{% if comment.spoiler %}
-												·
-												<span class="spoiler">Spoilers</span>
-											{% endif %}
-										</p>
-									</div>
-								</header>
-								<div class="reply-content">
+								<div class="reply-body">
+									<header>
+										<div class="header-inner">
+											<p class="user-name"><a href="{{ profile }}" data-pjax="1">{{ comment.user.username }}</a></p>
+											<p class="timestamp-container">
+												{{ comment.created }}
+												{% if comment.spoiler %}
+													·
+													<span class="spoiler">Spoilers</span>
+												{% endif %}
+											</p>
+										</div>
+									</header>
 									{% if comment.content != '' %}
 										<p class="reply-content-text">{{ comment.content }}</p>
 									{% endif %}
@@ -81,17 +81,18 @@
 										<p class="reply-content-memo"><img src="/img/drawings/{{ comment.image }}"></p>
 									{% endif %}
 									{% if comment.spoiler %}
-										<div class="hidden-content"><p>This reply contains spoilers.</p>
-											<button type="button" class="hidden-content-button">View Reply</button>
+										<div class="hidden-content"><p>This comment contains spoilers.</p>
+											<button type="button" class="hidden-content-button">View comment</button>
 										</div>
 									{% endif %}
-								</div>
-								<div class="reply-meta">
-									<div class="report-buttons-content">
-										<a href="{#{ route('comment.report', [ comment_id ]) }#}" role="button" class="button" data-pjax="1"><span class="report-button-text">Report Violation</span></a>
-									</div>
-									<div class="expression">
-										<button type="button" disabled class="symbol submit empathy-button" data-feeling="normal" data-action="{#{ route('post.like', [ comment_id ]) }#}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+									<div class="reply-meta">
+										<button type="button" disabled="" class="symbol submit empathy-button reply disabled" data-feeling="normal" data-action="{#{ route('post.like', [ comment_id ]) }#}"><span class="empathy-button-text">Yeah!</span></button>
+										<span class="empathy symbol"><span class="symbol-label">Yeahs</span><span class="empathy-count">0</span></span>
+										{% if comment.user.id == user.id %}
+											<div class="report-buttons-content">
+												<a href="{#{ route('comment.report', [ comment_id ]) }#}" role="button" class="button report-button" data-pjax="1">Report Violation</a>
+											</div>
+										{% endif %}
 									</div>
 								</div>
 							</li>
