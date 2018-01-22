@@ -36,7 +36,8 @@ class Gate extends Page
 		// Save the friend PID to the linked account table
 		DB::table('console_auth')->insert([
 			'user_id' => $user->id,
-			'friend_pid' => ConsoleAuth::$friendPID,
+			'short_id' => ConsoleAuth::$consoleId->short,
+			'long_id' => ConsoleAuth::$consoleId->long,
 		]);
 
 		return '';
