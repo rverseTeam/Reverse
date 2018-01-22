@@ -37,7 +37,7 @@
 					</div>
 					<div class="post-list list" data-olv-community-id="{{ id }}">
 						{% for post in posts %}
-							<div id="post-{{ post.id }}" data-href-hidden="{{ route('post.show', [ post.id ]) }}" class="post scroll post-subtype-default" data-href="{{ route('post.show', [ post.id ]) }}">
+							<div id="post-{{ post.id }}" data-href-hidden="{{ route('post.show', [ post.id ]) }}" class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
 								<div class="body">
 									<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
 										<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
@@ -59,6 +59,11 @@
 											{% endif %}
 											{% if post.image %}
 												<p class="post-content-memo"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}" width="192" height="72"></a></p>
+											{% endif %}
+											{% if post.spoiler %}
+												<div class="hidden-content"><p>This post contains spoilers.</p>
+													<button type="button" class="hidden-content-button">View Post</button>
+												</div>
 											{% endif %}
 											<div class="post-meta">
 												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdKEfjg/empathies">
