@@ -77,10 +77,10 @@ class CurrentSession
 
 	/**
 	 * Auth a user based on their console info.
-	 * @param string $pid
+	 * @param object $serviceToken
 	 * @return void
 	 */
-	public static function authByConsole(string $serviceToken) : void {
+	public static function authByConsole($serviceToken) : void {
 		$consoles = DB::table('console_auth')->where([
 				'short_id' => $serviceToken->short,
 			])->count();
