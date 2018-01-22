@@ -1,0 +1,47 @@
+<?php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Miiverse\DB;
+
+class AddComments extends Migration
+{
+	/**
+	 * Run the migrations.
+	 * @return void
+	 */
+	public function up()
+	{
+		$schema = DB::getSchemaBuilder();
+
+		$schema->create('comments', function (Blueprint $table) {
+			$table->increments('id');
+
+			$table->timestampTz('created')->useCurrent();
+
+			$table->timestampTz('edited');
+
+			$table->timestampTz('deleted');
+
+			$table->integer('user')->unsigned();
+
+			$table->text('content');
+
+			$table->integer('type')->unsigned()->default(0);
+
+			$table->string('image', 250)->nullable();
+
+			$table->tinyInteger('feeling')->default(0);
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 * @return void
+	 */
+	public function down()
+	{
+		$schema = DB::getSchemaBuilder();
+
+		$schema->drop('comments');
+	}
+}
