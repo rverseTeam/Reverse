@@ -75,7 +75,7 @@ class Post extends Page
 				case 'body':
 					$body = $_POST["body"];
 
-					$postId = DB::table('comments')->insertGetId([
+					DB::table('comments')->insert([
 						'post' => $post_id,
 						'content' => $body,
 						'feeling' => $feeling,
@@ -83,7 +83,7 @@ class Post extends Page
 						'spoiler' => intval($spoiler),
 					]);
 
-					redirect(route('post.show', ['id' => hashid($postId)]));
+					redirect(route('post.show', ['id' => hashid($post_id)]));
 					break;
 				case 'painting':
 					$painting = base64_decode($_POST["painting"]);
@@ -91,7 +91,7 @@ class Post extends Page
 
 					file_put_contents(path('public/img/drawings/' . $painting_name), $painting);
 
-					$postId = DB::table('comments')->insertGetId([
+					DB::table('comments')->insert([
 						'post' => $post_id,
 						'image' => $painting_name,
 						'feeling' => $feeling,
@@ -99,7 +99,7 @@ class Post extends Page
 						'spoiler' => intval($spoiler),
 					]);
 
-					redirect(route('post.show', ['id' => hashid($postId)]));
+					redirect(route('post.show', ['id' => hashid($post_id)]));
 					break;
 				default:
 					break;
