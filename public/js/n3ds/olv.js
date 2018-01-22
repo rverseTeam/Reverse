@@ -2686,8 +2686,6 @@ var Olv = Olv || {};
             "error/post_form/:page": "errorPostForm",
             "help/(:page)": "help",
             "guide/(:page)": "guide",
-            "register": "register",
-            "login": "login",
             "*path": "defaultRoute"
         },
         defaultRoute: function(t) {
@@ -2862,16 +2860,6 @@ var Olv = Olv || {};
         },
         errorPostForm: function() {
             new e.View.Page.PostFormError({
-                el: "body"
-            })
-        },
-        register: function() {
-            new e.View.Page.Common({
-                el: "body"
-            })
-        },
-        login: function() {
-            new e.View.Page.Common({
                 el: "body"
             })
         },

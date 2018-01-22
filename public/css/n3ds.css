@@ -4557,6 +4557,8 @@ ul + .headline {
 #post-permalink-comments .reply-list .reply-meta .report-buttons-content .button {
     padding: 5px;
     border-left: 1px solid #ddd;
+    color: #969696;
+    font-size: 12.48px;
 }
 .cannot-reply {
     padding: 20px 0;
