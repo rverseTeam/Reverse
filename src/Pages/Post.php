@@ -126,7 +126,7 @@ class Post extends Page
 					->where('post', $post->id)
 					->orderBy('created', 'asc')
 					->limit(20)
-					->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling']);;
+					->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler']);
 
 		if ($comments_temp) {
 			foreach ($comments_temp as $comment) {
