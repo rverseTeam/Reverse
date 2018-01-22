@@ -113,6 +113,7 @@ class Post extends Page
 	 */
 	public function show(string $id) : string {
 		$post_id = dehashid($id);
+		$comments = [];
 
 		$post = DB::table('posts')
 						->where('id', $post_id)
@@ -121,17 +122,17 @@ class Post extends Page
 		$post->community = new Community($post->community);
 		$post->user = User::construct($post->user_id);
 
-		$comments = DB::table('comments')
+		$comments_temp = DB::table('comments')
 					->where('post', $post->id)
 					->orderBy('created', 'asc')
-					->limit(20);
+					->limit(20)
+					->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling']);;
 
-		if ($comments) {
-			$comments = array_map(function(stdClass $comment) {
+		if ($comments_temp) {
+			foreach ($comments_temp as $comment) {
 				$comment->user = User::construct($comment->user);
-			}, $comments);
-		} else {
-			$comments = [];
+				$comments[] = $comment;
+			}
 		}
 
 		return view('posts/view', compact('post', 'comments'));
