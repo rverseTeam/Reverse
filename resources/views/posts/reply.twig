@@ -2,36 +2,35 @@
 {% extends '_master.twig' %}
 
 {% block content %}
-{% set id,title_id = hashid(meta.id), hashid(meta.title_id) %}
+{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 			<div class="title-header with-header-banner">
 				<div class="header-banner-container post-subtype-default-container">
 					<div class="post-form-header">
-						<span class="post-subtype-default">Post</span>
+						<span class="post-subtype-default">Reply</span>
 					</div>
 				</div>
 				<h1 class="info-content">
 					<span class="icon-container">
-						<img src="/img/icons/{{ meta.icon }}" class="icon" width="48" height="48">
+						<img src="/img/icons/{{ community.icon }}" class="icon" width="48" height="48">
 					</span>
 					<span class="title-container">
 						<span class="news-community-badge">Main Community</span>
-						<span class="title">{{ meta.name }}</span>
+						<span class="title">{{ community.name }}</span>
 					</span>
 				</h1>
-				{% if meta.platform == 1 %}
+				{% if community.platform == 1 %}
 					<span class="platform-tag platform-tag-3ds"></span>
-				{% elseif meta.platform == 2 %}
+				{% elseif community.platform == 2 %}
 					<span class="platform-tag platform-tag-wiiu"></span>
-				{% elseif meta.platform == 3 %}
+				{% elseif community.platform == 3 %}
 					<span class="platform-tag platform-tag-wiiu-3ds"></span>
 				{% endif %}
 			</div>
 			<div class="body-content">
 				<div id="form-content">
 					<form method="post" action="{{ route('post.submit') }}" data-redirect-to="{{ route('title.community', [ title_id, id ]) }}" data-is-own-title="0" enctype="multipart/form-data">
-						<input type="hidden" name="kind" value="post">
-						<input type="hidden" name="olive_title_id" value="{{ meta.title_id }}">
-						<input type="hidden" name="olive_community_id" value="{{ meta.id }}">
+						<input type="hidden" name="kind" value="reply">
+						<input type="hidden" name="olive_post_id" value="{{ community.post_id }}">
 						<div class="add-post-page-content">
 							<div class="feeling-selector expression">
 								<ul class="buttons"><li class="checked"><input type="radio" name="feeling_id" value="0" class="feeling-button-normal" checked data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li><li class=""><input type="radio" name="feeling_id" value="1" class="feeling-button-happy" data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li><li class=""><input type="radio" name="feeling_id" value="2" class="feeling-button-like" data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li><li class=""><input type="radio" name="feeling_id" value="3" class="feeling-button-surprised" data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li><li class=""><input type="radio" name="feeling_id" value="4" class="feeling-button-frustrated" data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li><li class=""><input type="radio" name="feeling_id" value="5" class="feeling-button-puzzled" data-sound="SE_OLV_OK_SUB" autocomplete="off" data-save-user-input="1"></li></ul>

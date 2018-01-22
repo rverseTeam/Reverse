@@ -16,6 +16,8 @@ class AddComments extends Migration
 		$schema->create('comments', function (Blueprint $table) {
 			$table->increments('id');
 
+			$table->integer('post')->unsigned()->default(0);
+
 			$table->timestampTz('created')->useCurrent();
 
 			$table->timestampTz('edited');

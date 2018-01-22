@@ -29,17 +29,17 @@ Router::group(['before' => 'maintenance'], function () {
 
 		// Titles
 		Router::group(['prefix' => 'titles'], function () {
-			// This is the first page that the applet loads at all after discovery
-			Router::get('/show', 'Title.Show@init', 'title.init');
+			Router::get('/show', 'Title.Show@init', 'title.init'); // This is the first page that the applet loads at all after discovery
 			Router::get('/{tid:a}/{id:a}', 'Title.Community@show', 'title.community');
 			Router::get('/{tid:a}/{id:a}/post', 'Title.Community@post', 'title.post');
 			Router::get('/{tid:a}/{id:a}/post_memo', 'Title.Community@post_memo', 'title.postmemo');
 		});
 
-		// Post handler
+		// Posts
 		Router::group(['prefix' => 'posts'], function () {
 			Router::get('/{id:a}', 'Post@show', 'post.show');
-			Router::post('/', 'Post@create', 'post.submit');
+			Router::post('/', 'Post@submit', 'post.submit');
+			Router::get('/{id:a}/reply', 'Post@reply', 'post.reply');
 		});
 
 		// Settings

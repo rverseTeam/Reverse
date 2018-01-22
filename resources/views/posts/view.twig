@@ -55,10 +55,52 @@
 			<div class="body-content">
 				<div id="post-permalink-comments">
 					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
+						{% for comment in comments %}
+							{% set profile,comment_id = route('user.profile', [ comment.user.username_clean ]), hashid(comment.id) %}
+							<li class="{% if comment.user.id = user.id %}my{% endif %} {% if comment.spoiler %}hidden{% endif %}" {% if comment.spoiler %}data-href-hidden="#"{% endif %}>
+								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
+									<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
+								</a>
+								<header>
+									<div class="header-inner">
+										<p class="user-name"><a href="{{ profile }}" data-pjax="1">{{ comment.user.username }}</a></p>
+										<p class="timestamp-container">
+											{{ comment.date }}
+											{% if comment.spoiler %}
+												·
+												<span class="spoiler">Spoilers</span>
+											{% endif %}
+										</p>
+									</div>
+								</header>
+								<div class="reply-content">
+									{% if comment.content != '' %}
+										<p class="reply-content-text">{{ comment.content }}</p>
+									{% endif %}
+									{% if comment.image %}
+										<p class="reply-content-memo"><img src="/img/drawings/{{ post.image }}"></p>
+									{% endif %}
+									{% if comment.spoiler %}
+										<div class="hidden-content"><p>This reply contains spoilers.</p>
+											<button type="button" class="hidden-content-button">View Reply</button>
+										</div>
+									{% endif %}
+									<p class="reply-content-text">{{ comment.content }}</p>
+								</div>
+								<div class="reply-meta">
+									<div class="report-buttons-content">
+										<a href="{{ route('comment.report', [ comment_id ]) }}" role="button" class="button" data-pjax="1"><span class="report-button-text">Report Violation</span></a>
+									</div>
+									<div class="expression">
+										<button type="button" disabled class="symbol submit empathy-button" data-feeling="normal" data-action="{{ route('post.like', [ comment_id ]) }}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+									</div>
+								</div>
+							</li>
+						{% endfor %}
 					</ul>
 				</div>
 				<div>
-					<a href="#" class="post-button reply-button test-reply-button" data-pjax="1"><span class="symbol">Comment</span></a>
+					<a href="{{ route('post.reply', [ post_id ]) }}" class="post-button reply-button test-reply-button" data-pjax="1"><span class="symbol">Comment</span></a>
 				</div>
 			</div>
 {% endblock %}
