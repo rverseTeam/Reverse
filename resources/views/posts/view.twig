@@ -78,7 +78,7 @@
 										<p class="reply-content-text">{{ comment.content }}</p>
 									{% endif %}
 									{% if comment.image %}
-										<p class="reply-content-memo"><img src="/img/drawings/{{ post.image }}"></p>
+										<p class="reply-content-memo"><img src="/img/drawings/{{ comment.image }}"></p>
 									{% endif %}
 									{% if comment.spoiler %}
 										<div class="hidden-content"><p>This reply contains spoilers.</p>
@@ -89,10 +89,10 @@
 								</div>
 								<div class="reply-meta">
 									<div class="report-buttons-content">
-										<a href="{{ route('comment.report', [ comment_id ]) }}" role="button" class="button" data-pjax="1"><span class="report-button-text">Report Violation</span></a>
+										<a href="{#{ route('comment.report', [ comment_id ]) }#}" role="button" class="button" data-pjax="1"><span class="report-button-text">Report Violation</span></a>
 									</div>
 									<div class="expression">
-										<button type="button" disabled class="symbol submit empathy-button" data-feeling="normal" data-action="{{ route('post.like', [ comment_id ]) }}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+										<button type="button" disabled class="symbol submit empathy-button" data-feeling="normal" data-action="{#{ route('post.like', [ comment_id ]) }#}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
 									</div>
 								</div>
 							</li>
