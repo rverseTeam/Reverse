@@ -79,7 +79,7 @@ class Post extends Page
 						'post' => $post_id,
 						'content' => $body,
 						'feeling' => $feeling,
-						'user_id' => CurrentSession::$user->id,
+						'user' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
 
@@ -95,7 +95,7 @@ class Post extends Page
 						'post' => $post_id,
 						'image' => $painting_name,
 						'feeling' => $feeling,
-						'user_id' => CurrentSession::$user->id,
+						'user' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
 
