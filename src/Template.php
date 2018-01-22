@@ -8,6 +8,7 @@ namespace Miiverse;
 
 use Twig_Environment;
 use Twig_Extension_StringLoader;
+use Twig_Extension_Debug;
 use Twig_Loader_Filesystem;
 use Twig_SimpleFilter;
 use Twig_SimpleFunction;
@@ -114,6 +115,9 @@ class Template
 		foreach (self::$utilityFilters as $filter) {
 			self::$engine->addFilter(new Twig_SimpleFilter($filter, $filter));
 		}
+
+		// Add debug functions
+		self::$engine->addExtension(new Twig_Extension_Debug());
 	}
 
 	/**
