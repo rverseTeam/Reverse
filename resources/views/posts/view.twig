@@ -35,14 +35,12 @@
 						</div>
 					</header>
 					<div class="post-content">
-						<p class="post-content-text">
-							{% if post_meta.content != '' %}
-								{{ post_meta.content }}
-							{% endif %}
-							{% if post_meta.image %}
-								<img src="/img/drawings/{{ post_meta.image }}">
-							{% endif %}
-						</p>
+						{% if post_meta.content != '' %}
+							<p class="post-content-text">{{ post_meta.content }}</p>
+						{% endif %}
+						{% if post_meta.image %}
+							<p class="post-content-memo"><img src="/img/drawings/{{ post_meta.image }}"></p>
+						{% endif %}
 					</div>
 					<div class="post-meta">
 						<div class="report-buttons-content">
