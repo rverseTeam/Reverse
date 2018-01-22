@@ -217,8 +217,11 @@ function checkMaintenance() {
 
 function checkConsoleAuth() {
 	ConsoleAuth::check();
-	Template::vars(['console' => ConsoleAuth::$paramPack]);
 	CurrentSession::authByConsole(ConsoleAuth::$consoleId);
+	Template::vars([
+		'console' => ConsoleAuth::$paramPack,
+		'user' => CurrentSession::$user
+	]);
 }
 
 function hashid($items) {
