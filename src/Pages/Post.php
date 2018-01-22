@@ -132,7 +132,7 @@ class Post extends Page
 	 * Reply form for posts.
 	 * @return string
 	 */
-	public function post($id) : string {
+	public function reply($id) : string {
 		$post = dehashid($id);
 
 		if (!is_array($post)) {
