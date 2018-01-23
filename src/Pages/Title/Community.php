@@ -41,7 +41,7 @@ class Community extends Page
 					->where('community', $community)
 					->orderBy('created', 'desc')
 					->limit(10)
-					->get(['id', 'user_id', 'created', 'edited', 'deleted', 'content', 'image', 'feeling', 'spoiler']);
+					->get();
 
 		foreach ($posts_pre as $post) {
 			$posts[] = [
@@ -50,8 +50,10 @@ class Community extends Page
 				'created' => $post->created,
 				'content' => $post->content,
 				'image' => $post->image,
-				'feeling' => $post->feeling,
-				'spoiler' => $post->spoiler
+				'feeling' => intval($post->feeling),
+				'spoiler' => $post->spoiler,
+				'comments' => intval($post->comments),
+				'likes' => intval($post->likes),
 			];
 		}
 
