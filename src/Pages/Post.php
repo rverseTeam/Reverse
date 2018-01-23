@@ -43,8 +43,6 @@ class Post extends Page
 						'user_id' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
-
-					redirect(route('post.show', ['id' => hashid($postId)]));
 					break;
 				case 'painting':
 					$painting = base64_decode($_POST["painting"]);
@@ -59,12 +57,15 @@ class Post extends Page
 						'user_id' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
-
-					redirect(route('post.show', ['id' => hashid($postId)]));
 					break;
 				default:
 					break;
 			}
+
+			if (!CurrentSession::$user->posted)
+				DB::table('users')->update(['posted', 1])->where(['user_id', '=', CurrentSession::$user->id]);
+
+			redirect(route('post.show', ['id' => hashid($postId)]));
 		} elseif ($kind = 'reply') {
 			$post_id = $_POST["olive_post_id"];
 			$feeling = $_POST["feeling_id"];
@@ -82,8 +83,6 @@ class Post extends Page
 						'user' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
-
-					redirect(route('post.show', ['id' => hashid($post_id)]));
 					break;
 				case 'painting':
 					$painting = base64_decode($_POST["painting"]);
@@ -98,12 +97,15 @@ class Post extends Page
 						'user' => CurrentSession::$user->id,
 						'spoiler' => intval($spoiler),
 					]);
-
-					redirect(route('post.show', ['id' => hashid($post_id)]));
-					break;
-				default:
 					break;
 			}
+
+			if (!CurrentSession::$user->posted)
+				DB::table('users')->update(['posted', 1])->where(['user_id', '=', CurrentSession::$user->id]);
+
+			DB::table('posts')->increment('comments');
+
+			redirect(route('post.show', ['id' => hashid($post_id)]));
 		}
 		return '';
 	}
