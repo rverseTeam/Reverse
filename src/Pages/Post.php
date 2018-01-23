@@ -103,7 +103,7 @@ class Post extends Page
 			if (!CurrentSession::$user->posted)
 				DB::table('users')->where('user_id', '=', CurrentSession::$user->id)->update(['posted' => 1]);
 
-			DB::table('posts')->increment('comments');
+			DB::table('posts')->where('id', '=', $post_id)->increment('comments');
 
 			redirect(route('post.show', ['id' => hashid($post_id)]));
 		}
