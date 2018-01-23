@@ -3,7 +3,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Miiverse\DB;
 
-class AddCommentCountInPosts extends Migration
+class AddMetaCountInPosts extends Migration
 {
 	/**
 	 * Run the migrations.
