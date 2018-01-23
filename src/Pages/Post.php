@@ -63,7 +63,7 @@ class Post extends Page
 			}
 
 			if (!CurrentSession::$user->posted)
-				DB::table('users')->update(['posted', 1])->where(['user_id', '=', CurrentSession::$user->id]);
+				DB::table('users')->update(['posted', 1])->where('user_id', '=', CurrentSession::$user->id);
 
 			redirect(route('post.show', ['id' => hashid($postId)]));
 		} elseif ($kind = 'reply') {
@@ -101,7 +101,7 @@ class Post extends Page
 			}
 
 			if (!CurrentSession::$user->posted)
-				DB::table('users')->update(['posted', 1])->where(['user_id', '=', CurrentSession::$user->id]);
+				DB::table('users')->update(['posted', 1])->where('user_id', '=', CurrentSession::$user->id);
 
 			DB::table('posts')->increment('comments');
 
