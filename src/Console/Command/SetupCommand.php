@@ -152,6 +152,8 @@ class SetupCommand extends Command
 			'user_last_online' => 0,
 			'user_country' => 'US',
 			'user_activated' => true,
+			'nnid' => 'Testverse',
+			'nnid_clean' => 'testverse',
 		]);
 
 		// Create the actual user object
