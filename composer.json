@@ -7,7 +7,7 @@
         "illuminate/database": "5.2.*",
         "illuminate/filesystem": "5.2.*",
         "nesbot/carbon": "^1.21",
-        "php": ">=7.1.7",
+        "php": ">=7.2.0",
         "phroute/phroute": "^2.1",
         "symfony/console": "^3.3",
         "twig/extensions": "~1.0",
