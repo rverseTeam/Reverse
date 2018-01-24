@@ -21,9 +21,9 @@ class User extends Page
 	 * @return string
 	 */
 	public function profile(string $name) : string {
-		$profile = Profile::construct($name);
+		$profile = Profile::construct(urldecode($name));
 
-		if (!$profile) {
+		if (!$profile || $profile->id === 0) {
 			return view('errors/404');
 		}
 
