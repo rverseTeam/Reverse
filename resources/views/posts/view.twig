@@ -20,12 +20,12 @@
 					</p>
 				</div>
 				<div id="post-permalink-body" class="post scroll post-subtype-default">
-					<a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
+					<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
 						<img src="{{ mii }}" class="user-icon" width="32" height="32">
 					</a>
 					<header>
 						<div class="header-inner">
-							<p class="user-name"><a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1">{{ post.user.username }}</a></p>
+							<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.username }}</a></p>
 							<p class="timestamp-container">
 								<a class="timestamp">{{ post.created }}</a>
 								{% if post.spoiler %}
@@ -63,7 +63,7 @@
 				<div id="post-permalink-comments">
 					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
 						{% for comment in comments %}
-							{% set profile,comment_id = route('user.profile', [ comment.user.usernameClean ]), hashid(comment.id) %}
+							{% set profile,comment_id = route('user.profile', [ comment.user.username ]), hashid(comment.id) %}
 							{% set mii = _context.post.user.mii[_context.feeling[comment.feeling]] %}
 							<li class="test-reply scroll {% if comment.user.id == post.user.id %}my{% else %}other{% endif %} {% if comment.spoiler and comment.user.id != user.id %}hidden{% endif %}" {% if comment.spoiler and comment.user.id != user.id %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
