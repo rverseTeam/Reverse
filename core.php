@@ -13,7 +13,9 @@ error_reporting(E_ALL ^ E_NOTICE | E_STRICT);
 ExceptionHandler::register();
 Config::load();
 DB::connect(config('database'));
+
 Hashid::init(config('general.link_salt'));
+Upload::init();
 
 Template::init();
 Router::init();

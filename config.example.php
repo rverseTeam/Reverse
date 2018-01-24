@@ -39,6 +39,27 @@ return [
 		'link_salt'         => 'pleasechangme',
 	],
 
+	// Cloudinary settings
+	'cloudinary' => [
+		// Cloudinary cloud name
+		'cloud_name'        => '',
+
+		// Cloudinary API key
+		'api_key'           => '',
+
+		// Cloudinary API secret
+		'api_secret'        => '',
+
+		// Mii images preset
+		'mii_preset'        => '',
+
+		// Drawings preset
+		'drawings_preset'   => '',
+
+		// Screnshots preset
+		'image_preset'      => '',
+	],
+
 	// Cookie settings
 	'cookie'        => [
 		'prefix'            => 'miiverse_',

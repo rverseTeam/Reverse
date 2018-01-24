@@ -19,12 +19,12 @@
 					</p>
 				</div>
 				<div id="post-permalink-body" class="post scroll post-subtype-default">
-					<a href="/users/rip_akndedfd6" data-pjax="1" class="user-icon-container scroll-focus">
+					<a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
 						<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
 					</a>
 					<header>
 						<div class="header-inner">
-							<p class="user-name"><a href="/users/rip_akndedfd6" data-pjax="1">{{ post.user.username }}</a></p>
+							<p class="user-name"><a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1">{{ post.user.username }}</a></p>
 							<p class="timestamp-container">
 								<a class="timestamp">{{ post.created }}</a>
 								{% if post.spoiler %}
