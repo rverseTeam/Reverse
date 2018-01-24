@@ -1199,6 +1199,9 @@ var Olv = Olv || {};
                         case 'nnid':
                             e.deferredAlert(null, e.loc("olv.welcome.check.nnid"));
                             break;
+                        case 'nonnid':
+                            e.deferredAlert(null, e.loc("olv.welcome.check.nonnid"));
+                            break;
                         case 'ok':
                             self.slideByButton(i);
                             break;

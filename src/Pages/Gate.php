@@ -7,8 +7,10 @@
 namespace Miiverse\Pages;
 
 use Miiverse\DB;
+use Miiverse\Upload;
 use Miiverse\User;
 use Miiverse\Helpers\ConsoleAuth;
+use Miiverse\Helpers\Mii;
 
 /**
  * User gate.
@@ -40,6 +42,27 @@ class Gate extends Page
 			'long_id' => ConsoleAuth::$consoleId->long,
 		]);
 
+		// Get all Mii images and save them to the mapping table
+		$id = Mii::get(clean_string($_POST['welcome_nnid'], false, true));
+
+		$miis_temp = Mii::getMiiImages($id);
+
+		$miis = [];
+
+		foreach ($miis_temp as $name => $mii) {
+			$miis[$name] = Upload::uploadMii($mii);
+		}
+
+		DB::table('mii_mappings')->insert([
+			'user_id' => $user->id,
+			'normal' => $miis['normal_face'],
+			'like' => $miis['like_face'],
+			'happy' => $miis['happy_face'],
+			'frustrated' => $miis['frustrated_face'],
+			'puzzled' => $miis['puzzled_face'],
+			'surprised' => $miis['surprised_face'],
+		]);
+
 		return '';
 	}
 
@@ -60,10 +83,16 @@ class Gate extends Page
 				'nnid' => $nnid,
 			])->first();
 
-			if (!$user)
-				return 'ok';
-			else
+			if (!$user) {
+				$mii = Mii::check($nnid);
+
+				if (!$mii)
+					return 'nonnid';
+				else
+					return 'ok';
+			} else {
 				return 'nnid';
+			}
 		} else {
 			return 'username';
 		}
