@@ -307,7 +307,7 @@ class User
 		$this->colour = $this->colour ? $this->colour : $this->mainRank->colour;
 		$this->title = $this->title ? $this->title : $this->mainRank->title;
 
-		$this->mii = DB::table('mii_mappings')->where('user_id', $this->id)->first();
+		$this->mii = get_object_vars(DB::table('mii_mappings')->where('user_id', $this->id)->first());
 
 		$this->perms = new UserPerms($this);
 	}
