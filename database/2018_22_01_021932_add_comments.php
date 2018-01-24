@@ -20,9 +20,9 @@ class AddComments extends Migration
 
 			$table->timestampTz('created')->useCurrent();
 
-			$table->timestampTz('edited');
+			$table->timestampTz('edited')->nullable();
 
-			$table->timestampTz('deleted');
+			$table->timestampTz('deleted')->nullable();
 
 			$table->integer('user')->unsigned();
 
