@@ -10,7 +10,7 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 // Filters
 Router::filter('maintenance', 'checkMaintenance');
-//Router::filter('auth', 'checkConsoleAuth');
+Router::filter('auth', 'checkConsoleAuth');
 
 Router::group(['before' => 'maintenance'], function () {
 	// Development teaser
