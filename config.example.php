@@ -60,6 +60,15 @@ return [
 		'image_preset'      => '',
 	],
 
+	// Nintendo API settings
+	'nintendo'      => [
+		// Client ID
+		'client_id'         => '',
+
+		// Client secret
+		'client_secret'     => '',
+	],
+
 	// Cookie settings
 	'cookie'        => [
 		'prefix'            => 'miiverse_',
