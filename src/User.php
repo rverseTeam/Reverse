@@ -163,6 +163,24 @@ class User
 	private $birthday = '0000-00-00';
 
 	/**
+	 * The amount of posts this user has.
+	 * @var int
+	 */
+	public $posts = 0;
+
+	/**
+	 * The amount of follows this user has.
+	 * @var int
+	 */
+	public $follows = 0;
+
+	/**
+	 * The amount of followers this user has.
+	 * @var int
+	 */
+	public $followers = 0;
+
+	/**
 	 * Holds the permission checker for this user.
 	 * @var UserPerms
 	 */
@@ -252,8 +270,14 @@ class User
 			$this->restricted = boolval($userRow->user_restricted);
 			$this->posted = boolval($userRow->posted);
 			$this->favorited = boolval($userRow->favorited);
+			$this->posts = intval($userRow->posts);
+			$this->follows = intval($userRow->follow_count);
+			$this->followers = intval($userRow->follow_back_count);
 			$this->registerIp = Net::ntop($userRow->register_ip);
 			$this->lastIp = Net::ntop($userRow->last_ip);
+		} else {
+			$this->posted = false;
+			$this->favorited = false;
 		}
 
 		// Get all ranks
