@@ -280,6 +280,8 @@ class User
 			$this->followers = intval($userRow->follow_back_count);
 			$this->registerIp = Net::ntop($userRow->register_ip);
 			$this->lastIp = Net::ntop($userRow->last_ip);
+
+			$this->mii = get_object_vars(DB::table('mii_mappings')->where('user_id', $this->id)->first());
 		}
 
 		// Get all ranks
@@ -306,8 +308,6 @@ class User
 		$this->mainRank = $this->ranks[$this->mainRankId];
 		$this->colour = $this->colour ? $this->colour : $this->mainRank->colour;
 		$this->title = $this->title ? $this->title : $this->mainRank->title;
-
-		$this->mii = get_object_vars(DB::table('mii_mappings')->where('user_id', $this->id)->first());
 
 		$this->perms = new UserPerms($this);
 	}
