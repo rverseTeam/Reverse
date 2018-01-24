@@ -33,7 +33,7 @@ class Gate extends Page
 		// Create the account
 		$user = User::create($_POST['welcome_username'], $_POST['welcome_nnid']);
 
-		// Save the friend PID to the linked account table
+		// Save the console ID to the linked account table
 		DB::table('console_auth')->insert([
 			'user_id' => $user->id,
 			'short_id' => ConsoleAuth::$consoleId->short,
@@ -48,8 +48,8 @@ class Gate extends Page
 	 * @return string
 	 */
 	public function check() : string {
-		$username = $_POST['welcome_username'];
-		$nnid = $_POST['welcome_nnid'];
+		$username = clean_string($_POST['welcome_username']);
+		$nnid = clean_string($_POST['welcome_nnid'], false, true);
 
 		$user = DB::table('users')->where([
 			'username' => $username,
