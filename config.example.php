@@ -40,7 +40,7 @@ return [
 	],
 
 	// Cloudinary settings
-	'cloudinary' => [
+	'cloudinary'    => [
 		// Cloudinary cloud name
 		'cloud_name'        => '',
 
