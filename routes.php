@@ -29,17 +29,17 @@ Router::group(['before' => 'maintenance'], function () {
 
 		// Users
 		Router::group(['prefix' => 'users'], function () {
-			Router::get('/{id:a}', 'User@profile', 'user.profile');
-			Router::get('/{id:a}/violators.create', 'Dummy@dummy', 'user.report');
-			Router::get('/{id:a}/blacklist.confirm', 'Dummy@dummy', 'user.block');
-			Router::post('/{id:a}.follow.json', 'Dummy@dummy', 'user.follow');
-			Router::post('/{id:a}.unfollow.json', 'Dummy@dummy', 'user.unfollow');
-			Router::get('/{id:a}/favorites', 'Dummy@dummy', 'user.favorites');
-			Router::get('/{id:a}/posts', 'Dummy@dummy', 'user.posts');
-			Router::get('/{id:a}/following', 'Dummy@dummy', 'user.following');
-			Router::get('/{id:a}/followers', 'Dummy@dummy', 'user.followers');
-			Router::get('/{id:a}/diary', 'Dummy@dummy', 'user.diary');
-			Router::get('/{id:a}/diary/post', 'Dummy@dummy', 'user.diarypost');
+			Router::get('/{id}', 'User@profile', 'user.profile');
+			Router::get('/{id}/violators.create', 'Dummy@dummy', 'user.report');
+			Router::get('/{id}/blacklist.confirm', 'Dummy@dummy', 'user.block');
+			Router::post('/{id}.follow.json', 'Dummy@dummy', 'user.follow');
+			Router::post('/{id}.unfollow.json', 'Dummy@dummy', 'user.unfollow');
+			Router::get('/{id}/favorites', 'Dummy@dummy', 'user.favorites');
+			Router::get('/{id}/posts', 'Dummy@dummy', 'user.posts');
+			Router::get('/{id}/following', 'Dummy@dummy', 'user.following');
+			Router::get('/{id}/followers', 'Dummy@dummy', 'user.followers');
+			Router::get('/{id}/diary', 'Dummy@dummy', 'user.diary');
+			Router::get('/{id}/diary/post', 'Dummy@dummy', 'user.diarypost');
 		});
 
 		// Titles
