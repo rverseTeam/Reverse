@@ -130,6 +130,8 @@ class Post extends Page
 					->limit(20)
 					->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler']);
 
+		$feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+
 		if ($comments_temp) {
 			foreach ($comments_temp as $comment) {
 				$comment->user = User::construct($comment->user);
@@ -137,7 +139,7 @@ class Post extends Page
 			}
 		}
 
-		return view('posts/view', compact('post', 'comments'));
+		return view('posts/view', compact('post', 'comments', 'feeling'));
 	}
 
 	/**

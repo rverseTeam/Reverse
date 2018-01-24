@@ -23,8 +23,8 @@
 				{% endif %}
 			</div>
 			<div id="header-meta" class="header-meta-with-description">
-				<a href="#" class="favorite-button symbol button top-right-button" data-action-favorite="/titles/14938538520099162231/14938538520099162232/favorite.json" data-action-unfavorite="/titles/14938538520099162231/14938538520099162232/unfavorite.json"></a>
-				<a href="/settings/titles/14938538520099162231" class="button symbol setting-button" data-sound="SE_OLV_OK_SUB" data-pjax="1"></a>
+				<a href="#" class="favorite-button symbol button top-right-button" data-action-favorite="#" data-action-unfavorite="#"></a>
+				<a href="#" class="button symbol setting-button" data-sound="SE_OLV_OK_SUB" data-pjax="1"></a>
 			</div>
 			<div class="community-info">
 				<p class="text">{{ meta.description }}</p>
@@ -37,10 +37,11 @@
 					</div>
 					<div class="post-list list" data-olv-community-id="{{ id }}">
 						{% for post in posts %}
+							{% set mii = _context.post.user.mii[post.feeling] %}
 							<div id="post-{{ post.id }}" {% if post.spoiler %}data-href-hidden="{{ route('post.show', [ id ]) }}"{% endif %} class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
 								<div class="body">
 									<a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
-										<img src="/img/icons/{{ meta.icon }}" class="user-icon" width="32" height="32">
+										<img src="{{ mii }}" class="user-icon" width="32" height="32">
 									</a>
 									<div class="post-container">
 										<div class="user-container">
@@ -66,7 +67,7 @@
 												</div>
 											{% endif %}
 											<div class="post-meta">
-												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="/posts/AYECAAAEAAAsUZ8kdKEfjg/empathies">
+												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="#">
 													<span class="empathy-button-text">Yeah!</span>
 												</button>
 												<span class="empathy symbol">

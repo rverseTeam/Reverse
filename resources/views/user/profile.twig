@@ -1,0 +1,57 @@
+{% set class = 'user-page' %}
+{% extends '_master.twig' %}
+
+{% block content %}
+			<div id="user-content-container">
+				<div id="user-content" class="user-page">
+					<div id="header">
+						<div id="header-body">
+							<h1 id="page-title"><span>{{ profile.username }}'s Profile</span></h1>
+						</div>
+					</div>
+					<div class="icon-name-container">
+						<div class="user-icon-container">
+							<img src="{{ profile.mii.normal }}" class="user-icon" width="32" height="32">
+						</div>
+						<p class="title">
+							<span class="nick-name">{{ profile.username }}</span>
+							<span class="id-name">{{ profile.nnid }}</span>
+						</p>
+					</div>
+				</div>
+				<div id="header-meta">
+					<div class="button-with-option">
+						<div id="user-violator-blacklist" class="symbol">
+							<select>
+								<option value="" selected="">Please make a selection.</option>
+								<option value="{{ route('user.report', [ profile.usernameClean ]) }}" class="option-violators-create">Report</option>
+								<option value="{{ route('user.block', [ profile.usernameClean ]) }}" data-screen-name="{{ profile.username }}">Block</option>
+							</select>
+						</div>
+						<div class="toggle-follow-button">
+							<button type="button" data-action="{{ route('user.follow', [ profile.usernameClean ]) }}" class="follow-button none">Follow</button>
+							<button type="button" data-action="{{ route('user.unfollow', [ profile.usernameClean ]) }}" class="unfollow-button" data-screen-name="{{ profile.username }}">Follow</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="nav-menu" class="nav-3">
+				<a href="/users/rip_akndedfd6/posts" data-pjax="1" class="user-posts-count ">
+					<span class="number">{{ profile.posts }}</span>
+					<span class="name">Posts</span>
+				</a>
+				<a href="/users/rip_akndedfd6/following" data-pjax="1" class="user-followings-count ">
+					<span class="number">{{ profile.follows }} / 1000</span>
+					<span class="name">Following</span>
+				</a>
+				<a href="/users/rip_akndedfd6/followers" data-pjax="1" class="user-followers-count ">
+					<span class="number">{{ profile.followers }}</span>
+					<span class="name">Followers</span>
+				</a>
+			</div>
+			<div class="body-content">
+				<div class="no-content">
+					<p>In progress, stay tuned!</p>
+				</div>
+			</div>
+{% endblock %}

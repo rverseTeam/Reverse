@@ -10,7 +10,7 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 // Filters
 Router::filter('maintenance', 'checkMaintenance');
-Router::filter('auth', 'checkConsoleAuth');
+//Router::filter('auth', 'checkConsoleAuth');
 
 Router::group(['before' => 'maintenance'], function () {
 	// Development teaser
@@ -25,6 +25,21 @@ Router::group(['before' => 'maintenance'], function () {
 		// Communities
 		Router::group(['prefix' => 'communities'], function () {
 			Router::get('/', 'Community@index', 'community.index');
+		});
+
+		// Users
+		Router::group(['prefix' => 'users'], function () {
+			Router::get('/{id:a}', 'User@profile', 'user.profile');
+			Router::get('/{id:a}/violators.create', 'Dummy@dummy', 'user.report');
+			Router::get('/{id:a}/blacklist.confirm', 'Dummy@dummy', 'user.block');
+			Router::post('/{id:a}.follow.json', 'Dummy@dummy', 'user.follow');
+			Router::post('/{id:a}.unfollow.json', 'Dummy@dummy', 'user.unfollow');
+			Router::get('/{id:a}/favorites', 'Dummy@dummy', 'user.favorites');
+			Router::get('/{id:a}/posts', 'Dummy@dummy', 'user.posts');
+			Router::get('/{id:a}/following', 'Dummy@dummy', 'user.following');
+			Router::get('/{id:a}/followers', 'Dummy@dummy', 'user.followers');
+			Router::get('/{id:a}/diary', 'Dummy@dummy', 'user.diary');
+			Router::get('/{id:a}/diary/post', 'Dummy@dummy', 'user.diarypost');
 		});
 
 		// Titles

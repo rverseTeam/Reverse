@@ -57,7 +57,9 @@ class Community extends Page
 			];
 		}
 
-		return view('titles/view', compact('meta', 'posts'));
+		$feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+
+		return view('titles/view', compact('meta', 'posts', 'feeling'));
 	}
 
 	/**

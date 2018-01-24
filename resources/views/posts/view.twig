@@ -3,6 +3,7 @@
 
 {% block content %}
 {% set id,title_id,post_id = hashid(post.community.id), hashid(post.community.title_id), hashid(post.id) %}
+{% set mii = _context.post.user.mii[post.feeling] %}
 			<div id="header">
 				<div id="header-body">
 					<h1 id="page-title"><span>{{ post.user.username }}'s post</span></h1>
@@ -20,7 +21,7 @@
 				</div>
 				<div id="post-permalink-body" class="post scroll post-subtype-default">
 					<a href="{{ route('user.profile', [ post.user.usernameClean ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
-						<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
+						<img src="{{ mii }}" class="user-icon" width="32" height="32">
 					</a>
 					<header>
 						<div class="header-inner">
@@ -63,9 +64,10 @@
 					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
 						{% for comment in comments %}
 							{% set profile,comment_id = route('user.profile', [ comment.user.usernameClean ]), hashid(comment.id) %}
+							{% set mii = _context.comment.user.mii[post.feeling] %}
 							<li class="test-reply scroll {% if comment.user.id == post.user.id %}my{% else %}other{% endif %} {% if comment.spoiler and comment.user.id != user.id %}hidden{% endif %}" {% if comment.spoiler and comment.user.id != user.id %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
-									<img src="/img/icons/{{ post.community.icon }}" class="user-icon" width="32" height="32">
+									<img src="{{ mii }}" class="user-icon" width="32" height="32">
 								</a>
 								<div class="reply-body">
 									<header>

@@ -181,6 +181,11 @@ class User
 	public $followers = 0;
 
 	/**
+	 * Mii holder for this user.
+	 */
+	public $mii;
+
+	/**
 	 * Holds the permission checker for this user.
 	 * @var UserPerms
 	 */
@@ -275,9 +280,6 @@ class User
 			$this->followers = intval($userRow->follow_back_count);
 			$this->registerIp = Net::ntop($userRow->register_ip);
 			$this->lastIp = Net::ntop($userRow->last_ip);
-		} else {
-			$this->posted = false;
-			$this->favorited = false;
 		}
 
 		// Get all ranks
@@ -304,6 +306,8 @@ class User
 		$this->mainRank = $this->ranks[$this->mainRankId];
 		$this->colour = $this->colour ? $this->colour : $this->mainRank->colour;
 		$this->title = $this->title ? $this->title : $this->mainRank->title;
+
+		$this->mii = DB::table('mii_mappings')->where('user_id', $this->id)->first();
 
 		$this->perms = new UserPerms($this);
 	}
