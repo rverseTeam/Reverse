@@ -116,8 +116,10 @@ class Template
 			self::$engine->addFilter(new Twig_SimpleFilter($filter, $filter));
 		}
 
-		// Add debug functions
-		self::$engine->addExtension(new Twig_Extension_Debug());
+		// Add debug functions if debug is enabled
+		if (config("dev.twig_debug")) {
+			self::$engine->addExtension(new Twig_Extension_Debug());
+		}
 	}
 
 	/**
