@@ -1579,6 +1579,16 @@ var Olv = Olv || {};
             click: "onTriggerClick"
         },
         onTriggerClick: function(t) {
+            if ($(document.body).attr("data-is-first-post") && !e.Form.isDisabled(this.$el)) {
+                var i = $(t.currentTarget);
+                t.preventDefault(), i.removeAttr("data-pjax"), e.deferredAlert(null, e.loc("olv.portal.confirm_display_played_mark")).done(function() {
+                    i.attr("data-pjax", "1");
+                    var e = i.attr("data-sound");
+                    i.attr("data-sound", ""), i.trigger("click"), i.attr("data-sound", e)
+                }), $(document.body).removeAttr("data-is-first-post"), $.post("/settings/struct_post").fail(function() {
+                    $(document.body).attr("data-is-first-post", "1")
+                })
+            }
         }
     }), e.View.Widget.Empathy = Backbone.View.extend({
         className: "post",
