@@ -80,7 +80,6 @@ function clean_string($string, $lower = false, $noSpecial = false, $replaceSpeci
 
 // Redirect with turbolinks header
 function redirect($url) {
-	header("Turbolinks-Location: {$url}");
 	header("Location: {$url}");
 	return $url;
 }
