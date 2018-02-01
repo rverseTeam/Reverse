@@ -21,6 +21,7 @@ CurrentSession::start(
 );
 
 // Set base variables
+Template::set('ctr');
 Template::vars([
     'get' => $_GET,
     'user' => CurrentSession::$user,

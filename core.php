@@ -17,6 +17,5 @@ DB::connect(config('database'));
 Hashid::init(config('general.link_salt'));
 Upload::init();
 
-Template::init();
 Router::init();
 include_once path('routes.php');
