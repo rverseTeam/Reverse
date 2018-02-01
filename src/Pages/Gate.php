@@ -72,7 +72,7 @@ class Gate extends Page
 	 */
 	public function check() : string {
 		$username = clean_string($_POST['welcome_username']);
-		$nnid = clean_string($_POST['welcome_nnid'], false, true);
+		$nnid = str_replace(' ', '_', $_POST['welcome_nnid']);
 
 		$user = DB::table('users')->where([
 			'username' => $username,

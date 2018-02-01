@@ -253,7 +253,11 @@ class User
 	 * @param int|string $userId
 	 */
 	private function __construct($userId) {
-		$userRow = DB::table('users')->where('user_id', $userId)->orWhere('username_clean', clean_string($userId, true))->first();
+		$userRow = DB::table('users')
+						->where('user_id', $userId)
+						->orWhere('username_clean', clean_string($userId, true))
+						->orWhere('nnid', clean_string($userId))
+						->first();
 
 		if ($userRow) {
 			$this->id = intval($userRow->user_id);
