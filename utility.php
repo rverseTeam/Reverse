@@ -52,11 +52,17 @@ function camel_to_snake($text) : string {
 	return ltrim(strtolower(preg_replace('#[A-Z]#', '_$0', $text)), '_');
 }
 
-function clean_string($string, $lower = false, $noSpecial = false, $replaceSpecial = '') {
+function clean_string($string, $lower = false, $noSpecial = false, $replaceSpecial = '', $underscores = false) {
 	// Run common sanitisation function over string
+	$string = trim($string);
 	$string = htmlentities($string, ENT_NOQUOTES | ENT_HTML401, 'utf-8');
 	$string = stripslashes($string);
 	$string = strip_tags($string);
+
+	// If set convert spaces to underscores
+	if ($underscores) {
+		$string = str_replace(' ', '_', $string);
+	}
 
 	// If set also make the string lowercase
 	if ($lower) {
