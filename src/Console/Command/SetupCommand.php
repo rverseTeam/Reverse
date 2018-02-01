@@ -142,34 +142,6 @@ class SetupCommand extends Command
 			DB::table('perms')->insert($perm);
 		}
 
-		// Base user
-		$baseUserId = DB::table('users')->insertGetId([
-			'username' => 'TestVerse',
-			'username_clean' => 'testverse',
-			'register_ip' => Net::pton('::1'),
-			'last_ip' => Net::pton('::1'),
-			'user_registered' => time(),
-			'user_last_online' => 0,
-			'user_country' => 'US',
-			'user_activated' => true,
-			'nnid' => 'Testverse',
-			'nnid_clean' => 'testverse',
-		]);
-
-		// Create the actual user object
-		$baseUser = User::construct($baseUserId);
-
-		// Add ranks to the user
-		$baseUser->addRanks([
-			config('rank.regular'),
-			config('rank.admin'),
-		]);
-
-		// Set the main rank to admin
-		$baseUser->setMainRank(config('rank.admin'));
-
 		$io->text('Success! TestVerse has been installed in this host.');
-		$io->text('A dummy account has been made. Make sure to set it up to your console ID.');
-		$io->text('Read the documentation for information on how to do that!');
 	}
 }
