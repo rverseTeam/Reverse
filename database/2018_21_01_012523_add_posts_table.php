@@ -25,7 +25,7 @@ class AddPostsTable extends Migration
 
 			$table->integer('community')->unsigned()->default(0);
 
-			$table->text('content');
+			$table->text('content')->nullable();
 
 			$table->string('image', 250)->nullable();
 
