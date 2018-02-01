@@ -74,10 +74,12 @@
 													<span class="symbol-label">Yeahs</span>
 													<span class="empathy-count">{{ post.likes }}</span>
 												</span>
-												<span class="reply symbol">
-													<span class="symbol-label">Comment</span>
-													<span class="reply-count"><a href="{{ route('post.show', [ post.id ]) }}" data-pjax="1" tabindex="0">{{ post.comments }}<a></span>
-												</span>
+												<a href="{{ route('post.show', [ post.id ]) }}" data-pjax="1" tabindex="0">
+													<span class="reply symbol">
+														<span class="symbol-label">Comment</span>
+														<span class="reply-count">{{ post.comments }}<a></span>
+													</span>
+												</a>
 											</div>
 										</div>
 									</div>
