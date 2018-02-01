@@ -6,7 +6,7 @@
 {% set mii = _context.post.user.mii[_context.feeling[post.feeling]] %}
 			<div id="header">
 				<div id="header-body">
-					<h1 id="page-title"><span>{{ post.user.username }}'s post</span></h1>
+					<h1 id="page-title"><span>{{ post.user.displayName }}'s post</span></h1>
 				</div>
 			</div>
 			<div id="post-permalink-content">
@@ -25,7 +25,7 @@
 					</a>
 					<header>
 						<div class="header-inner">
-							<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.username }}</a></p>
+							<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.displayName }}</a></p>
 							<p class="timestamp-container">
 								<a class="timestamp">{{ post.created }}</a>
 								{% if post.spoiler %}
@@ -72,7 +72,7 @@
 								<div class="reply-body">
 									<header>
 										<div class="header-inner">
-											<p class="user-name"><a href="{{ profile }}" data-pjax="1">{{ comment.user.username }}</a></p>
+											<p class="user-name"><a href="{{ profile }}" data-pjax="1">{{ comment.user.displayName }}</a></p>
 											<p class="timestamp-container">
 												{{ comment.created }}
 												{% if comment.spoiler %}

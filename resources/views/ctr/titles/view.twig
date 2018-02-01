@@ -45,7 +45,7 @@
 									</a>
 									<div class="post-container">
 										<div class="user-container">
-											<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.username }}</a></p>
+											<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.displayName }}</a></p>
 											<p class="timestamp-container">
 												<span class="timestamp">{{ post.created }}</span>
 												{% if post.spoiler %}
