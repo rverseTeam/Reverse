@@ -65,7 +65,7 @@ class Post extends Page
 			if (!CurrentSession::$user->posted)
 				DB::table('users')->where('user_id', '=', CurrentSession::$user->id)->update(['posted' => 1]);
 
-			redirect(route('post.show', ['id' => hashid($postId)]));
+			redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
 		} elseif ($kind = 'reply') {
 			$post_id = $_POST["olive_post_id"];
 			$feeling = $_POST["feeling_id"];
