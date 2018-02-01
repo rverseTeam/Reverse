@@ -28,10 +28,12 @@
 								<option value="{{ route('user.block', [ profile.username ]) }}" data-screen-name="{{ profile.username }}">Block</option>
 							</select>
 						</div>
-						<div class="toggle-follow-button">
-							<button type="button" data-action="{{ route('user.follow', [ profile.username ]) }}" class="follow-button none">Follow</button>
-							<button type="button" data-action="{{ route('user.unfollow', [ profile.username ]) }}" class="unfollow-button" data-screen-name="{{ profile.username }}">Follow</button>
-						</div>
+						{% if profile.id != user.id %}
+							<div class="toggle-follow-button">
+								<button type="button" data-action="{{ route('user.follow', [ profile.username ]) }}" class="follow-button">Follow</button>
+								<button type="button" data-action="{{ route('user.unfollow', [ profile.username ]) }}" class="unfollow-button none" data-screen-name="{{ profile.username }}">Follow</button>
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
