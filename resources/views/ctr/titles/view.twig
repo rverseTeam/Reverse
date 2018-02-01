@@ -76,7 +76,7 @@
 												</span>
 												<span class="reply symbol">
 													<span class="symbol-label">Comment</span>
-													<span class="reply-count">{{ post.comments }}</span>
+													<span class="reply-count"><a href="{{ route('post.show', [ post.id ]) }}" data-pjax="1" tabindex="0">{{ post.comments }}<a></span>
 												</span>
 											</div>
 										</div>
