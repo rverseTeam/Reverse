@@ -85,12 +85,22 @@ class Template
 	 * Initialise the templating engine.
 	 */
 	public static function init() : void {
-		// Initialise Twig Filesystem Loader
-		$loader = new Twig_Loader_Filesystem;
+        $views_dir = path(self::VIEWS_DIR);
 
-		$loader->addPath(path(self::VIEWS_DIR), '__main__');
+        // Initialise Twig Filesystem Loader
+        $loader = new Twig_Loader_Filesystem;
 
-		// Environment variable
+        foreach (glob("{$views_dir}*") as $dir) {
+            $key = basename($dir);
+
+            if ($key === self::$name) {
+                $loader->addPath($dir, '__main__');
+            }
+
+            $loader->addPath($dir, $key);
+        }
+
+        // Environment variable
 		$env = [
 			'cache' => config("performance.template_cache")
 			? config("performance.cache_dir") . 'views'
