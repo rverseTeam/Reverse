@@ -6,7 +6,7 @@
 				<div id="user-content" class="user-page">
 					<div id="header">
 						<div id="header-body">
-							<h1 id="page-title"><span>{{ profile.username }}'s Profile</span></h1>
+							<h1 id="page-title"><span>{{ profile.displayName }}'s Profile</span></h1>
 						</div>
 					</div>
 					<div class="icon-name-container">
@@ -14,8 +14,8 @@
 							<img src="{{ profile.mii.normal }}" class="user-icon" width="32" height="32">
 						</div>
 						<p class="title">
-							<span class="nick-name">{{ profile.username }}</span>
-							<span class="id-name">{{ profile.nnid }}</span>
+							<span class="nick-name">{{ profile.displayName }}</span>
+							<span class="id-name">{{ profile.username }}</span>
 						</p>
 					</div>
 				</div>
@@ -24,27 +24,27 @@
 						<div id="user-violator-blacklist" class="symbol">
 							<select>
 								<option value="" selected="">Please make a selection.</option>
-								<option value="{{ route('user.report', [ profile.nnid ]) }}" class="option-violators-create">Report</option>
-								<option value="{{ route('user.block', [ profile.nnid ]) }}" data-screen-name="{{ profile.nnid }}">Block</option>
+								<option value="{{ route('user.report', [ profile.username ]) }}" class="option-violators-create">Report</option>
+								<option value="{{ route('user.block', [ profile.username ]) }}" data-screen-name="{{ profile.username }}">Block</option>
 							</select>
 						</div>
 						<div class="toggle-follow-button">
-							<button type="button" data-action="{{ route('user.follow', [ profile.nnid ]) }}" class="follow-button none">Follow</button>
-							<button type="button" data-action="{{ route('user.unfollow', [ profile.nnid ]) }}" class="unfollow-button" data-screen-name="{{ profile.nnid }}">Follow</button>
+							<button type="button" data-action="{{ route('user.follow', [ profile.username ]) }}" class="follow-button none">Follow</button>
+							<button type="button" data-action="{{ route('user.unfollow', [ profile.username ]) }}" class="unfollow-button" data-screen-name="{{ profile.username }}">Follow</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="nav-menu" class="nav-3">
-				<a href="{{ route('user.posts', [ profile.nnid ]) }}" data-pjax="1" class="user-posts-count ">
+				<a href="{{ route('user.posts', [ profile.username ]) }}" data-pjax="1" class="user-posts-count ">
 					<span class="number">{{ profile.posts }}</span>
 					<span class="name">Posts</span>
 				</a>
-				<a href="{{ route('user.following', [ profile.nnid ]) }}" data-pjax="1" class="user-followings-count ">
+				<a href="{{ route('user.following', [ profile.username ]) }}" data-pjax="1" class="user-followings-count ">
 					<span class="number">{{ profile.follows }} / 1000</span>
 					<span class="name">Following</span>
 				</a>
-				<a href="{{ route('user.followers', [ profile.nnid ]) }}" data-pjax="1" class="user-followers-count ">
+				<a href="{{ route('user.followers', [ profile.username ]) }}" data-pjax="1" class="user-followers-count ">
 					<span class="number">{{ profile.followers }}</span>
 					<span class="name">Followers</span>
 				</a>

@@ -1,6 +1,6 @@
 {
     "require": {
-        "doctrine/dbal": "~2.4",
+        "doctrine/dbal": "^2.6",
         "ext-curl": "*",
         "ext-json": "*",
         "hashids/hashids": "^2.0",

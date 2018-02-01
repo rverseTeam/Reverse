@@ -25,16 +25,16 @@ class User
 	public $id = 0;
 
 	/**
-	 * The user's username.
+	 * The user's display name.
 	 * @var string
 	 */
-	public $username = 'User';
+	public $displayName = 'User';
 
 	/**
-	 * A cleaned version of the username.
+	 * A cleaned version of the dsiplay name.
 	 * @var string
 	 */
-	public $usernameClean = 'user';
+	public $displayNameClean = 'user';
 
 	/**
 	 * The rank object of the user's main rank.
@@ -55,7 +55,7 @@ class User
 	public $ranks = [];
 
 	/**
-	 * The user's username color.
+	 * The user's display name color.
 	 * @var string
 	 */
 	public $color = '';
@@ -121,16 +121,16 @@ class User
 	public $systems = 0;
 
 	/**
-	 * The user's Nintendo ID.
+	 * The user's Nintendo ID (aka username).
 	 * @var string
 	 */
-	public $nnid = 'User';
+	public $username = 'User';
 
 	/**
-	 * A cleaned version of the Nintendo ID.
+	 * A cleaned version of the Nintendo ID (aka username).
 	 * @var string
 	 */
-	public $nnidClean = 'user';
+	public $usernameClean = 'user';
 
 	/**
 	 * Is this user active?
@@ -214,23 +214,23 @@ class User
 	/**
 	 * Create a new user.
 	 * @param string $username
-	 * @param string $nnid
+	 * @param string $displayName
 	 * @param bool $active
 	 * @param array $ranks
 	 * @return User
 	 */
-	public static function create(string $username, string $nnid, bool $active = true, array $ranks = []) : User {
-		$usernameClean = clean_string($username, true);
-		$nnidClean = clean_string($nnid, true, false, '', true);
+	public static function create(string $username, string $displayName, bool $active = true, array $ranks = []) : User {
+		$displayNameClean = clean_string($username, true);
+		$usernameClean = clean_string($nnid, true, false, '', true);
 
 		// make sure the user is always in the primary rank
 		$ranks = array_unique(array_merge($ranks, [0]));
 
 		$userId = DB::table('users')->insertGetId([
-				'username' => trim($username),
+				'display_name' => trim($displayName),
+				'display_name_clean' => $displayNameClean,
+				'username' => str_replace(' ', '_', $username),
 				'username_clean' => $usernameClean,
-				'nnid' => str_replace(' ', '_', $nnid),
-				'nnid_clean' => $nnidClean,
 				'rank_main' => 0,
 				'register_ip' => Net::pton(Net::ip()),
 				'last_ip' => Net::pton(Net::ip()),
@@ -255,16 +255,15 @@ class User
 	private function __construct($userId) {
 		$userRow = DB::table('users')
 						->where('user_id', $userId)
-						->orWhere('username_clean', clean_string($userId, true))
-						->orWhere('nnid', clean_string($userId))
+						->orWhere('username', clean_string($userId))
 						->first();
 
 		if ($userRow) {
 			$this->id = intval($userRow->user_id);
+			$this->displayName = $userRow->display_name;
+			$this->displayNameClean = $userRow->display_name_clean;
 			$this->username = $userRow->username;
 			$this->usernameClean = $userRow->username_clean;
-			$this->nnid = $userRow->nnid;
-			$this->nnidClean = $userRow->nnid_clean;
 			$this->mainRankId = intval($userRow->rank_main);
 			$this->color = $userRow->user_color;
 			$this->title = $userRow->user_title;
