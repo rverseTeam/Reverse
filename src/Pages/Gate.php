@@ -75,12 +75,12 @@ class Gate extends Page
 		$nnid = str_replace(' ', '_', $_POST['welcome_nnid']);
 
 		$user = DB::table('users')->where([
-			'username' => $username,
+			'display_name' => $username,
 		])->first();
 
 		if (!$user) {
 			$user = DB::table('users')->where([
-				'nnid' => $nnid,
+				'username' => $nnid,
 			])->first();
 
 			if (!$user) {
