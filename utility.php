@@ -81,7 +81,7 @@ function clean_string($string, $lower = false, $noSpecial = false, $replaceSpeci
 // Redirect with turbolinks header
 function redirect($url) {
 	header("Location: {$url}");
-	return $url;
+	exit;
 }
 
 function check_mx_record($email) {
