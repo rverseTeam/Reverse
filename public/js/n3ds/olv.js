@@ -1222,15 +1222,6 @@ var Olv = Olv || {};
         onFinishClick: function(e) {
             cave.lls_setItem("agree_olv", "1")
         }
-    }), e.View.Page.WelcomeGuest = e.View.Page.Common.extend({
-        events: {
-            "click .more-button": "onExitClick",
-        },
-        onExitClick: function(e) {
-            e.preventDefault(), setTimeout(function() {
-                cave.exitApp()
-            }, 0)
-        }
     }), e.View.Page.WelcomeProfile = e.View.Page.Common.extend({
         events: {
             "click .js-slide-button.back-button": "onBackButtonClick",
@@ -1290,6 +1281,20 @@ var Olv = Olv || {};
                     e.Browsing.replaceWith(i.attr("data-href"))
                 }), i.trigger("olv:achievement:update")
             })
+        }
+    }), e.View.Page.GuestWelcome = e.View.Page.Common.extend({
+        events: {
+            "click a[href]":"onAnyLinkClick"
+        },
+        onAnyLinkClick: function(e) {
+            var t = $(e.currentTarget);
+            cave.ls_setGuestModeLaunched(!0),
+            t.hasClass("register") && (e.preventDefault(), setTimeout(function () {
+                cave.jump_toAccount(1)
+            }, 0)),
+            t.hasClass("more-button") && (e.preventDefault(), setTimeout(function () {
+                cave.exitApp()
+            }, 0))
         }
     }), e.View.Page.Users = e.View.Page.Common.extend({
         events: {
@@ -2690,7 +2695,7 @@ var Olv = Olv || {};
             my_blacklist: "blacklist",
             "welcome/(3ds)": "welcome",
             "welcome/profile": "welcomeProfile",
-            "welcome_guest": "welcomeGuest",
+            welcome_guest: "guestWelcome",
             welcome: "welcomePage",
             "welcome/favorite_community_visibility": "welcomeFavoriteCommunityVisibility",
             users: "users",
@@ -2831,9 +2836,9 @@ var Olv = Olv || {};
                 el: "body"
             })
         },
-        welcomeGuest: function() {
-            new e.View.Page.WelcomeGuest({
-                el: "body"
+        guestWelcome: function() {
+            new e.View.Page.GuestWelcome({
+                el:"body"
             })
         },
         welcomeProfile: function() {
