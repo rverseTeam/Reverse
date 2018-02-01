@@ -43,7 +43,7 @@ class Gate extends Page
 		]);
 
 		// Get all Mii images and save them to the mapping table
-		$id = Mii::get($user->nnid);
+		$id = Mii::get($user->username);
 
 		$miis_temp = Mii::getMiiImages($id);
 
