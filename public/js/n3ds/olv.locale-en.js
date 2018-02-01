@@ -426,7 +426,7 @@ Olv.Locale.Data = {
         "value": "Do you want to close Miiverse and launch YouTube?"
     },
     "olv.welcome.check.username": {
-        "value": "This username is already in use, please select another."
+        "value": "This display name is already in use, please select another."
     },
     "olv.welcome.check.nnid": {
         "value": "This Nintendo Network ID is already in use, please select another."
