@@ -16,6 +16,10 @@ Router::group(['before' => 'maintenance'], function () {
 	// Development teaser
 	Router::get('/', 'PC@warning', 'pc.teaser');
 
+	// Welcome guest AKA "you need a NNID to use this"
+	// Needsto be outside the group so it doesn't get caught by auth
+	Router::get('/welcome_guest', 'Gate@guest', 'welcome.guest');
+
 	// 3DS required to load these pages
 	Router::group(['before' => 'auth'], function () {
 		// Dummied out pages

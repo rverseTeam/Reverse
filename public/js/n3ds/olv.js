@@ -1222,6 +1222,15 @@ var Olv = Olv || {};
         onFinishClick: function(e) {
             cave.lls_setItem("agree_olv", "1")
         }
+    }), e.View.Page.WelcomeGuest = e.View.Page.Common.extend({
+        events: {
+            "click .more-button": "onExitClick",
+        },
+        onExitClick: function(e) {
+            e.preventDefault(), setTimeout(function() {
+                cave.exitApp()
+            }, 0)
+        }
     }), e.View.Page.WelcomeProfile = e.View.Page.Common.extend({
         events: {
             "click .js-slide-button.back-button": "onBackButtonClick",
@@ -2681,6 +2690,7 @@ var Olv = Olv || {};
             my_blacklist: "blacklist",
             "welcome/(3ds)": "welcome",
             "welcome/profile": "welcomeProfile",
+            "welcome_guest": "welcomeGuest",
             welcome: "welcomePage",
             "welcome/favorite_community_visibility": "welcomeFavoriteCommunityVisibility",
             users: "users",
@@ -2818,6 +2828,11 @@ var Olv = Olv || {};
         },
         welcome: function() {
             new e.View.Page.Welcome({
+                el: "body"
+            })
+        },
+        welcomeGuest: function() {
+            new e.View.Page.WelcomeGuest({
                 el: "body"
             })
         },

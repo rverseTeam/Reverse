@@ -28,6 +28,14 @@ class Gate extends Page
 	}
 
 	/**
+	 * Serves the guest page
+	 * @return string
+	 */
+	public function guest() : string {
+		return view('gate/welcome_guest');
+	}
+
+	/**
 	 * Activates an account
 	 * @return string
 	 */

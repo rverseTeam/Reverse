@@ -31,8 +31,7 @@ class ConsoleAuth {
 	 */
 	public static function check() {
 		if (!isset($_SERVER['HTTP_X_NINTENDO_PARAMPACK']) || !isset($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN'])) {
-			echo config('general.name'), ' is only for 3DS consoles at the moment.';
-			exit;
+			redirect(route('welcome.guest') . '?src=menu');
 		}
 
 		if (!isset($_SESSION['authData'])) {
