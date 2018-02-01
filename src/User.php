@@ -221,7 +221,6 @@ class User
 	 */
 	public static function create(string $username, string $displayName, bool $active = true, array $ranks = []) : User {
 		$displayNameClean = clean_string($username, true);
-		$usernameClean = clean_string($nnid, true, false, '', true);
 
 		// make sure the user is always in the primary rank
 		$ranks = array_unique(array_merge($ranks, [0]));
@@ -230,7 +229,7 @@ class User
 				'display_name' => trim($displayName),
 				'display_name_clean' => $displayNameClean,
 				'username' => str_replace(' ', '_', $username),
-				'username_clean' => $usernameClean,
+				'username_clean' => str_replace(' ', '_', $usernameClean),
 				'rank_main' => 0,
 				'register_ip' => Net::pton(Net::ip()),
 				'last_ip' => Net::pton(Net::ip()),
