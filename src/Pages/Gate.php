@@ -33,7 +33,7 @@ class Gate extends Page
 	 */
 	public function activate() {
 		// Create the account
-		$user = User::create($_POST['welcome_username'], $_POST['welcome_nnid']);
+		$user = User::create($_POST['welcome_nnid'], $_POST['welcome_username']);
 
 		// Save the console ID to the linked account table
 		DB::table('console_auth')->insert([

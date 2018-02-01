@@ -220,7 +220,8 @@ class User
 	 * @return User
 	 */
 	public static function create(string $username, string $displayName, bool $active = true, array $ranks = []) : User {
-		$displayNameClean = clean_string($username, true);
+		$usernameClean = clean_string($username, true);
+		$displayNameClean = clean_string($displayName, true);
 
 		// make sure the user is always in the primary rank
 		$ranks = array_unique(array_merge($ranks, [0]));
