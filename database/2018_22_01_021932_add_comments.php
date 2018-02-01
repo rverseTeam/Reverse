@@ -26,7 +26,7 @@ class AddComments extends Migration
 
 			$table->integer('user')->unsigned();
 
-			$table->text('content');
+			$table->text('content')->nullable();
 
 			$table->integer('type')->unsigned()->default(0);
 
