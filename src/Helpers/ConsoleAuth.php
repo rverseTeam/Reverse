@@ -35,30 +35,36 @@ class ConsoleAuth {
 			exit;
 		}
 
-		$storage = [];
+		if (!isset($_SESSION['authData'])) {
+			$storage = [];
 
-		// Unpack the ParamPack from the headers sent by the console
-		// https://github.com/foxverse/3ds/blob/5e1797cdbaa33103754c4b63e87b4eded38606bf/web/titlesShow.php#L37-L40
-		$data = explode('\\', base64_decode($_SERVER['HTTP_X_NINTENDO_PARAMPACK']));
-		array_shift($data);
-		array_pop($data);
+			// Unpack the ParamPack from the headers sent by the console
+			// https://github.com/foxverse/3ds/blob/5e1797cdbaa33103754c4b63e87b4eded38606bf/web/titlesShow.php#L37-L40
+			$data = explode('\\', base64_decode($_SERVER['HTTP_X_NINTENDO_PARAMPACK']));
 
-		$paramCount = count($data);
+			$paramCount = count($data);
 
-		for ($i = 0; $i < $paramCount; $i += 2) {
-			$storage[$data[$i]] = $data[$i + 1];
+			for ($i = 1; $i < $paramCount; $i += 2) {
+				$storage[$data[$i]] = $data[$i + 1];
+			}
+
+			// Set title id and transferable id to hex, just in case we need it
+			$storage['title_id'] = base_convert($storage['title_id'], 10, 16);
+			$storage['transferable_id'] = base_convert($storage['transferable_id'], 10, 16);
+			$serviceToken = bin2hex(base64_decode($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN']));
+
+			$_SESSION['authData'] = [
+				'paramPack' => $storage,
+				'short' => substr($serviceToken, 0, 16),
+				'long' => substr($serviceToken, 0, 64),
+			];
 		}
 
-		// Set title id and transferable id to hex, just in case we need it
-		$storage['title_id'] = base_convert($storage['title_id'], 10, 16);
-		$storage['transferable_id'] = base_convert($storage['transferable_id'], 10, 16);
-		$serviceToken = bin2hex(base64_decode($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN']));
-
 		// Store the values for later use
-		self::$paramPack = $storage;
+		self::$paramPack = $_SESSION['authData']['paramPack'];
 		self::$consoleId = new stdClass;
 
-		self::$consoleId->short = substr($serviceToken, 0, 16);
-		self::$consoleId->long = substr($serviceToken, 0, 64);
+		self::$consoleId->short = $_SESSION['authData']['short'];
+		self::$consoleId->long = $_SESSION['authData']['long'];
 	}
 }
