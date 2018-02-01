@@ -109,6 +109,7 @@ class Post extends Page
 
 			redirect(route('post.show', ['id' => hashid($post_id)]));
 		}
+		exit;
 	}
 
 	/**
