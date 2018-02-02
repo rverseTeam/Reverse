@@ -1,7 +1,6 @@
 <?php
 /**
  * Holds the serve command controller.
- * @package Miiverse
  */
 
 namespace Miiverse\Console\Command;
@@ -13,32 +12,33 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Starts up a development server.
- * @package Miiverse
+ *
  * @author Repflez
  */
 class ServeCommand extends Command
 {
-	/**
-	 * Set up the command metadata.
-	 */
-	protected function configure() : void {
-		$this->setName('dev:serve')->setDescription('Sets up a local development server.')->setHelp('This command opens a development server for debugging TestVerse with PHP\'s built in server.')
-		;
-	}
+    /**
+     * Set up the command metadata.
+     */
+    protected function configure() : void
+    {
+        $this->setName('dev:serve')->setDescription('Sets up a local development server.')->setHelp('This command opens a development server for debugging TestVerse with PHP\'s built in server.');
+    }
 
-	/**
-	 * Sends the php serve command via the exec command.
-	 */
-	protected function execute(InputInterface $input, OutputInterface $output) {
-		$io = new SymfonyStyle($input, $output);
-		$document_root = addslashes(path('public'));
-		$router_proxy = addslashes(path('server.php'));
-		$php_dir = PHP_BINDIR;
-		$host = config('dev.host');
+    /**
+     * Sends the php serve command via the exec command.
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $io = new SymfonyStyle($input, $output);
+        $document_root = addslashes(path('public'));
+        $router_proxy = addslashes(path('server.php'));
+        $php_dir = PHP_BINDIR;
+        $host = config('dev.host');
 
-		$output->writeln("Starting TestVerse development server on {$host}.");
-		$io->caution('Do not use this command to serve a production site!');
+        $output->writeln("Starting TestVerse development server on {$host}.");
+        $io->caution('Do not use this command to serve a production site!');
 
-		exec("{$php_dir}/php -S {$host} -t {$document_root} {$router_proxy}");
-	}
+        exec("{$php_dir}/php -S {$host} -t {$document_root} {$router_proxy}");
+    }
 }

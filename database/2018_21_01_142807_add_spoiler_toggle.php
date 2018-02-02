@@ -6,29 +6,31 @@ use Miiverse\DB;
 
 class AddSpoilerToggle extends Migration
 {
-	/**
-	 * Run the migrations.
-	 * @return void
-	 */
-	public function up()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->table('posts', function (Blueprint $table) {
-			$table->boolean('spoiler')->default(0);
-		});
-	}
+        $schema->table('posts', function (Blueprint $table) {
+            $table->boolean('spoiler')->default(0);
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 * @return void
-	 */
-	public function down()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->table('posts', function (Blueprint $table) {
-			$table->dropColumn('spoiler');
-		});
-	}
+        $schema->table('posts', function (Blueprint $table) {
+            $table->dropColumn('spoiler');
+        });
+    }
 }

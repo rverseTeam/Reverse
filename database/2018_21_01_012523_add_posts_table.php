@@ -6,41 +6,43 @@ use Miiverse\DB;
 
 class AddPostsTable extends Migration
 {
-	/**
-	 * Run the migrations.
-	 * @return void
-	 */
-	public function up()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->create('posts', function (Blueprint $table) {
-			$table->increments('id');
+        $schema->create('posts', function (Blueprint $table) {
+            $table->increments('id');
 
-			$table->timestampTz('created')->useCurrent();
+            $table->timestampTz('created')->useCurrent();
 
-			$table->timestampTz('edited')->nullable();
+            $table->timestampTz('edited')->nullable();
 
-			$table->timestampTz('deleted')->nullable();
+            $table->timestampTz('deleted')->nullable();
 
-			$table->integer('community')->unsigned()->default(0);
+            $table->integer('community')->unsigned()->default(0);
 
-			$table->text('content')->nullable();
+            $table->text('content')->nullable();
 
-			$table->string('image', 250)->nullable();
+            $table->string('image', 250)->nullable();
 
-			$table->tinyInteger('feeling')->default(0);
-		});
-	}
+            $table->tinyInteger('feeling')->default(0);
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 * @return void
-	 */
-	public function down()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->drop('posts');
-	}
+        $schema->drop('posts');
+    }
 }
