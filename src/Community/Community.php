@@ -1,89 +1,99 @@
 <?php
 /**
  * Holds the community object class.
- * @package Miiverse
  */
 
 namespace Miiverse\Community;
 
 use Miiverse\DB;
-use Miiverse\CurrentSession;
 
 /**
  * Used to serve communities.
- * @package Miiverse
+ *
  * @author Repflez
  */
 class Community
 {
     /**
      * The ID of the community.
+     *
      * @var int
      */
     public $id = 0;
 
     /**
      * The title ID of the community.
+     *
      * @var int
      */
     public $title_id = 0;
 
     /**
      * The name of the community.
+     *
      * @var string
      */
-    public $name = "Community";
+    public $name = 'Community';
 
     /**
      * The description of the community.
+     *
      * @var string
      */
-    public $description = "";
+    public $description = '';
 
     /**
      * The icon of the community.
+     *
      * @var string
      */
-    public $icon = "";
+    public $icon = '';
 
     /**
      * The banner of the community.
+     *
      * @var string
      */
-    public $banner = "";
+    public $banner = '';
 
     /**
      * The ID of the parent community.
+     *
      * @var int
      */
     public $category = 0;
 
     /**
      * The type of community.
+     *
      * @var int
      */
     public $type = 0;
 
     /**
      * The creation date of the community.
+     *
      * @var string
      */
     public $created = '';
 
     /**
      * The platform of the community.
+     *
      * @var int
      */
     public $platform = 0;
 
     /**
      * Holds the permission handler.
+     *
      * @var mixed
      */
     public $perms;
 
     /**
      * Constructor.
+     *
      * @param int $communityId
      */
     public function __construct(int $communityId = 0)

@@ -6,29 +6,31 @@ use Miiverse\DB;
 
 class AddUserIdInPostsTable extends Migration
 {
-	/**
-	 * Run the migrations.
-	 * @return void
-	 */
-	public function up()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->table('posts', function (Blueprint $table) {
-			$table->integer('user_id')->unsigned();
-		});
-	}
+        $schema->table('posts', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 * @return void
-	 */
-	public function down()
-	{
-		$schema = DB::getSchemaBuilder();
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $schema = DB::getSchemaBuilder();
 
-		$schema->table('posts', function (Blueprint $table) {
-			$table->dropColumn('user_id');
-		});
-	}
+        $schema->table('posts', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
+    }
 }
