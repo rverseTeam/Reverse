@@ -196,7 +196,7 @@ class Post extends Page
         if ($post) {
             DB::table('likes')->insert([
                     'type' => 0,
-                    'id'   => $post_id,
+                    'id'   => $post->id,
                     'user' => CurrentSession::$user->id,
                 ]);
 
@@ -227,7 +227,7 @@ class Post extends Page
             DB::table('likes')
                 ->where([
                     'type' => 0,
-                    'id'   => $post_id,
+                    'id'   => $post->id,
                     'user' => CurrentSession::$user->id,
                 ])
                 ->delete();
