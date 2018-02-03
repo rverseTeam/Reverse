@@ -431,7 +431,7 @@ Olv.Locale.Data = {
     "olv.welcome.check.nnid": {
         "value": "This Nintendo Network ID is already in use, please select another."
     },
-    "olv.welcome.check.nnid": {
+    "olv.welcome.check.nonnid": {
         "value": "This Nintendo Network ID does not exist, please select another."
     },
     "testverse.debug": {
