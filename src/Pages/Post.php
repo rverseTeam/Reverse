@@ -187,6 +187,6 @@ class Post extends Page
      */
     public function yeahs(string $post_id)
     {
-    	return '{"success":true,"post_id":"', $post_id, '"}';
+    	return '{"success":true,"post_id":"'.$post_id.'"}';
     }
 }
