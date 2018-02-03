@@ -67,7 +67,7 @@
 												</div>
 											{% endif %}
 											<div class="post-meta">
-												<button type="button" disabled="" class="symbol submit empathy-button disabled" data-feeling="normal" data-action="#">
+												<button type="button" {% if post.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button{% if post.user.id == user.id %} disabled{% endif %}" data-feeling="{{ _context.feeling[post.feeling] }}" data-action="{{ route('post.empathies', [ post.id ]) }}">
 													<span class="empathy-button-text">Yeah!</span>
 												</button>
 												<span class="empathy symbol">

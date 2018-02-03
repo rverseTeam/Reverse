@@ -58,6 +58,7 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/{id:a}', 'Post@show', 'post.show');
             Router::post('/', 'Post@submit', 'post.submit');
             Router::get('/{id:a}/reply', 'Post@reply', 'post.reply');
+            Router::get('/{id:a}/empathies', 'Post@yeahs', 'post.empathies');
         });
 
         // Settings

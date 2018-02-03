@@ -177,4 +177,16 @@ class Post extends Page
 
         return view('posts/reply', compact('meta', 'community'));
     }
+
+    /**
+     * Create a Yeah for this post
+     *
+     * @var string $post_id
+     *
+     * @return string
+     */
+    public function yeahs(string $post_id)
+    {
+    	return '{"success":true,"post_id":"', $post_id, '"}';
+    }
 }
