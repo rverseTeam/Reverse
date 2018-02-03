@@ -187,7 +187,25 @@ class Post extends Page
      */
     public function yeahs(string $post_id) : string
     {
-        return '{"success":true,"post_id":"'.$post_id.'"}';
+        $post_id = dehashid($post_id);
+
+        $post = DB::table('posts')
+                    ->where('id', $post_id)
+                    ->first();
+
+        if ($post) {
+            DB::table('likes')->insert([
+                    'type' => 0,
+                    'id'   => $post_id,
+                    'user' => CurrentSession::$user->id,
+                ]);
+
+            DB::table('posts')->where('id', $post_id)->increment('likes');
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+        }
+
+        return '';
     }
 
     /**
@@ -199,6 +217,26 @@ class Post extends Page
      */
     public function removeYeahs(string $post_id) : string
     {
-        return '{"success":true,"post_id":"'.$post_id.'"}';
+        $post_id = dehashid($post_id);
+
+        $post = DB::table('posts')
+                    ->where('id', $post_id)
+                    ->first();
+
+        if ($post) {
+            DB::table('likes')
+                ->where([
+                    'type' => 0,
+                    'id'   => $post_id,
+                    'user' => CurrentSession::$user->id,
+                ])
+                ->delete();
+
+            DB::table('posts')->where('id', $post_id)->decrement('likes');
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+        }
+
+        return '';
     }
 }
