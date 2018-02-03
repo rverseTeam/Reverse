@@ -179,14 +179,14 @@ class Post extends Page
     }
 
     /**
-     * Create a Yeah for this post
+     * Create a Yeah for this post.
      *
-     * @var string $post_id
+     * @var string
      *
      * @return string
      */
-    public function yeahs(string $post_id)
+    public function yeahs(string $post_id) : string
     {
-    	return '{"success":true,"post_id":"'.$post_id.'"}';
+        return '{"success":true,"post_id":"'.$post_id.'"}';
     }
 }
