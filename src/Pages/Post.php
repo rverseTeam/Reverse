@@ -189,4 +189,16 @@ class Post extends Page
     {
         return '{"success":true,"post_id":"'.$post_id.'"}';
     }
+
+    /**
+     * Remove a Yeah for this post.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function removeYeahs(string $post_id) : string
+    {
+        return '{"success":true,"post_id":"'.$post_id.'"}';
+    }
 }
