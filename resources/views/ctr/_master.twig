@@ -1,4 +1,4 @@
-{% if get.pjax %}
+{% if get.pjax is defined %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,7 +14,7 @@
 {% endif %}
 			{% block content %}
 			{% endblock %}
-{% if get.pjax %}
+{% if get.pjax is defined %}
 		</div>
 	</body>
 </html>
