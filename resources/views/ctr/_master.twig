@@ -1,3 +1,4 @@
+{% if get.pjax %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -10,8 +11,11 @@
 	</head>
 	<body data-user-id="{{ user.username }}" data-is-first-post="{% if user.posted %}0{% else %}1{% endif %}" data-is-first-favorite="{% if user.favorited %}0{% else %}1{% endif %}" data-profile-url="/users/{{ user.username }}">
 		<div id="body" {% if class is defined %}class="{{ class }}" {% endif %}data-region-id="2">
+{% endif %}
 			{% block content %}
 			{% endblock %}
+{% if get.pjax %}
 		</div>
 	</body>
 </html>
+{% endif %}
