@@ -55,6 +55,12 @@ class Community extends Page
                 'spoiler'  => $post->spoiler,
                 'comments' => intval($post->comments),
                 'likes'    => intval($post->likes),
+                'liked'    => (bool) DB::table('likes')
+                                    ->where([
+                                        ['type', 0], // Posts are type 0
+                                        ['id', $post->id],
+                                    ])
+                                    ->count();
             ];
         }
 
