@@ -139,7 +139,7 @@ class Post extends Page
         $likers_tmp = DB::table('likes')
                         ->where([
                             ['type', 0],
-                            ['id', $post->id]
+                            ['id', $post->id],
                             ['user', '<>', CurrentSession::$user->id],
                         ]);
 
@@ -157,7 +157,7 @@ class Post extends Page
         $post->likerCount = DB::table('likes')
                                 ->where([
                                     ['type', 0],
-                                    ['id', $post->id]
+                                    ['id', $post->id],
                                     ['user', '<>', CurrentSession::$user->id],
                                 ])
                                 ->count();
