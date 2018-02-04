@@ -51,7 +51,15 @@ class Mii
     {
         $mapped_ids = self::call(static::URL.'admin/mapped_ids?input_type=user_id&output_type=pid&input='.$nnid);
 
-        if (!$mapped_ids->mapped_id->out_id) {
+        if (empty($mapped_ids)) {
+            return false;
+        }
+
+        $mapped_ids = new SimpleXMLElement($mapped_ids);
+
+        $id = (int) $mapped_ids->mapped_id->out_id;
+
+        if ($id === 0) {
             return false;
         }
 
