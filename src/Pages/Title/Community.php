@@ -5,6 +5,7 @@
 
 namespace Miiverse\Pages\Title;
 
+use Miiverse\CurrentSession;
 use Miiverse\DB;
 use Miiverse\User;
 
@@ -59,6 +60,7 @@ class Community extends Page
                                     ->where([
                                         ['type', 0], // Posts are type 0
                                         ['id', $post->id],
+                                        ['user', CurrentSession::$user->id],
                                     ])
                                     ->count(),
             ];
