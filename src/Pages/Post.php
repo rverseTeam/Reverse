@@ -127,23 +127,38 @@ class Post extends Page
 
         $post->community = new Community($post->community);
         $post->user = User::construct($post->user_id);
+        $post->liked = (bool) DB::table('likes')
+                                ->where([
+                                    ['type', 0], // Posts are type 0
+                                    ['id', $post->id],
+                                    ['user', CurrentSession::$user->id],
+                                ])
+                                ->count();
 
         $comments_temp = DB::table('comments')
                     ->where('post', $post->id)
                     ->orderBy('created', 'asc')
                     ->limit(20)
-                    ->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler']);
+                    ->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler', 'likes']);
 
         $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+        $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', '"Yeah...'];
 
         if ($comments_temp) {
             foreach ($comments_temp as $comment) {
                 $comment->user = User::construct($comment->user);
+                $comment->liked = (bool) DB::table('likes')
+                                        ->where([
+                                            ['type', 1], // Comments are type 1
+                                            ['id', $comment->id],
+                                            ['user', CurrentSession::$user->id],
+                                        ])
+                                        ->count();
                 $comments[] = $comment;
             }
         }
 
-        return view('posts/view', compact('post', 'comments', 'feeling'));
+        return view('posts/view', compact('post', 'comments', 'feeling', 'feelingText'));
     }
 
     /**

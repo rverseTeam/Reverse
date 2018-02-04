@@ -48,13 +48,9 @@
 							<div class="report-buttons-content">
 								<a href="{#{ route('post.report', [ post_id ]) }#}" role="button" class="report-button" data-pjax="1">Report Violation</a>
 							</div>
-						{% else %}
-							<div class="edit-buttons-content">
-								<a href="{#{ route('post.edit', [ post_id ]) }#}" class="button edit-button symbol"><span class="symbol-label">Edit</span></a>
-							</div>
 						{% endif %}
 						<div class="expression">
-							<button type="button" disabled="" class="symbol submit empathy-button" data-feeling="normal" data-action="{#{ route('post.like', [ post_id ]) }#}" data-other-empathy-count="0"><span class="empathy-button-text">Yeah!</span></button>
+							<button type="button" {% if post.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button{% if post.user.id == user.id %} disabled{% endif %}{% if post.liked %} empathy-added{% endif %}" data-feeling="{{ _context.feeling[post.feeling] }}" data-action="{{ route('post.empathies', [ post_id ]) }}" data-other-empathy-count="{{ post.likes}}"><span class="empathy-button-text">{% if post.liked %}Unyeah{% else %}{{ _context.feelingText[post.feeling] }}{% endif %}</span></button>
 						</div>
 					</div>
 				</div>
