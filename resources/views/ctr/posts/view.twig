@@ -74,11 +74,9 @@
 						{% endif %}
 					{% endif %}
 					<div class="post-permalink-feeling-icon-container">
-						{% if post.liked %}
-							<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon visitor">
-								<img src="{{ mii }}" class="user-icon" width="32" height="32">
-							</a>
-						{% endif %}
+						<a href="{{ route('user.profile', [ user.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon visitor" {% if not post.liked %}style="display: none"{% endif %}>
+							<img src="{{ _context.user.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
+						</a>
 						{% for liker in post.likers %}
 							<a href="{{ route('user.profile', [ liker.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon">
 								<img src="{{ _context.liker.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
