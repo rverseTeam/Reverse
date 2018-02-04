@@ -120,6 +120,7 @@ class Post extends Page
     {
         $post_id = dehashid($id);
         $comments = [];
+        $likers = [];
 
         $post = DB::table('posts')
                         ->where('id', $post_id)
@@ -132,6 +133,32 @@ class Post extends Page
                                     ['type', 0], // Posts are type 0
                                     ['id', $post->id],
                                     ['user', CurrentSession::$user->id],
+                                ])
+                                ->count();
+
+        $likers_tmp = DB::table('likes')
+                        ->where([
+                            ['type', 0],
+                            ['id', $post->id]
+                            ['user', '<>', CurrentSession::$user->id],
+                        ]);
+
+        if ($post->liked) {
+            $likers_tmp->limit(11)->pluck('user');
+        } else {
+            $likers_tmp->limit(12)->pluck('user');
+        }
+
+        foreach ($likers_tmp as $liker) {
+            $likers[] = User::construct($liker);
+        }
+
+        $post->likers = $likers;
+        $post->likerCount = DB::table('likes')
+                                ->where([
+                                    ['type', 0],
+                                    ['id', $post->id]
+                                    ['user', '<>', CurrentSession::$user->id],
                                 ])
                                 ->count();
 

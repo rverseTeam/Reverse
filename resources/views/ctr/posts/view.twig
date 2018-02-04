@@ -54,6 +54,30 @@
 						</div>
 					</div>
 				</div>
+				<div id="empathy-content" class="post-permalink-feeling" {% if not post.liked or post.likerCount == 0 %}style="display: none"{% endif %}>
+					{# Insane logic here. It's 4AM so I'll have to make this right later #}
+					{% if post.liked %}
+						{% if post.likerCount == 0 %}
+							<p class="post-permalink-feeling-text">You gave this a Yeah.</p>
+						{% else %}
+							<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other people gave this a Yeah.</p>
+						{% endif %}
+					{% else %}
+						<p class="post-permalink-feeling-text">{{ post.likerCount }} people gave this a Yeah.</p>
+					{% endif %}
+					<div class="post-permalink-feeling-icon-container">
+						{% if post.liked %}
+							<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon visitor">
+								<img src="{{ mii }}" class="user-icon" width="32" height="32">
+							</a>
+						{% endif %}
+						{% for liker in post.likers %}
+							<a href="{{ route('user.profile', [ liker.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon">
+								<img src="{{ _context.liker.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
+							</a>
+						{% endfor %}
+					</div>
+				</div>
 			</div>
 			<div class="body-content">
 				<div id="post-permalink-comments">
