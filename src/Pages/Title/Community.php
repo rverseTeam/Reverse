@@ -60,7 +60,7 @@ class Community extends Page
                                         ['type', 0], // Posts are type 0
                                         ['id', $post->id],
                                     ])
-                                    ->count();
+                                    ->count(),
             ];
         }
 
