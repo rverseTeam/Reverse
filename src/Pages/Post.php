@@ -159,8 +159,7 @@ class Post extends Page
         $post->likerCount = DB::table('likes')
                                 ->where([
                                     ['type', 0],
-                                    ['id', $post->id],
-                                    ['user', '<>', CurrentSession::$user->id],
+                                    ['id', $post->id]
                                 ])
                                 ->count();
 
