@@ -136,18 +136,20 @@ class Post extends Page
                                 ])
                                 ->count();
 
+        if ($post->liked) {
+            $like_limit = 11;
+        } else {
+            $like_limit = 12;
+        }
+
         $likers_tmp = DB::table('likes')
                         ->where([
                             ['type', 0],
                             ['id', $post->id],
                             ['user', '<>', CurrentSession::$user->id],
-                        ]);
-
-        if ($post->liked) {
-            $likers_tmp->limit(11)->pluck('user');
-        } else {
-            $likers_tmp->limit(12)->pluck('user');
-        }
+                        ])
+                        ->limit($like_limit)
+                        ->pluck('user');
 
         foreach ($likers_tmp as $liker) {
             $likers[] = User::construct($liker);
