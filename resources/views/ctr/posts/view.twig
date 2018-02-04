@@ -90,7 +90,7 @@
 										</div>
 									{% endif %}
 									<div class="reply-meta">
-										<button type="button" {% if comment.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button reply disabled" data-feeling="{{ _context.feeling[comment.feeling] }}" data-action="{{ route('comment.empathies', [ comment_id ]) }}"><span class="empathy-button-text">{% if post.liked %}Unyeah{% else %}{{ _context.feelingText[comment.feeling] }}{% endif %}</span></button>
+										<button type="button" {% if comment.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button reply{% if comment.user.id == user.id %} disabled{% endif %}}{% if post.liked %} empathy-added{% endif %}" data-feeling="{{ _context.feeling[comment.feeling] }}" data-action="{{ route('comment.empathies', [ comment_id ]) }}"><span class="empathy-button-text">{% if post.liked %}Unyeah{% else %}{{ _context.feelingText[comment.feeling] }}{% endif %}</span></button>
 										<span class="empathy symbol"><span class="symbol-label">Yeahs</span><span class="empathy-count">{{ comment.likes }}</span></span>
 										{% if comment.user.id != user.id %}
 											<div class="report-buttons-content">
