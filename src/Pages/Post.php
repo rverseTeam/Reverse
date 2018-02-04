@@ -254,4 +254,66 @@ class Post extends Page
 
         return '';
     }
+
+    /**
+     * Create a Yeah for this comment.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function replyYeahs(string $post_id) : string
+    {
+        $post_id = dehashid($post_id);
+
+        $post = DB::table('comments')
+                    ->where('id', $post_id)
+                    ->first();
+
+        if ($post) {
+            DB::table('likes')->insert([
+                    'type' => 1,
+                    'id'   => $post->id,
+                    'user' => CurrentSession::$user->id,
+                ]);
+
+            DB::table('comments')->where('id', $post_id)->increment('likes');
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+        }
+
+        return '';
+    }
+
+    /**
+     * Remove a Yeah for this comment.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function replyRemoveYeahs(string $post_id) : string
+    {
+        $post_id = dehashid($post_id);
+
+        $post = DB::table('comments')
+                    ->where('id', $post_id)
+                    ->first();
+
+        if ($post) {
+            DB::table('likes')
+                ->where([
+                    'type' => 1,
+                    'id'   => $post->id,
+                    'user' => CurrentSession::$user->id,
+                ])
+                ->delete();
+
+            DB::table('comments')->where('id', $post_id)->decrement('likes');
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+        }
+
+        return '';
+    }
 }

@@ -62,6 +62,12 @@ Router::group(['before' => 'maintenance'], function () {
             Router::post('/{id:a}/empathies.delete', 'Post@removeYeahs', 'post.empathiesdelete');
         });
 
+        // Comments
+        Router::group(['prefix' => 'replies'], function () {
+            Router::post('/{id:a}/empathies', 'Post@replyYeahs', 'comment.empathies');
+            Router::post('/{id:a}/empathies.delete', 'Post@replyRemoveYeahs', 'comment.empathiesdelete');
+        });
+
         // Settings
         Router::group(['prefix' => 'settings'], function () {
             Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
