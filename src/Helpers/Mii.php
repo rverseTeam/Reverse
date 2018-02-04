@@ -31,7 +31,7 @@ class Mii
             return false;
         }
 
-        $mapped_ids = SimpleXMLElement($mapped_ids);
+        $mapped_ids = new SimpleXMLElement($mapped_ids);
 
         $id = (int) $mapped_ids->mapped_id->out_id;
 
@@ -69,6 +69,8 @@ class Mii
     {
         $miis = self::call(static::URL.'miis?pids='.$id);
 
+        $miis = new SimpleXMLElement($miis);
+
         $store = [];
 
         $miis = json_decode(json_encode($miis));
@@ -102,6 +104,6 @@ class Mii
 
         $response = curl_exec($curl);
 
-        return new $response;
+        return $response;
     }
 }
