@@ -60,10 +60,18 @@
 						{% if post.likerCount == 0 %}
 							<p class="post-permalink-feeling-text">You gave this a Yeah.</p>
 						{% else %}
-							<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other people gave this a Yeah.</p>
+							{% if post.likerCount == 1 %}
+								<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other person gave this a Yeah.</p>
+							{% else %}
+								<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other people gave this a Yeah.</p>
+							{% endif %}
 						{% endif %}
 					{% else %}
-						<p class="post-permalink-feeling-text">{{ post.likerCount }} people gave this a Yeah.</p>
+						{% if post.likerCount == 1 %}
+							<p class="post-permalink-feeling-text">{{ post.likerCount }} person gave this a Yeah.</p>
+						{% else %}
+							<p class="post-permalink-feeling-text">{{ post.likerCount }} people gave this a Yeah.</p>
+						{% endif %}
 					{% endif %}
 					<div class="post-permalink-feeling-icon-container">
 						{% if post.liked %}
