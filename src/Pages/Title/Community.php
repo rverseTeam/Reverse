@@ -67,8 +67,9 @@ class Community extends Page
         }
 
         $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+        $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', '"Yeah...'];
 
-        return view('titles/view', compact('meta', 'posts', 'feeling'));
+        return view('titles/view', compact('meta', 'posts', 'feeling', 'feelingText'));
     }
 
     /**
