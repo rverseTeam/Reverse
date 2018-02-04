@@ -57,11 +57,11 @@
 			</div>
 			<div class="body-content">
 				<div id="post-permalink-comments">
-					<ul class="post-permalink-reply  list reply-list" data-parent-post-id="{{ post_id }}">
+					<ul class="post-permalink-reply list reply-list" data-parent-post-id="{{ post_id }}">
 						{% for comment in comments %}
 							{% set profile,comment_id = route('user.profile', [ comment.user.username ]), hashid(comment.id) %}
 							{% set mii = _context.comment.user.mii[_context.feeling[comment.feeling]] %}
-							<li class="test-reply scroll {% if comment.user.id == post.user.id %}my{% else %}other{% endif %} {% if comment.spoiler and comment.user.id != user.id %}hidden{% endif %}" {% if comment.spoiler and comment.user.id != user.id %}data-href-hidden="#"{% endif %}>
+							<li id="reply-{{ comment_id }}" class="test-reply scroll {% if comment.user.id == post.user.id %}my{% else %}other{% endif %} {% if comment.spoiler and comment.user.id != user.id %}hidden{% endif %}" {% if comment.spoiler and comment.user.id != user.id %}data-href-hidden="#"{% endif %}>
 								<a href="{{ profile }}" data-pjax="1" class="user-icon-container scroll-focus">
 									<img src="{{ mii }}" class="user-icon" width="32" height="32">
 								</a>
