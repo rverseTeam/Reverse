@@ -160,6 +160,7 @@ class Post extends Page
                                 ->where([
                                     ['type', 0],
                                     ['id', $post->id],
+                                    ['user', '<>', CurrentSession::$user->id],
                                 ])
                                 ->count();
 

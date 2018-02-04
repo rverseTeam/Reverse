@@ -57,25 +57,20 @@
 				<div id="empathy-content" class="post-permalink-feeling" {% if not post.liked or post.likerCount == 0 %}style="display: none"{% endif %}>
 					{# Insane logic here. It's 4AM so I'll have to make this right later #}
 					{% if post.liked %}
-						{% set count = post.likerCount - 1 %}
-					{% else %}
-						{% set count = post.likerCount %}
-					{% endif %}
-					{% if post.liked %}
-						{% if count == 0 %}
+						{% if post.likerCount == 0 %}
 							<p class="post-permalink-feeling-text">You gave this a Yeah.</p>
 						{% else %}
-							{% if count == 1 %}
-								<p class="post-permalink-feeling-text">You and {{ count }} other person gave this a Yeah.</p>
+							{% if post.likerCount == 1 %}
+								<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other person gave this a Yeah.</p>
 							{% else %}
-								<p class="post-permalink-feeling-text">You and {{ count }} other people gave this a Yeah.</p>
+								<p class="post-permalink-feeling-text">You and {{ post.likerCount }} other people gave this a Yeah.</p>
 							{% endif %}
 						{% endif %}
 					{% else %}
-						{% if count == 1 %}
-							<p class="post-permalink-feeling-text">{{ count }} person gave this a Yeah.</p>
+						{% if post.likerCount == 1 %}
+							<p class="post-permalink-feeling-text">{{ post.likerCount }} person gave this a Yeah.</p>
 						{% else %}
-							<p class="post-permalink-feeling-text">{{ count }} people gave this a Yeah.</p>
+							<p class="post-permalink-feeling-text">{{ post.likerCount }} people gave this a Yeah.</p>
 						{% endif %}
 					{% endif %}
 					<div class="post-permalink-feeling-icon-container">
