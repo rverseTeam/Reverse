@@ -26,6 +26,11 @@ class Community extends Page
         $community = dehashid($id);
         $titileId = dehashid($tid);
         $posts = [];
+        $verified_ranks = [
+            config('rank.verified'),
+            config('rank.mod'),
+            config('rank.admin'),
+        ];
 
         if (!is_array($community) || !is_array($titileId)) {
             return view('errors/404');
@@ -46,9 +51,11 @@ class Community extends Page
                     ->get();
 
         foreach ($posts_pre as $post) {
+            $user = User::construct($post->user_id);
+
             $posts[] = [
                 'id'       => hashid($post->id),
-                'user'     => User::construct($post->user_id),
+                'user'     => $user,
                 'created'  => $post->created,
                 'content'  => $post->content,
                 'image'    => $post->image,
@@ -63,6 +70,7 @@ class Community extends Page
                                         ['user', CurrentSession::$user->id],
                                     ])
                                     ->count(),
+                'verified' => in_array($user->mainRank, $verified_ranks),
             ];
         }
 
