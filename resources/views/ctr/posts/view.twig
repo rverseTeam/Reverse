@@ -25,7 +25,7 @@
 					</a>
 					<header>
 						<div class="header-inner">
-							{% if post.user.organization %}
+							{% if post.user.organization == '' %}
 								<p class="user-organization">{{ post.user.organization }}</p>
 							{% endif %}
 							<p class="user-organization">foxverse Developer</p>
