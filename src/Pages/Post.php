@@ -23,14 +23,10 @@ class Post extends Page
     public function submit()
     {
         $kind = $_POST['kind'] ?? null;
-        
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            exit;
-        }
 
         $user = CurrentSession::$user;
         $userid = $user->id;
-        
+
         if (!userid) {
             exit;
         }
