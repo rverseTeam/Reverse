@@ -18,6 +18,7 @@ class Page
      * @var array
      */
     protected $middleware = [
+        'UpdateLastOnline',
     ];
 
     /**
