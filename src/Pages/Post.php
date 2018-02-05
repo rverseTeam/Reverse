@@ -133,10 +133,6 @@ class Post extends Page
             config('rank.mod'),
             config('rank.admin'),
         ];
-        $organization_ranks = [
-            config('rank.mod'),
-            config('rank.admin'),
-        ];
 
         $post = DB::table('posts')
                         ->where('id', $post_id)
@@ -144,8 +140,9 @@ class Post extends Page
 
         $post->community = new Community($post->community);
         $post->user = User::construct($post->user_id);
-        if ($post->user->hasRanks($organization_ranks)) {
             $post->user->organization = $post->user->mainRank->name();
+
+        if ($post->user->hasRanks($verified_ranks)) {
         }
         $post->verified = $post->user->hasRanks($verified_ranks);
         $post->liked = (bool) DB::table('likes')
