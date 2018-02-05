@@ -25,6 +25,10 @@
 					</a>
 					<header>
 						<div class="header-inner">
+							{% if post.user.organization %}
+								<p class="user-organization">{{ post.user.organization }}</p>
+							{% endif %}
+							<p class="user-organization">foxverse Developer</p>
 							<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.displayName }}</a></p>
 							<p class="timestamp-container">
 								<a class="timestamp">{{ post.created }}</a>
