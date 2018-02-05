@@ -189,7 +189,7 @@ class Post extends Page
                     ->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler', 'likes']);
 
         $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
-        $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', '"Yeah...'];
+        $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', 'Yeah...'];
 
         if ($comments_temp) {
             foreach ($comments_temp as $comment) {
