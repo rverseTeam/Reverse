@@ -24,7 +24,7 @@ class Community extends Page
     public function show($tid, $id) : string
     {
         $community = dehashid($id);
-        $titileId = dehashid($tid);
+        $titleId = dehashid($tid);
         $posts = [];
         $verified_ranks = [
             config('rank.verified'),
@@ -32,7 +32,7 @@ class Community extends Page
             config('rank.admin'),
         ];
 
-        if (!is_array($community) || !is_array($titileId)) {
+        if (!is_array($community) || !is_array($titleId)) {
             return view('errors/404');
         }
 
@@ -88,9 +88,9 @@ class Community extends Page
     public function post($tid, $id) : string
     {
         $community = dehashid($id);
-        $titileId = dehashid($tid);
+        $titleId = dehashid($tid);
 
-        if (!is_array($community) || !is_array($titileId)) {
+        if (!is_array($community) || !is_array($titleId)) {
             return view('errors/404');
         }
 
