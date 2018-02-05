@@ -144,7 +144,9 @@ class Post extends Page
 
         $post->community = new Community($post->community);
         $post->user = User::construct($post->user_id);
-        if ($user->hasRanks($organization_ranks)) $post->user->organization = $post->user->mainRank->name();
+        if ($user->hasRanks($organization_ranks)) {
+            $post->user->organization = $post->user->mainRank->name();
+        }
         $post->verified = $post->user->hasRanks($verified_ranks);
         $post->liked = (bool) DB::table('likes')
                                 ->where([
