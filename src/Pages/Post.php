@@ -27,7 +27,7 @@ class Post extends Page
         $user = CurrentSession::$user;
         $userid = $user->id;
 
-        if (!userid) {
+        if (!$userid) {
             exit;
         }
 
