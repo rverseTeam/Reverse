@@ -30,6 +30,10 @@ class Post extends Page
 
         $user = CurrentSession::$user;
         $userid = $user->id;
+        
+        if (!userid) {
+            exit;
+        }
 
         if ($kind == 'post') {
             $title_id = $_POST['olive_title_id'];
