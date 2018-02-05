@@ -121,6 +121,11 @@ class Post extends Page
         $post_id = dehashid($id);
         $comments = [];
         $likers = [];
+        $verified_ranks = [
+            config('rank.verified'),
+            config('rank.mod'),
+            config('rank.admin'),
+        ];
 
         $post = DB::table('posts')
                         ->where('id', $post_id)
@@ -128,6 +133,7 @@ class Post extends Page
 
         $post->community = new Community($post->community);
         $post->user = User::construct($post->user_id);
+        $post->verified = $post->user->hasRanks($verified_ranks),
         $post->liked = (bool) DB::table('likes')
                                 ->where([
                                     ['type', 0], // Posts are type 0
@@ -152,7 +158,12 @@ class Post extends Page
                         ->pluck('user');
 
         foreach ($likers_tmp as $liker) {
-            $likers[] = User::construct($liker);
+            $liker = User::construct($liker);
+
+            $likers[] = [
+                'data'     => $liker,
+                'verified' => $liker->hasRanks($verified_ranks),
+            ];
         }
 
         $post->likers = $likers;
@@ -176,6 +187,7 @@ class Post extends Page
         if ($comments_temp) {
             foreach ($comments_temp as $comment) {
                 $comment->user = User::construct($comment->user);
+                $comment->verified = $comment->user->hasRanks($verified_ranks),
                 $comment->liked = (bool) DB::table('likes')
                                         ->where([
                                             ['type', 1], // Comments are type 1
