@@ -78,8 +78,8 @@
 							<img src="{{ _context.user.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
 						</a>
 						{% for liker in post.likers %}
-							<a href="{{ route('user.profile', [ liker.user.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon {% if liker.verified %}official-user{% endif %}">
-								<img src="{{ _context.liker.user.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
+							<a href="{{ route('user.profile', [ liker.data.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon {% if liker.verified %}official-user{% endif %}">
+								<img src="{{ _context.liker.data.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
 							</a>
 						{% endfor %}
 					</div>
