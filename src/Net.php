@@ -67,7 +67,7 @@ class Net
 
         // Check for IPv4 first since that's most common
         if ($ipv === 4) {
-            return current(unpack('A4', inet_pton($ip)));
+            return current(unpack('a4', inet_pton($ip)));
         }
 
         // Then attempt IPv6
