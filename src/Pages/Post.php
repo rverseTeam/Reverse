@@ -24,7 +24,7 @@ class Post extends Page
     {
         $kind = $_POST['kind'] ?? null;
         
-        if (!CurrentSession::$session) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             exit;
         }
 
