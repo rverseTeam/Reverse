@@ -70,7 +70,7 @@ class Community extends Page
                                         ['user', CurrentSession::$user->id],
                                     ])
                                     ->count(),
-                'verified' => in_array($user->mainRank->id, $verified_ranks),
+                'verified' => $user->hasRanks($verified_ranks),
             ];
         }
 
