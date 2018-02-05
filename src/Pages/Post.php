@@ -133,7 +133,7 @@ class Post extends Page
 
         $post->community = new Community($post->community);
         $post->user = User::construct($post->user_id);
-        $post->verified = $post->user->hasRanks($verified_ranks),
+        $post->verified = $post->user->hasRanks($verified_ranks);
         $post->liked = (bool) DB::table('likes')
                                 ->where([
                                     ['type', 0], // Posts are type 0
