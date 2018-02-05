@@ -187,7 +187,7 @@ class Post extends Page
         if ($comments_temp) {
             foreach ($comments_temp as $comment) {
                 $comment->user = User::construct($comment->user);
-                $comment->verified = $comment->user->hasRanks($verified_ranks),
+                $comment->verified = $comment->user->hasRanks($verified_ranks);
                 $comment->liked = (bool) DB::table('likes')
                                         ->where([
                                             ['type', 1], // Comments are type 1
