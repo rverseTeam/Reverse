@@ -19,8 +19,8 @@
 						</a>
 					</p>
 				</div>
-				<div id="post-permalink-body" class="post scroll post-subtype-default">
-					<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
+				<div id="post-permalink-body" class="post scroll post-subtype-default {% if post.verified %}official-user{% endif %}">
+					<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="user-icon-container scroll-focus {% if post.verified %}official-user{% endif %}">
 						<img src="{{ mii }}" class="user-icon" width="32" height="32">
 					</a>
 					<header>
@@ -78,8 +78,8 @@
 							<img src="{{ _context.user.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
 						</a>
 						{% for liker in post.likers %}
-							<a href="{{ route('user.profile', [ liker.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon">
-								<img src="{{ _context.liker.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
+							<a href="{{ route('user.profile', [ liker.user.username ]) }}" data-pjax="1" class="post-permalink-feeling-icon {% if liker.verified %}official-user{% endif %}">
+								<img src="{{ _context.liker.user.mii[_context.feeling[post.feeling]] }}" class="user-icon" width="32" height="32">
 							</a>
 						{% endfor %}
 					</div>
