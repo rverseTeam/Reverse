@@ -23,6 +23,13 @@ class Post extends Page
     public function submit()
     {
         $kind = $_POST['kind'] ?? null;
+        
+        if (!CurrentSession::$session) {
+            exit;
+        }
+
+        $user = CurrentSession::$user;
+        $userid = $user->id;
 
         if ($kind == 'post') {
             $title_id = $_POST['olive_title_id'];
@@ -39,13 +46,13 @@ class Post extends Page
                         'community' => $id,
                         'content'   => $body,
                         'feeling'   => $feeling,
-                        'user_id'   => CurrentSession::$user->id,
+                        'user_id'   => $userid,
                         'spoiler'   => intval($spoiler),
                     ]);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
-                    $painting_name = CurrentSession::$user->id.'-'.time().'.png';
+                    $painting_name = $userid.'-'.time().'.png';
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
@@ -53,7 +60,7 @@ class Post extends Page
                         'community' => $id,
                         'image'     => $painting_name,
                         'feeling'   => $feeling,
-                        'user_id'   => CurrentSession::$user->id,
+                        'user_id'   => $userid,
                         'spoiler'   => intval($spoiler),
                     ]);
                     break;
@@ -61,11 +68,11 @@ class Post extends Page
                     break;
             }
 
-            if (!CurrentSession::$user->posted) {
-                DB::table('users')->where('user_id', '=', CurrentSession::$user->id)->update(['posted' => 1]);
+            if (!$user->posted) {
+                DB::table('users')->where('user_id', '=', $userid)->update(['posted' => 1]);
             }
 
-            DB::table('users')->where('user_id', '=', CurrentSession::$user->id)->increment('posts');
+            DB::table('users')->where('user_id', '=', $userid)->increment('posts');
 
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
@@ -82,13 +89,13 @@ class Post extends Page
                         'post'    => $post_id,
                         'content' => $body,
                         'feeling' => $feeling,
-                        'user'    => CurrentSession::$user->id,
+                        'user'    => $userid,
                         'spoiler' => intval($spoiler),
                     ]);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
-                    $painting_name = CurrentSession::$user->id.'-'.time().'.png';
+                    $painting_name = $userid.'-'.time().'.png';
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
@@ -96,14 +103,14 @@ class Post extends Page
                         'post'    => $post_id,
                         'image'   => $painting_name,
                         'feeling' => $feeling,
-                        'user'    => CurrentSession::$user->id,
+                        'user'    => $userid,
                         'spoiler' => intval($spoiler),
                     ]);
                     break;
             }
 
-            if (!CurrentSession::$user->posted) {
-                DB::table('users')->where('user_id', '=', CurrentSession::$user->id)->update(['posted' => 1]);
+            if (!$user->posted) {
+                DB::table('users')->where('user_id', '=', $userid)->update(['posted' => 1]);
             }
 
             DB::table('posts')->where('id', '=', $post_id)->increment('comments');
