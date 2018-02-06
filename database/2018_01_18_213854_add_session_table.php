@@ -18,17 +18,21 @@ class AddSessionTable extends Migration
         $schema->create('sessions', function (Blueprint $table) {
             $table->increments('session_id');
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')
+                ->unsigned();
 
             $table->binary('user_ip');
 
             $table->string('session_key', 255);
 
-            $table->integer('session_start')->unsigned();
+            $table->integer('session_start')
+                ->unsigned();
 
-            $table->integer('session_expire')->unsigned();
+            $table->integer('session_expire')
+                ->unsigned();
 
-            $table->char('session_country', 2)->default('XX');
+            $table->char('session_country', 2)
+                ->default('XX');
         });
     }
 

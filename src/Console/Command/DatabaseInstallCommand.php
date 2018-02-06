@@ -24,7 +24,9 @@ class DatabaseInstallCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:install')->setDescription('Create the migration repository.')->setHelp('This command creates the database migration repository for TestVerse.');
+        $this->setName('db:install')
+            ->setDescription('Create the migration repository.')
+            ->setHelp('This command creates the database migration repository for TestVerse.');
     }
 
     /**

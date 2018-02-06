@@ -103,7 +103,9 @@ class Rank
     private function __construct(int $rankId)
     {
         // Get the rank database row
-        $rankRow = DB::table('ranks')->where('rank_id', $rankId)->first();
+        $rankRow = DB::table('ranks')
+            ->where('rank_id', $rankId)
+            ->first();
 
         // Check if the rank actually exists
         if ($rankRow) {
@@ -140,7 +142,10 @@ class Rank
     public function users(bool $justIds = false) : array
     {
         // Fetch all users part of this rank
-        $get = DB::table('user_ranks')->where('rank_id', $this->id)->orderBy('user_id')->get(['user_id']);
+        $get = DB::table('user_ranks')
+            ->where('rank_id', $this->id)
+            ->orderBy('user_id')
+            ->get(['user_id']);
 
         // Filter the user ids into one array
         $userIds = array_column($get, 'user_id');

@@ -257,7 +257,8 @@ class User
         // make sure the user is always in the primary rank
         $ranks = array_unique(array_merge($ranks, [0]));
 
-        $userId = DB::table('users')->insertGetId([
+        $userId = DB::table('users')
+            ->insertGetId([
                 'display_name'       => trim($displayName),
                 'display_name_clean' => $displayNameClean,
                 'username'           => str_replace(' ', '_', $username),
@@ -317,11 +318,15 @@ class User
             $this->registerIp = Net::ntop($userRow->register_ip);
             $this->lastIp = Net::ntop($userRow->last_ip);
 
-            $this->mii = get_object_vars(DB::table('mii_mappings')->where('user_id', $this->id)->first());
+            $this->mii = get_object_vars(DB::table('mii_mappings')
+                ->where('user_id', $this->id)
+                ->first());
         }
 
         // Get all ranks
-        $ranks = DB::table('user_ranks')->where('user_id', $this->id)->get(['rank_id']);
+        $ranks = DB::table('user_ranks')
+            ->where('user_id', $this->id)
+            ->get(['rank_id']);
 
         // Get the rows for all the ranks
         foreach ($ranks as $rank) {
@@ -414,7 +419,9 @@ class User
         $this->lastOnline = time();
         $this->lastIp = Net::ip();
 
-        DB::table('users')->where('user_id', $this->id)->update([
+        DB::table('users')
+            ->where('user_id', $this->id)
+            ->update([
                 'user_last_online' => $this->lastOnline,
                 'last_ip'          => Net::pton($this->lastIp),
             ]);
@@ -452,7 +459,8 @@ class User
         foreach ($ranks as $rank) {
             $this->ranks[$rank] = Rank::construct($rank);
 
-            DB::table('user_ranks')->insert([
+            DB::table('user_ranks')
+                ->insert([
                     'rank_id' => $rank,
                     'user_id' => $this->id,
                 ]);
@@ -473,7 +481,10 @@ class User
         foreach ($remove as $rank) {
             unset($this->ranks[$rank]);
 
-            DB::table('user_ranks')->where('user_id', $this->id)->where('rank_id', $rank)->delete();
+            DB::table('user_ranks')
+                ->where('user_id', $this->id)
+                ->where('rank_id', $rank)
+                ->delete();
         }
     }
 
@@ -487,7 +498,9 @@ class User
         $this->mainRankId = $rank;
         $this->mainRank = $this->ranks[$rank];
 
-        DB::table('users')->where('user_id', $this->id)->update([
+        DB::table('users')
+            ->where('user_id', $this->id)
+            ->update([
                 'rank_main' => $this->mainRankId,
             ]);
     }
@@ -525,6 +538,9 @@ class User
      */
     public function hierarchy() : int
     {
-        return DB::table('ranks')->join('user_ranks', 'ranks.rank_id', '=', 'user_ranks.rank_id')->where('user_id', $this->id)->max('ranks.rank_hierarchy');
+        return DB::table('ranks')
+            ->join('user_ranks', 'ranks.rank_id', '=', 'user_ranks.rank_id')
+            ->where('user_id', $this->id)
+            ->max('ranks.rank_hierarchy');
     }
 }

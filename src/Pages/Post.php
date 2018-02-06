@@ -42,13 +42,14 @@ class Post extends Page
                 case 'body':
                     $body = $_POST['body'];
 
-                    $postId = DB::table('posts')->insertGetId([
-                        'community' => $id,
-                        'content'   => $body,
-                        'feeling'   => $feeling,
-                        'user_id'   => $userid,
-                        'spoiler'   => intval($spoiler),
-                    ]);
+                    $postId = DB::table('posts')
+                        ->insertGetId([
+                            'community' => $id,
+                            'content'   => $body,
+                            'feeling'   => $feeling,
+                            'user_id'   => $userid,
+                            'spoiler'   => intval($spoiler),
+                        ]);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
@@ -56,23 +57,28 @@ class Post extends Page
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
-                    $postId = DB::table('posts')->insertGetId([
-                        'community' => $id,
-                        'image'     => $painting_name,
-                        'feeling'   => $feeling,
-                        'user_id'   => $userid,
-                        'spoiler'   => intval($spoiler),
-                    ]);
+                    $postId = DB::table('posts')
+                        ->insertGetId([
+                            'community' => $id,
+                            'image'     => $painting_name,
+                            'feeling'   => $feeling,
+                            'user_id'   => $userid,
+                            'spoiler'   => intval($spoiler),
+                        ]);
                     break;
                 default:
                     break;
             }
 
             if (!$user->posted) {
-                DB::table('users')->where('user_id', '=', $userid)->update(['posted' => 1]);
+                DB::table('users')
+                    ->where('user_id', '=', $userid)
+                    ->update(['posted' => 1]);
             }
 
-            DB::table('users')->where('user_id', '=', $userid)->increment('posts');
+            DB::table('users')
+                ->where('user_id', '=', $userid)
+                ->increment('posts');
 
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
@@ -85,13 +91,14 @@ class Post extends Page
                 case 'body':
                     $body = $_POST['body'];
 
-                    DB::table('comments')->insert([
-                        'post'    => $post_id,
-                        'content' => $body,
-                        'feeling' => $feeling,
-                        'user'    => $userid,
-                        'spoiler' => intval($spoiler),
-                    ]);
+                    DB::table('comments')
+                        ->insert([
+                            'post'    => $post_id,
+                            'content' => $body,
+                            'feeling' => $feeling,
+                            'user'    => $userid,
+                            'spoiler' => intval($spoiler),
+                        ]);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
@@ -99,21 +106,26 @@ class Post extends Page
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
-                    DB::table('comments')->insert([
-                        'post'    => $post_id,
-                        'image'   => $painting_name,
-                        'feeling' => $feeling,
-                        'user'    => $userid,
-                        'spoiler' => intval($spoiler),
-                    ]);
+                    DB::table('comments')
+                        ->insert([
+                            'post'    => $post_id,
+                            'image'   => $painting_name,
+                            'feeling' => $feeling,
+                            'user'    => $userid,
+                            'spoiler' => intval($spoiler),
+                        ]);
                     break;
             }
 
             if (!$user->posted) {
-                DB::table('users')->where('user_id', '=', $userid)->update(['posted' => 1]);
+                DB::table('users')
+                    ->where('user_id', '=', $userid)
+                    ->update(['posted' => 1]);
             }
 
-            DB::table('posts')->where('id', '=', $post_id)->increment('comments');
+            DB::table('posts')
+                ->where('id', '=', $post_id)
+                ->increment('comments');
 
             redirect(route('post.show', ['id' => hashid($post_id)]));
         }
@@ -266,13 +278,16 @@ class Post extends Page
                     ->first();
 
         if ($post) {
-            DB::table('likes')->insert([
+            DB::table('likes')
+                ->insert([
                     'type' => 0,
                     'id'   => $post->id,
                     'user' => CurrentSession::$user->id,
                 ]);
 
-            DB::table('posts')->where('id', $post_id)->increment('likes');
+            DB::table('posts')
+                ->where('id', $post_id)
+                ->increment('likes');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
@@ -304,7 +319,9 @@ class Post extends Page
                 ])
                 ->delete();
 
-            DB::table('posts')->where('id', $post_id)->decrement('likes');
+            DB::table('posts')
+                ->where('id', $post_id)
+                ->decrement('likes');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
@@ -328,13 +345,16 @@ class Post extends Page
                     ->first();
 
         if ($post) {
-            DB::table('likes')->insert([
+            DB::table('likes')
+                ->insert([
                     'type' => 1,
                     'id'   => $post->id,
                     'user' => CurrentSession::$user->id,
                 ]);
 
-            DB::table('comments')->where('id', $post_id)->increment('likes');
+            DB::table('comments')
+                ->where('id', $post_id)
+                ->increment('likes');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
@@ -354,8 +374,8 @@ class Post extends Page
         $post_id = dehashid($post_id);
 
         $post = DB::table('comments')
-                    ->where('id', $post_id)
-                    ->first();
+            ->where('id', $post_id)
+            ->first();
 
         if ($post) {
             DB::table('likes')
@@ -366,7 +386,9 @@ class Post extends Page
                 ])
                 ->delete();
 
-            DB::table('comments')->where('id', $post_id)->decrement('likes');
+            DB::table('comments')
+                ->where('id', $post_id)
+                ->decrement('likes');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }

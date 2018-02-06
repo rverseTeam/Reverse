@@ -55,21 +55,27 @@ class PermissionHandler
 
             $add_reqs = $this->additionalRequirements;
 
-            $result = DB::table(static::TABLE)->where(function (Builder $query) {
-                $query->whereIn('rank_id', $this->ranks)->orWhere('user_id', $this->user);
-            })->where(function (Builder $query) use ($add_reqs) {
-                if (isset($add_reqs['where'])) {
-                    foreach ($add_reqs['where'] as $col => $val) {
-                        $query->where($col, $val);
+            $result = DB::table(static::TABLE)
+                ->where(function (Builder $query) {
+                    $query->whereIn('rank_id', $this->ranks)
+                        ->orWhere('user_id', $this->user);
+                })
+                ->where(function (Builder $query) use ($add_reqs) {
+                    if (isset($add_reqs['where'])) {
+                        foreach ($add_reqs['where'] as $col => $val) {
+                            $query->where($col, $val);
+                        }
                     }
-                }
 
-                if (isset($add_reqs['where_in'])) {
-                    foreach ($add_reqs['where_in'] as $col => $val) {
-                        $query->whereIn($col, $val);
+                    if (isset($add_reqs['where_in'])) {
+                        foreach ($add_reqs['where_in'] as $col => $val) {
+                            $query->whereIn($col, $val);
+                        }
                     }
-                }
-            })->whereNotNull($column)->groupBy($column)->min($column);
+                })
+                ->whereNotNull($column)
+                ->groupBy($column)
+                ->min($column);
 
             $this->permCache[$name] = intval($result) === 1;
         }

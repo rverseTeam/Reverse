@@ -16,7 +16,8 @@ class AddMiiImageMappings extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->create('mii_mappings', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')
+                ->unsigned();
 
             $table->string('normal');
 

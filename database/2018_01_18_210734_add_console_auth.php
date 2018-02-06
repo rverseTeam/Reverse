@@ -16,7 +16,8 @@ class AddConsoleAuth extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->create('console_auth', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')
+                ->unsigned();
 
             $table->string('friend_pid', 16);
         });

@@ -22,7 +22,9 @@ class ServeCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('dev:serve')->setDescription('Sets up a local development server.')->setHelp('This command opens a development server for debugging TestVerse with PHP\'s built in server.');
+        $this->setName('dev:serve')
+            ->setDescription('Sets up a local development server.')
+            ->setHelp('This command opens a development server for debugging TestVerse with PHP\'s built in server.');
     }
 
     /**

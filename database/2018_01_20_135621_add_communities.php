@@ -22,7 +22,8 @@ class AddCommunities extends Migration
 
             $table->string('name_safe', 80);
 
-            $table->boolean('enabled')->default(1);
+            $table->boolean('enabled')
+                ->default(1);
         });
 
         $schema->create('communities', function (Blueprint $table) {
@@ -38,11 +39,16 @@ class AddCommunities extends Migration
 
             $table->text('description');
 
-            $table->integer('type')->unsigned()->default(0);
+            $table->integer('type')
+                ->unsigned()
+                ->default(0);
 
-            $table->timestamp('created')->useCurrent();
+            $table->timestamp('created')
+                ->useCurrent();
 
-            $table->integer('platform')->unsigned()->default(0);
+            $table->integer('platform')
+                ->unsigned()
+                ->default(0);
 
             $table->enum('permissions', ['post', 'draw', 'like']);
         });

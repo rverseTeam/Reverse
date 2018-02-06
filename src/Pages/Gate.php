@@ -49,11 +49,12 @@ class Gate extends Page
         $user = User::create($_POST['welcome_nnid'], $_POST['welcome_username']);
 
         // Save the console ID to the linked account table
-        DB::table('console_auth')->insert([
-            'user_id'  => $user->id,
-            'short_id' => ConsoleAuth::$consoleId->short,
-            'long_id'  => ConsoleAuth::$consoleId->long,
-        ]);
+        DB::table('console_auth')
+            ->insert([
+                'user_id'  => $user->id,
+                'short_id' => ConsoleAuth::$consoleId->short,
+                'long_id'  => ConsoleAuth::$consoleId->long,
+            ]);
 
         // Get all Mii images and save them to the mapping table
         $id = Mii::get($user->username);
@@ -66,15 +67,16 @@ class Gate extends Page
             $miis[$name] = Upload::uploadMii($mii);
         }
 
-        DB::table('mii_mappings')->insert([
-            'user_id'    => $user->id,
-            'normal'     => $miis['normal_face'],
-            'like'       => $miis['like_face'],
-            'happy'      => $miis['happy_face'],
-            'frustrated' => $miis['frustrated_face'],
-            'puzzled'    => $miis['puzzled_face'],
-            'surprised'  => $miis['surprised_face'],
-        ]);
+        DB::table('mii_mappings')
+            ->insert([
+                'user_id'    => $user->id,
+                'normal'     => $miis['normal_face'],
+                'like'       => $miis['like_face'],
+                'happy'      => $miis['happy_face'],
+                'frustrated' => $miis['frustrated_face'],
+                'puzzled'    => $miis['puzzled_face'],
+                'surprised'  => $miis['surprised_face'],
+            ]);
 
         return '';
     }
@@ -89,14 +91,18 @@ class Gate extends Page
         $username = clean_string($_POST['welcome_username']);
         $nnid = str_replace(' ', '_', $_POST['welcome_nnid']);
 
-        $user = DB::table('users')->where([
-            'display_name' => $username,
-        ])->first();
+        $user = DB::table('users')
+            ->where([
+                'display_name' => $username,
+            ])
+            ->first();
 
         if (!$user) {
-            $user = DB::table('users')->where([
-                'username' => $nnid,
-            ])->first();
+            $user = DB::table('users')
+                ->where([
+                    'username' => $nnid,
+                ])
+                ->first();
 
             if (!$user) {
                 $mii = Mii::check($nnid);

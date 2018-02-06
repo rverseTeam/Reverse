@@ -24,7 +24,9 @@ class SetupCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:setup')->setDescription('Adds data to the tables.')->setHelp('Adds the required data to the tables, only needed once after the initial migration.');
+        $this->setName('db:setup')
+            ->setDescription('Adds data to the tables.')
+            ->setHelp('Adds the required data to the tables, only needed once after the initial migration.');
     }
 
     /**
@@ -36,7 +38,9 @@ class SetupCommand extends Command
         $io->title('TestVerse Setup');
 
         // Check if the users table has user with id 1
-        $userCheck = DB::table('users')->where('user_id', 1)->count();
+        $userCheck = DB::table('users')
+            ->where('user_id', 1)
+            ->count();
 
         // If positive, stop
         if ($userCheck > 0) {

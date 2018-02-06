@@ -24,7 +24,9 @@ class DatabaseRollbackCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:rollback')->setDescription('Rollback the last database migration.')->setHelp('This command rollbacks the last database migration. Useful if the migration doesn\'t work.');
+        $this->setName('db:rollback')
+            ->setDescription('Rollback the last database migration.')
+            ->setHelp('This command rollbacks the last database migration. Useful if the migration doesn\'t work.');
     }
 
     /**

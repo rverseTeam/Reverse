@@ -16,8 +16,10 @@ class AddFavoriteAndPostTracking extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->table('users', function (Blueprint $table) {
-            $table->boolean('posted')->default(0);
-            $table->boolean('favorited')->default(0);
+            $table->boolean('posted')
+                ->default(0);
+            $table->boolean('favorited')
+                ->default(0);
         });
     }
 

@@ -104,7 +104,8 @@ class Session
         $start = time();
         $key = bin2hex(random_bytes(64));
 
-        $id = DB::table('sessions')->insertGetId([
+        $id = DB::table('sessions')
+            ->insertGetId([
                 'user_id'         => $user,
                 'user_ip'         => Net::pton($ip),
                 'session_key'     => $key,
@@ -121,7 +122,9 @@ class Session
      */
     public function delete() : void
     {
-        DB::table('sessions')->where('session_id', $this->id)->delete();
+        DB::table('sessions')
+            ->where('session_id', $this->id)
+            ->delete();
     }
 
     /**
@@ -135,10 +138,12 @@ class Session
     public function validate(int $user, string $ip = null) : bool
     {
         // Get session from database
-        $session = DB::table('sessions')->where([
+        $session = DB::table('sessions')
+            ->where([
                 'session_key' => $this->key,
                 'user_id'     => $user,
-            ])->first();
+            ])
+            ->first();
 
         // Check if we actually got something in return
         if (!$session) {
@@ -152,7 +157,9 @@ class Session
             return false;
         }
 
-        DB::table('sessions')->where('session_id', $session->session_id)->update(['session_expire' => time() + 604800]);
+        DB::table('sessions')
+            ->where('session_id', $session->session_id)
+            ->update(['session_expire' => time() + 604800]);
 
         return true;
     }

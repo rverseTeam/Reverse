@@ -16,9 +16,13 @@ class AddMetaCountInPosts extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->table('posts', function (Blueprint $table) {
-            $table->integer('comments')->unsigned()->default(0);
+            $table->integer('comments')
+                ->unsigned()
+                ->default(0);
 
-            $table->integer('likes')->unsigned()->default(0);
+            $table->integer('likes')
+                ->unsigned()
+                ->default(0);
         });
     }
 

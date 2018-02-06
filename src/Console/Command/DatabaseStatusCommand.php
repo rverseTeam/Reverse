@@ -30,7 +30,9 @@ class DatabaseStatusCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:status')->setDescription('Show the status of each migration.')->setHelp('This command shows the status of each migration.');
+        $this->setName('db:status')
+            ->setDescription('Show the status of each migration.')
+            ->setHelp('This command shows the status of each migration.');
     }
 
     /**

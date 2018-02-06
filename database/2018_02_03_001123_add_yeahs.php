@@ -16,15 +16,21 @@ class AddYeahs extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->create('likes', function (Blueprint $table) {
-            $table->tinyInteger('type')->unsigned()->default(0);
+            $table->tinyInteger('type')
+                ->unsigned()
+                ->default(0);
 
-            $table->integer('id')->unsigned();
+            $table->integer('id')
+                ->unsigned();
 
-            $table->integer('user')->unsigned();
+            $table->integer('user')
+                ->unsigned();
         });
 
         $schema->table('comments', function (Blueprint $table) {
-            $table->integer('likes')->unsigned()->default(0);
+            $table->integer('likes')
+                ->unsigned()
+                ->default(0);
         });
     }
 

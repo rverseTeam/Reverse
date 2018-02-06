@@ -24,7 +24,9 @@ class DatabaseResetCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:reset')->setDescription('Rollback all database migrations.')->setHelp('This command resets all database migrations for TestVerse. Just in case the migration doesn\'t work as expected.');
+        $this->setName('db:reset')
+            ->setDescription('Rollback all database migrations.')
+            ->setHelp('This command resets all database migrations for TestVerse. Just in case the migration doesn\'t work as expected.');
     }
 
     /**

@@ -16,7 +16,8 @@ class AddSpoilerInComments extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->table('comments', function (Blueprint $table) {
-            $table->boolean('spoiler')->default(0);
+            $table->boolean('spoiler')
+                ->default(0);
         });
     }
 

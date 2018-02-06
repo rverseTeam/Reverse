@@ -20,7 +20,9 @@ class FixCommunityPermEnum extends Migration
         });
 
         $schema->table('communities', function (Blueprint $table) {
-            $table->smallInteger('permissions')->unsigned()->default(0);
+            $table->smallInteger('permissions')
+                ->unsigned()
+                ->default(0);
         });
     }
 

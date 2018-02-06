@@ -91,15 +91,19 @@ class CurrentSession
      */
     public static function authByConsole($serviceToken) : void
     {
-        $consoles = DB::table('console_auth')->where([
+        $consoles = DB::table('console_auth')
+            ->where([
                 'short_id' => $serviceToken->short,
-            ])->count();
+            ])
+            ->count();
 
         // TODO: Clean this
         if ($consoles === 1) {
-            $user = DB::table('console_auth')->where([
-                'short_id' => $serviceToken->short,
-            ])->first();
+            $user = DB::table('console_auth')
+                ->where([
+                    'short_id' => $serviceToken->short,
+                ])
+                ->first();
 
             $session = self::create(
                     $user->user_id,
@@ -113,14 +117,18 @@ class CurrentSession
                 Net::ip()
             );
         } elseif ($consoles > 1) {
-            $consoles = DB::table('console_auth')->where([
-                'long_id' => $serviceToken->long,
-            ])->count();
+            $consoles = DB::table('console_auth')
+                ->where([
+                    'long_id' => $serviceToken->long,
+                ])
+                ->count();
 
             if ($consoles === 1) {
-                $user = DB::table('console_auth')->where([
-                    'long_id' => $serviceToken->long,
-                ])->first();
+                $user = DB::table('console_auth')
+                    ->where([
+                        'long_id' => $serviceToken->long,
+                    ])
+                    ->first();
 
                 $session = self::create(
                         $user->user_id,

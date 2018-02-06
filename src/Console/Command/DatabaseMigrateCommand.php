@@ -29,7 +29,9 @@ class DatabaseMigrateCommand extends Command
      */
     protected function configure() : void
     {
-        $this->setName('db:migrate')->setDescription('Run the database migrations.')->setHelp('This command runs the database migrations for TestVerse. To be run after any db change.');
+        $this->setName('db:migrate')
+            ->setDescription('Run the database migrations.')
+            ->setHelp('This command runs the database migrations for TestVerse. To be run after any db change.');
     }
 
     /**

@@ -176,19 +176,25 @@ function byte_symbol($bytes)
 // turn this function into a wrapped class!
 function send_mail($to, $subject, $body)
 {
-    $transport = Swift_SmtpTransport::newInstance()->setHost(config('mail.smtp.server'))->setPort(config('mail.smtp.port'));
+    $transport = Swift_SmtpTransport::newInstance()
+        ->setHost(config('mail.smtp.server'))
+        ->setPort(config('mail.smtp.port'));
 
     if (config('mail.smtp.secure')) {
         $transport->setEncryption(config('mail.smtp.secure'));
     }
 
     if (config('mail.smtp.auth')) {
-        $transport->setUsername(config('mail.smtp.username'))->setPassword(config('mail.smtp.password'));
+        $transport->setUsername(config('mail.smtp.username'))
+            ->setPassword(config('mail.smtp.password'));
     }
 
     $mailer = Swift_Mailer::newInstance($transport);
 
-    $message = Swift_Message::newInstance($subject)->setFrom([config('mail.smtp.from') => config('mail.smtp.name')])->setBcc($to)->setBody($body);
+    $message = Swift_Message::newInstance($subject)
+        ->setFrom([config('mail.smtp.from') => config('mail.smtp.name')])
+        ->setBcc($to)
+        ->setBody($body);
 
     return $mailer->send($message);
 }

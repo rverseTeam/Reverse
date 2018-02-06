@@ -16,11 +16,17 @@ class AddMetaCountToUsers extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->table('users', function (Blueprint $table) {
-            $table->integer('posts')->unsigned()->default(0);
+            $table->integer('posts')
+                ->unsigned()
+                ->default(0);
 
-            $table->integer('follow_count')->unsigned()->default(0);
+            $table->integer('follow_count')
+                ->unsigned()
+                ->default(0);
 
-            $table->integer('follow_back_count')->unsigned()->default(0);
+            $table->integer('follow_back_count')
+                ->unsigned()
+                ->default(0);
         });
     }
 

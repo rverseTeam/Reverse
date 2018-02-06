@@ -16,7 +16,8 @@ class AddUserIdInPostsTable extends Migration
         $schema = DB::getSchemaBuilder();
 
         $schema->table('posts', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')
+                ->unsigned();
         });
     }
 

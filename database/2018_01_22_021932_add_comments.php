@@ -18,23 +18,34 @@ class AddComments extends Migration
         $schema->create('comments', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('post')->unsigned()->default(0);
+            $table->integer('post')
+                ->unsigned()
+                ->default(0);
 
-            $table->timestampTz('created')->useCurrent();
+            $table->timestampTz('created')
+                ->useCurrent();
 
-            $table->timestampTz('edited')->nullable();
+            $table->timestampTz('edited')
+                ->nullable();
 
-            $table->timestampTz('deleted')->nullable();
+            $table->timestampTz('deleted')
+                ->nullable();
 
-            $table->integer('user')->unsigned();
+            $table->integer('user')
+                ->unsigned();
 
-            $table->text('content')->nullable();
+            $table->text('content')
+                ->nullable();
 
-            $table->integer('type')->unsigned()->default(0);
+            $table->integer('type')
+                ->unsigned()
+                ->default(0);
 
-            $table->string('image', 250)->nullable();
+            $table->string('image', 250)
+                ->nullable();
 
-            $table->tinyInteger('feeling')->default(0);
+            $table->tinyInteger('feeling')
+                ->default(0);
         });
     }
 
