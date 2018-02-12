@@ -8,7 +8,7 @@
 namespace Miiverse;
 
 // Include app
-require_once __DIR__.'/../../core.php';
+require_once __DIR__.'/../core.php';
 
 // Start output buffering
 ob_start(config('performance.compression') ? 'ob_gzhandler' : null);
