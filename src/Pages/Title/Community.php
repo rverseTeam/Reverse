@@ -153,13 +153,13 @@ class Community extends Page
         if (!is_array($community) || !is_array($titleId)) {
             $show_community = false;
         } else {
-        // Base data to send
-        $data = [
             $meta = DB::table('communities')
                         ->where('id', $community)
                         ->first();
         }
 
+        // Base data to send
+        $data = [
             'show_community_name' => $show_community,
             'community_path'      => $meta ? route('title.community', compact('tid', 'id')) : '',
             'community_icon_url'  => $meta ? '/img/icons/'.$meta->icon : '',
