@@ -153,17 +153,17 @@ class Community extends Page
         if (!is_array($community) || !is_array($titleId)) {
             $show_community = false;
         } else {
+        // Base data to send
+        $data = [
             $meta = DB::table('communities')
                         ->where('id', $community)
                         ->first();
         }
 
-        // Base data to send
-        $data = [
             'show_community_name' => $show_community,
             'community_path'      => $meta ? route('title.community', compact('tid', 'id')) : '',
-            'community_icon_url'  => $meta ? '/img/icons/' . $meta->icon : '',
-            'community_name'      => $meta ? '/img/icons/' . $meta->name : '',
+            'community_icon_url'  => $meta ? '/img/icons/'.$meta->icon : '',
+            'community_name'      => $meta ? '/img/icons/'.$meta->name : '',
             'can_post'            => $has_screenshot ? false : $can_post,
             'olive_community_id'  => $community[0],
             'olive_title_id'      => $title_id[0],
