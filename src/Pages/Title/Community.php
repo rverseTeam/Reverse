@@ -129,4 +129,47 @@ class Community extends Page
 
         return view('titles/post_memo', compact('meta'));
     }
+
+    /**
+     * Check if the current memo is allowed to be posted.
+     *
+     * @return string
+     */
+    public function check_memo($tid, $id) : string
+    {
+        $community = dehashid($id);
+        $titleId = dehashid($tid);
+
+        // Check params
+        $post_type = $_GET['post_type']; // This one is always sent by the console
+        $title_id = $_GET['src_title_id'] ?? 0;
+        $has_screenshot = $_GET['has_screenshot'] ?? 0;
+        $nex_id = $_GET['dst_nex_community_id'] ?? 0;
+
+        // Post permissions
+        $can_post = true;
+        $show_community = true;
+
+        if (!is_array($community) || !is_array($titleId)) {
+            $show_community = false;
+        } else {
+            $meta = DB::table('communities')
+                        ->where('id', $community)
+                        ->first();
+        }
+
+        // Base data to send
+        $data = [
+            'show_community_name' => $show_community,
+            'community_path'      => $meta ? route('title.community', compact('tid', 'id')) : '',
+            'community_icon_url'  => $meta ? '/img/icons/' . $meta->icon : '',
+            'community_name'      => $meta ? '/img/icons/' . $meta->name : '',
+            'can_post'            => $has_screenshot ? false : $can_post,
+            'olive_community_id'  => $community[0],
+            'olive_title_id'      => $title_id[0],
+            'message'             => '',
+        ];
+
+        return $this->json($data);
+    }
 }
