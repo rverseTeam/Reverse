@@ -30,7 +30,7 @@ $templateBases = [
     'offdevice',
 ];
 
-Template::set(ConsoleAuth::$paramPack['platform_id']);
+Template::set($templateBases[ConsoleAuth::$paramPack['platform_id']]);
 Template::vars([
     'get'     => $_GET,
     'user'    => CurrentSession::$user,
