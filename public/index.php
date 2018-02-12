@@ -7,6 +7,8 @@
 
 namespace Miiverse;
 
+use Miiverse\Helpers\ConsoleAuth;
+
 // Include app
 require_once __DIR__.'/../core.php';
 
