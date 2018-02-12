@@ -31,63 +31,65 @@
 					<p class="text">{{ meta.description }}</p>
 				</div>
 			{% endif %}
-			<div class="body-content multi-timeline-body-content">
-				<div class="tab-body">
-					<div class="post-buttons-content with-memo-button">
-						<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
-						<a href="{{ route('title.postmemo', [ title_id, id ]) }}" class="memo-button" data-pjax="1"><span class="symbol">Saved Posts</span></a>
-					</div>
-					<div class="post-list list" data-olv-community-id="{{ id }}">
-						{% for post in posts %}
-							{% set mii = _context.post.user.mii[_context.feeling[post.feeling]] %}
-							<div id="post-{{ post.id }}" {% if post.spoiler %}data-href-hidden="{{ route('post.show', [ id ]) }}"{% endif %} class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %} {% if post.verified %}official-user{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
-								<div class="body">
-									<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="user-icon-container scroll-focus {% if post.verified %}official-user{% endif %}">
-										<img src="{{ mii }}" class="user-icon" width="32" height="32">
-									</a>
-									<div class="post-container">
-										<div class="user-container">
-											<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.displayName }}</a></p>
-											<p class="timestamp-container">
-												<span class="timestamp">{{ post.created }}</span>
-												{% if post.spoiler %}
-													·
-													<span class="spoiler">Spoilers</span>
+			<div class="body-content">
+				<div id="list-content" class="post-list main-content">
+					<div class="tab-body">
+						<div class="post-buttons-content with-memo-button">
+							<a href="{{ route('title.post', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
+							<a href="{{ route('title.postmemo', [ title_id, id ]) }}" class="memo-button" data-pjax="1"><span class="symbol">Saved Posts</span></a>
+						</div>
+						<div class="post-list list" data-olv-community-id="{{ id }}">
+							{% for post in posts %}
+								{% set mii = _context.post.user.mii[_context.feeling[post.feeling]] %}
+								<div id="post-{{ post.id }}" {% if post.spoiler %}data-href-hidden="{{ route('post.show', [ id ]) }}"{% endif %} class="post scroll post-subtype-default {% if post.spoiler %}hidden{% endif %} {% if post.verified %}official-user{% endif %}" data-href="{{ route('post.show', [ post.id ]) }}">
+									<div class="body">
+										<a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1" class="user-icon-container {% if post.verified %}official-user{% endif %}">
+											<img src="{{ mii }}" class="user-icon" width="32" height="32">
+										</a>
+										<div class="post-container">
+											<div class="user-container">
+												<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}" data-pjax="1">{{ post.user.displayName }}</a></p>
+												<p class="timestamp-container">
+													<span class="timestamp">{{ post.created }}</span>
+													{% if post.spoiler %}
+														·
+														<span class="spoiler">Spoilers</span>
+													{% endif %}
+												</p>
+											</div>
+											<div class="post-content">
+												{% if post.content != '' %}
+													<p class="post-content-text"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a></p>
 												{% endif %}
-											</p>
-										</div>
-										<div class="post-content">
-											{% if post.content != '' %}
-												<p class="post-content-text"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">{{ post.content }}</a></p>
-											{% endif %}
-											{% if post.image %}
-												<p class="post-content-memo"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}"></a></p>
-											{% endif %}
-											{% if post.spoiler %}
-												<div class="hidden-content"><p>This post contains spoilers.</p>
-													<button type="button" class="hidden-content-button">View Post</button>
-												</div>
-											{% endif %}
-											<div class="post-meta">
-												<button type="button" {% if post.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button{% if post.user.id == user.id %} disabled{% endif %}{% if post.liked %} empathy-added{% endif %}" data-feeling="{{ _context.feeling[post.feeling] }}" data-action="{{ route('post.empathies', [ post.id ]) }}">
-													<span class="empathy-button-text">{% if post.liked %}Unyeah{% else %}{{ _context.feelingText[post.feeling] }}{% endif %}</span>
-												</button>
-												<span class="empathy symbol">
-													<span class="symbol-label">Yeahs</span>
-													<span class="empathy-count">{{ post.likes }}</span>
-												</span>
-												<a href="{{ route('post.show', [ post.id ]) }}" data-pjax="1" tabindex="0">
-													<span class="reply symbol">
-														<span class="symbol-label">Comment</span>
-														<span class="reply-count">{{ post.comments }}<a></span>
+												{% if post.image %}
+													<p class="post-content-memo"><a href="{{ route('post.show', [ post.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0"><img src="/img/drawings/{{ post.image }}"></a></p>
+												{% endif %}
+												{% if post.spoiler %}
+													<div class="hidden-content"><p>This post contains spoilers.</p>
+														<button type="button" class="hidden-content-button">View Post</button>
+													</div>
+												{% endif %}
+												<div class="post-meta">
+													<button type="button" {% if post.user.id == user.id %}disabled {% endif %}class="symbol submit empathy-button{% if post.user.id == user.id %} disabled{% endif %}{% if post.liked %} empathy-added{% endif %}" data-feeling="{{ _context.feeling[post.feeling] }}" data-action="{{ route('post.empathies', [ post.id ]) }}">
+														<span class="empathy-button-text">{% if post.liked %}Unyeah{% else %}{{ _context.feelingText[post.feeling] }}{% endif %}</span>
+													</button>
+													<span class="empathy symbol">
+														<span class="symbol-label">Yeahs</span>
+														<span class="empathy-count">{{ post.likes }}</span>
 													</span>
-												</a>
+													<a href="{{ route('post.show', [ post.id ]) }}" data-pjax="1" tabindex="0">
+														<span class="reply symbol">
+															<span class="symbol-label">Comment</span>
+															<span class="reply-count">{{ post.comments }}</span>
+														</span>
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						{% endfor %}
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</div>
