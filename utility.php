@@ -247,7 +247,11 @@ function checkMaintenance()
 function checkConsoleAuth()
 {
     ConsoleAuth::check();
-    CurrentSession::authByConsole(ConsoleAuth::$consoleId);
+
+    if (ConsoleAuth::$paramPack['platform_id'] != 2) {
+        CurrentSession::authByConsole(ConsoleAuth::$consoleId);
+    }
+
     Template::vars([
         'console' => ConsoleAuth::$paramPack,
         'user'    => CurrentSession::$user,

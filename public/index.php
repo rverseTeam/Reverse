@@ -1,6 +1,6 @@
 <?php
 /**
- * TestVerse Index File.
+ * foxverse Index File.
  */
 
 // Declare namespace
@@ -22,7 +22,13 @@ CurrentSession::start(
 );
 
 // Set base variables
-Template::set('n3ds');
+$templateBases = [
+	'n3ds',
+	'portal',
+	'offdevice',
+];
+
+Template::set(ConsoleAuth::$paramPack['platform_id']);
 Template::vars([
     'get'     => $_GET,
     'user'    => CurrentSession::$user,
