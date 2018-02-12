@@ -23,9 +23,9 @@ CurrentSession::start(
 
 // Set base variables
 $templateBases = [
-	'n3ds',
-	'portal',
-	'offdevice',
+    'n3ds',
+    'portal',
+    'offdevice',
 ];
 
 Template::set(ConsoleAuth::$paramPack['platform_id']);
