@@ -18,3 +18,32 @@
 	<script src="/js/jquery-1.9.1.min.js"></script>
 	<script src="/js/olv.js"></script>
 </head>
+{% if id is defined %}
+<body id="{{ id }}">
+{% else %}
+<body>
+{% endif %}
+	<div id="wrapper" class="community-top guest">
+		<div id="sub-body">
+			<menu id="global-menu">
+				<li id="global-menu-logo">
+					<h1>
+						<a href="/">
+							<img src="/img/menu-logo.png" alt="{{ config('general.name') }}" width="165" height="30">
+						</a>
+					</h1>
+				</li>
+				<li id="global-menu-login">
+					<a href="/account/signin" class="login">
+						<input type="image" src="/img/signin_base.png">
+					</a>
+				</li>
+			</menu>
+		</div>
+		<div id="main-body">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+</body>
+</html>
