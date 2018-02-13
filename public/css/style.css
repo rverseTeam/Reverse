@@ -682,7 +682,7 @@ body:not(.is-autopagerized) .adx-link-container {
   line-height: 1;
 }
 #global-menu #global-menu-logo img {
-  width: 165px;
+  /*width: 165px;*/
   height: 30px;
 }
 #global-menu #global-menu-list {
