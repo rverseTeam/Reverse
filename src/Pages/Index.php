@@ -10,15 +10,15 @@ namespace Miiverse\Pages;
  *
  * @author Repflez
  */
-class PC extends Page
+class Index extends Page
 {
     /**
      * Serves the site index.
      *
      * @return string
      */
-    public function warning() : string
+    public function index() : string
     {
-        return view('errors/teaser');
+        return view('index/index');
     }
 }
