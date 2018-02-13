@@ -12,8 +12,8 @@ Router::filter('maintenance', 'checkMaintenance');
 Router::filter('auth', 'checkConsoleAuth');
 
 Router::group(['before' => 'maintenance'], function () {
-    // Development teaser
-    Router::get('/', 'PC@warning', 'pc.teaser');
+    // Index page
+    Router::get('/', 'Index@index', 'index.index');
 
     // Welcome guest AKA "you need a NNID to use this"
     // Needsto be outside the group so it doesn't get caught by auth
@@ -72,6 +72,7 @@ Router::group(['before' => 'maintenance'], function () {
         // Settings
         Router::group(['prefix' => 'settings'], function () {
             Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
+            Router::get('/profile', 'Settings@profile', 'settings.profile');
         });
 
         // Welcome

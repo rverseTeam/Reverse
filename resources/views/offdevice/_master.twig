@@ -35,7 +35,7 @@
 				<li id="global-menu-list">
 					<ul>
 						<li id="global-menu-mymenu">
-							<a href="/users/{{ user.username }}">
+							<a href="{{ route('user.profile', [user.username]) }}">
 								<span class="icon-container">
 									<img src="{{ user.mii.normal }}" alt="User Page">
 								</span>

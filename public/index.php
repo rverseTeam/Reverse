@@ -25,7 +25,7 @@ CurrentSession::start(
 
 // Set base variables
 $templateBases = [
-    'n3ds',
+    'ctr',
     'portal',
     'offdevice',
 ];
