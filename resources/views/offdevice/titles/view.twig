@@ -32,4 +32,43 @@
                     </div>
                 </section>
             </div>
+			<div class="main-column">
+				<div class="post-list-outline">
+					<div id="posts-filter-tab-container" class="tab-container ">
+						<div class="tab2"></div>
+					</div>
+					<div class="body-content" id="community-post-list">
+						<div class="list post-list js-post-list">
+							{% for post in posts %}
+								{% set mii = _context.post.user.mii[_context.feeling[post.feeling]] %}
+								<div id="post-{{ post.id }}" data-href="{{ route('post.show', [ id ]) }}" class="post post-subtype-default trigger with-image" tabindex="0">
+									<a href="{{ route('user.profile', [ post.user.username ]) }}" class="icon-container{% if post.verified %} official-user{% endif %}"><img src="{{ mii }}" class="icon"></a>
+									<p class="user-name"><a href="{{ route('user.profile', [ post.user.username ]) }}">{{ post.user.displayName }}</a></p>
+									<p class="timestamp-container">
+										<a class="timestamp" href="{{ route('post.show', [ post.id ]) }}">{{ post.created }}</a>
+									</p>
+									<div class="body">
+										<div class="post-content">
+											<div class="tag-container">
+											</div>
+											{% if post.image %}
+												<p class="post-content-memo">
+													<img src="/img/drawings/{{ post.image }}" class="post-memo">
+												</p>
+											{% endif %}
+											{% if post.content != '' %}
+												<p class="post-content-text">{{ post.content }}</p>
+											{% endif %}
+											<div class="post-meta">
+												<div class="empathy symbol"><span class="symbol-label">Yeahs</span><span class="empathy-count">{{ post.likes }}</span></div>
+												<div class="reply symbol"><span class="symbol-label">Comment</span><span class="reply-count">{{ post.comments }}</span></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
 {% endblock %}
