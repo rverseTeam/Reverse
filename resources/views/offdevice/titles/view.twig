@@ -1,4 +1,34 @@
 {% extends '@offdevice/_master.twig' %}
 
 {% block content %}
+{% set id,title_id = hashid(meta.id), hashid(meta.title_id) %}
+            <div id="sidebar">
+                <section class="sidebar-container" id="sidebar-community">
+                    <span id="sidebar-cover">
+                        <a href="{{ route('title.view', [ title_id, id ]) }}">
+                            <img src="/img/banners/{{ meta.banner }}">
+                        </a>
+                    </span>
+                    <header id="sidebar-community-body">
+                        <span id="sidebar-community-img">
+                            <span class="icon-container">
+                                <a href="{{ route('title.view', [ title_id, id ]) }}">
+                                    <img src="/img/icons/{{ meta.icon }}" id="icon">
+                                </a>
+                            </span>
+                        </span>
+                        <h1 class="community-name">
+                            <a href="{{ route('title.view', [ title_id, id ]) }}">{{ meta.name }}</a>
+                        </h1>
+                    </header>
+					{% if meta.description is not empty %}
+						<div class="community-description js-community-description">
+							<p class="text js-truncated-text">{{ meta.description }}</p>
+						</div>
+					{% endif %}
+                    <div class="sidebar-setting">
+                        <div class="sidebar-post-menu"></div>
+                    </div>
+                </section>
+            </div>
 {% endblock %}
