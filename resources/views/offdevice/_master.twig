@@ -1,18 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>foxverse Setup Guide</title>
-	<meta name="description" content="foxverse Setup Guide">
-	<meta name="author" content="ninjafox">
-	<link rel="stylesheet" href="/css/offdevice/style.css">
+	{% if title is defined %}
+	<title>{{ config('general.name') }} - {{ title }}</title>
+	{% else %}
+	<title>{{ config('general.name') }}</title>
+	{% endif %}
+	<meta http-equiv="content-style-type" content="text/css">
+	<meta http-equiv="content-script-type" content="text/javascript">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta property="og:type" content="article"/>
+	<meta property="og:site_name" content="{{ config('general.name') }}"/>
+	<link rel="alternate" hreflang="x-default" href="/">
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/olv.js"></script>
 </head>
-<body>
-	<div class="content">
-		<h1>foxverse Setup Guide</h1>
-		<p>Select your Console:</p>
-		<a href="/3ds_guide.html">3DS</a><br>
-		<s>Wii U</s> (Not Available)
-	</div>
-</body>
-</html>
