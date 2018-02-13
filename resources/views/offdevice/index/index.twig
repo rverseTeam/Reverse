@@ -1,6 +1,10 @@
 {% extends '@offdevice/_master.twig' %}
 
 {% block content %}
+			<div class="body-content" id="community-top">
+				<div class="community-main">
+					<div id="community-eyecatch"></div>
+				</div>
 				<div class="community-top-sidebar">
 					<form class="search" action="/titles/search">
 						<input type="text" name="query" placeholder="Search Communities" minlength="2" maxlength="32">
@@ -8,8 +12,8 @@
 					</form>
 					<div id="identified-user-banner">
 						<a href="/identified_user_posts" class="list-button">
-							<span class="title">Get the latest news here!</span>
-							<span class="text">Posts from Verified Users</span>
+						<span class="title">Get the latest news here!</span>
+						<span class="text">Posts from Verified Users</span>
 						</a>
 					</div>
 				</div>
@@ -17,7 +21,6 @@
 					<h3 class="community-title">General Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.general is not empty %}
-						<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 							{% for community in communities.general %}
 								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
@@ -40,7 +43,6 @@
 					<h3 class="community-title">Game Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.game is not empty %}
-						<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 							{% for community in communities.general %}
 								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
@@ -63,7 +65,6 @@
 					<h3 class="community-title">Special Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.special is not empty %}
-						<ul class="list-content-with-icon-and-text arrow-list" id="community-top-content">
 							{% for community in communities.general %}
 								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
@@ -84,4 +85,5 @@
 					{% endif %}
 					</ul>
 				</div>
+			</div>
 {% endblock %}
