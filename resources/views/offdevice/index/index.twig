@@ -1,3 +1,4 @@
+{% set class = 'community-top guest' %}
 {% extends '@offdevice/_master.twig' %}
 
 {% block content %}
@@ -21,19 +22,19 @@
 					<h3 class="community-title">General Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.general is not empty %}
-							{% for community in communities.general %}
-								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
-								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
-									<div class="community-list-body">
-										<span class="icon-container">
-											<img class="icon" src="/img/icons/{{ community.icon }}">
-										</span>
-										<div class="body">
-											<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
-										</div>
+						{% for community in communities.general %}
+							{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
+							<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
+								<div class="community-list-body">
+									<span class="icon-container">
+										<img class="icon" src="/img/icons/{{ community.icon }}">
+									</span>
+									<div class="body">
+										<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
 									</div>
-								</li>
-							{% endfor %}
+								</div>
+							</li>
+						{% endfor %}
 					{% else %}
 						<div class="no-content">
 							<p>There are no communities in this category.</p>
@@ -43,19 +44,19 @@
 					<h3 class="community-title">Game Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.game is not empty %}
-							{% for community in communities.general %}
-								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
-								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
-									<div class="community-list-body">
-										<span class="icon-container">
-											<img class="icon" src="/img/icons/{{ community.icon }}">
-										</span>
-										<div class="body">
-											<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
-										</div>
+						{% for community in communities.game %}
+							{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
+							<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
+								<div class="community-list-body">
+									<span class="icon-container">
+										<img class="icon" src="/img/icons/{{ community.icon }}">
+									</span>
+									<div class="body">
+										<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
 									</div>
-								</li>
-							{% endfor %}
+								</div>
+							</li>
+						{% endfor %}
 					{% else %}
 						<div class="no-content">
 							<p>There are no communities in this category.</p>
@@ -65,19 +66,19 @@
 					<h3 class="community-title">Special Communities</h3>
 					<ul class="list community-list community-card-list device-new-community-list">
 					{% if communities.special is not empty %}
-							{% for community in communities.general %}
-								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
-								<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
-									<div class="community-list-body">
-										<span class="icon-container">
-											<img class="icon" src="/img/icons/{{ community.icon }}">
-										</span>
-										<div class="body">
-											<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
-										</div>
+						{% for community in communities.special %}
+							{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
+							<li class="trigger" data-href="{{ route('title.community', [ title_id, id ]) }}">
+								<div class="community-list-body">
+									<span class="icon-container">
+										<img class="icon" src="/img/icons/{{ community.icon }}">
+									</span>
+									<div class="body">
+										<a class="title" href="{{ route('title.community', [ title_id, id ]) }}">{{ community.name }}</a>
 									</div>
-								</li>
-							{% endfor %}
+								</div>
+							</li>
+						{% endfor %}
 					{% else %}
 						<div class="no-content">
 							<p>There are no communities in this category.</p>
