@@ -163,7 +163,7 @@ class Community extends Page
             'show_community_name' => $show_community,
             'community_path'      => $meta ? route('title.community', compact('tid', 'id')) : '',
             'community_icon_url'  => $meta ? '/img/icons/'.$meta->icon : '',
-            'community_name'      => $meta ? '/img/icons/'.$meta->name : '',
+            'community_name'      => $meta ? $meta->name : '',
             'can_post'            => $has_screenshot ? false : $can_post,
             'olive_community_id'  => $community[0],
             'olive_title_id'      => $title_id[0],
