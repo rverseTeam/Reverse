@@ -22,6 +22,7 @@ CurrentSession::start(
     $_COOKIE["{$cookiePrefix}session"] ?? '',
     Net::ip()
 );
+ConsoleAuth::check();
 
 // Set base variables
 $templateBases = [

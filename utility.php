@@ -246,8 +246,6 @@ function checkMaintenance()
 
 function checkConsoleAuth()
 {
-    ConsoleAuth::check();
-
     if (ConsoleAuth::$paramPack['platform_id'] != 2) {
         CurrentSession::authByConsole(ConsoleAuth::$consoleId);
     }
