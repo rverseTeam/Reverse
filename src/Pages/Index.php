@@ -6,6 +6,7 @@
 namespace Miiverse\Pages;
 
 use Miiverse\Helpers\ConsoleAuth;
+use Miiverse\DB;
 
 /**
  * Home page.
