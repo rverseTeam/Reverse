@@ -1,10 +1,6 @@
 {% extends '@offdevice/_master.twig' %}
 
 {% block content %}
-			<div class="body-content" id="community-top">
-				<div class="community-main">
-					<div id="community-eyecatch"></div>
-				</div>
 				<div class="community-top-sidebar">
 					<form class="search" action="/titles/search">
 						<input type="text" name="query" placeholder="Search Communities" minlength="2" maxlength="32">
@@ -12,8 +8,8 @@
 					</form>
 					<div id="identified-user-banner">
 						<a href="/identified_user_posts" class="list-button">
-						<span class="title">Get the latest news here!</span>
-						<span class="text">Posts from Verified Users</span>
+							<span class="title">Get the latest news here!</span>
+							<span class="text">Posts from Verified Users</span>
 						</a>
 					</div>
 				</div>
@@ -88,5 +84,4 @@
 					{% endif %}
 					</ul>
 				</div>
-			</div>
 {% endblock %}
