@@ -1,5 +1,5 @@
 {% set class = 'post-permalink' %}
-{% extends '@n3ds/_master.twig' %}
+{% extends '@ctr/_master.twig' %}
 
 {% block content %}
 {% set id,title_id,post_id = hashid(post.community.id), hashid(post.community.title_id), hashid(post.id) %}
