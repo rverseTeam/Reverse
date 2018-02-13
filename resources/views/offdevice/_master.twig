@@ -15,7 +15,7 @@
 	<script src="/js/olv.js"></script>
 </head>
 <body{% if id is defined %} id="{{ id }}"{% endif %}>
-	<div id="wrapper" class="community-top guest">
+	<div id="wrapper" {% if class is defined %} class="{{ class }}"{% endif %}>
 		<div id="sub-body">
 			<menu id="global-menu">
 				<li id="global-menu-logo">
