@@ -1,6 +1,6 @@
 <?php
 /**
- * TestVerse Configuration File.
+ * foxverse Configuration File.
  */
 return [
     // Database configuration according to https://laravel.com/docs/5.2/database#introduction
@@ -13,7 +13,7 @@ return [
         'username'          => 'root',
         'password'          => '',
         'prefix'            => '',
-        'database'          => 'tv_dev',
+        'database'          => 'foxverse_dev',
         'charset'           => 'utf8',
         'collation'         => 'utf8_unicode_ci',
     ],
@@ -21,22 +21,22 @@ return [
     // General site settings
     'general'       => [
         // Name of the site
-        'name'              => 'TestVerse',
+        'name'              => 'foxverse',
 
         // Default logo of the site (empty for the default)
         'logo'              => '',
 
         // Description of the site
-        'description'       => 'TestVerse Miiverse',
+        'description'       => 'foxverse is a Miiverse clone for 3DS, Wii U and PC!',
 
         // Close the site for maintenance
         'maintenance'       => false,
 
         // Date formatting string
-        'date_format'       => 'D Y-m-d H:i:s T',
+        'date_format'       => 'D Y/m/d g:i A T',
 
-        // Hashids salt
-        'link_salt'         => 'pleasechangme',
+        // Hashids salt (prevents stuff from getting scraped easily)
+        'link_salt'         => 'changethis',
     ],
 
     // Cloudinary settings
