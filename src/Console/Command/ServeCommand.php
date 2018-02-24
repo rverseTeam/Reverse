@@ -24,7 +24,7 @@ class ServeCommand extends Command
     {
         $this->setName('dev:serve')
             ->setDescription('Sets up a local development server.')
-            ->setHelp('This command opens a development server for debugging TestVerse with PHP\'s built in server.');
+            ->setHelp('This command opens a development server for debugging foxverse with PHP\'s built in server.');
     }
 
     /**
@@ -38,7 +38,7 @@ class ServeCommand extends Command
         $php_dir = PHP_BINDIR;
         $host = config('dev.host');
 
-        $output->writeln("Starting TestVerse development server on {$host}.");
+        $output->writeln("Starting foxverse development server on {$host}.");
         $io->caution('Do not use this command to serve a production site!');
 
         exec("{$php_dir}/php -S {$host} -t {$document_root} {$router_proxy}");

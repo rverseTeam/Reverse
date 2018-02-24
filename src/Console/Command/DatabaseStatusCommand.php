@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Returns the status of the database migrations.
  *
- * @author TestVerse
+ * @author Repflez
  */
 class DatabaseStatusCommand extends Command
 {

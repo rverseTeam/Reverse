@@ -31,7 +31,7 @@ class DatabaseMigrateCommand extends Command
     {
         $this->setName('db:migrate')
             ->setDescription('Run the database migrations.')
-            ->setHelp('This command runs the database migrations for TestVerse. To be run after any db change.');
+            ->setHelp('This command runs the database migrations for foxverse. To be run after any database change.');
     }
 
     /**

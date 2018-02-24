@@ -35,7 +35,7 @@ class SetupCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('TestVerse Setup');
+        $io->title('foxverse Setup');
 
         // Check if the users table has user with id 1
         $userCheck = DB::table('users')
@@ -146,6 +146,6 @@ class SetupCommand extends Command
             DB::table('perms')->insert($perm);
         }
 
-        $io->text('Success! TestVerse has been installed in this host.');
+        $io->text('Success! foxverse has been installed in this host.');
     }
 }

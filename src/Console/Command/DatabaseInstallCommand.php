@@ -26,7 +26,7 @@ class DatabaseInstallCommand extends Command
     {
         $this->setName('db:install')
             ->setDescription('Create the migration repository.')
-            ->setHelp('This command creates the database migration repository for TestVerse.');
+            ->setHelp('This command creates the database migration repository for foxverse.');
     }
 
     /**
