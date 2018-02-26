@@ -162,7 +162,7 @@ class Post extends Page
         }
 
         $post->verified = $post->user->hasRanks($verified_ranks);
-        $post->liked = (bool) DB::table('likes')
+        $post->liked = (bool) DB::table('empathies')
                                 ->where([
                                     ['type', 0], // Posts are type 0
                                     ['id', $post->id],
@@ -176,7 +176,7 @@ class Post extends Page
             $like_limit = 12;
         }
 
-        $likers_tmp = DB::table('likes')
+        $likers_tmp = DB::table('empathies')
                         ->where([
                             ['type', 0],
                             ['id', $post->id],
@@ -195,7 +195,7 @@ class Post extends Page
         }
 
         $post->likers = $likers;
-        $post->likerCount = DB::table('likes')
+        $post->likerCount = DB::table('empathies')
                                 ->where([
                                     ['type', 0],
                                     ['id', $post->id],
@@ -216,7 +216,7 @@ class Post extends Page
             foreach ($comments_temp as $comment) {
                 $comment->user = User::construct($comment->user);
                 $comment->verified = $comment->user->hasRanks($verified_ranks);
-                $comment->liked = (bool) DB::table('likes')
+                $comment->liked = (bool) DB::table('empathies')
                                         ->where([
                                             ['type', 1], // Comments are type 1
                                             ['id', $comment->id],
@@ -278,7 +278,7 @@ class Post extends Page
                     ->first();
 
         if ($post) {
-            DB::table('likes')
+            DB::table('empathies')
                 ->insert([
                     'type' => 0,
                     'id'   => $post->id,
@@ -311,7 +311,7 @@ class Post extends Page
                     ->first();
 
         if ($post) {
-            DB::table('likes')
+            DB::table('empathies')
                 ->where([
                     'type' => 0,
                     'id'   => $post->id,
@@ -345,7 +345,7 @@ class Post extends Page
                     ->first();
 
         if ($post) {
-            DB::table('likes')
+            DB::table('empathies')
                 ->insert([
                     'type' => 1,
                     'id'   => $post->id,
@@ -378,7 +378,7 @@ class Post extends Page
             ->first();
 
         if ($post) {
-            DB::table('likes')
+            DB::table('empathies')
                 ->where([
                     'type' => 1,
                     'id'   => $post->id,

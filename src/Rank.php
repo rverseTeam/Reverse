@@ -41,13 +41,6 @@ class Rank
     public $multiple = '';
 
     /**
-     * The rank's username colour.
-     *
-     * @var string
-     */
-    public $colour = 'inherit';
-
-    /**
      * Description of the rank.
      *
      * @var string
@@ -114,7 +107,6 @@ class Rank
             $this->hierarchy = $rankRow->rank_hierarchy;
             $this->multiple = $rankRow->rank_multiple;
             $this->hidden = (bool) $rankRow->rank_hidden;
-            $this->colour = $rankRow->rank_colour;
             $this->description = $rankRow->rank_description;
             $this->title = $rankRow->rank_title;
         }

@@ -57,13 +57,6 @@ class User
     public $ranks = [];
 
     /**
-     * The user's display name color.
-     *
-     * @var string
-     */
-    public $color = '';
-
-    /**
      * The IP the user registered from.
      *
      * @var string
@@ -299,7 +292,6 @@ class User
             $this->username = $userRow->username;
             $this->usernameClean = $userRow->username_clean;
             $this->mainRankId = intval($userRow->rank_main);
-            $this->color = $userRow->user_color;
             $this->title = $userRow->user_title;
             $this->registered = intval($userRow->user_registered);
             $this->lastOnline = intval($userRow->user_last_online);
@@ -347,7 +339,6 @@ class User
         }
 
         $this->mainRank = $this->ranks[$this->mainRankId];
-        $this->colour = $this->colour ? $this->colour : $this->mainRank->colour;
         $this->title = $this->title ? $this->title : $this->mainRank->title;
 
         $this->perms = new UserPerms($this);

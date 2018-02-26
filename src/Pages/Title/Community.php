@@ -62,8 +62,8 @@ class Community extends Page
                 'feeling'  => intval($post->feeling),
                 'spoiler'  => $post->spoiler,
                 'comments' => intval($post->comments),
-                'likes'    => intval($post->likes),
-                'liked'    => (bool) DB::table('likes')
+                'likes'    => intval($post->empathies),
+                'liked'    => (bool) DB::table('empathies')
                                     ->where([
                                         ['type', 0], // Posts are type 0
                                         ['id', $post->id],
