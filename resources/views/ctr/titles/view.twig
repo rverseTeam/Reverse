@@ -3,10 +3,12 @@
 
 {% block content %}
 {% set id,title_id = hashid(meta.id), hashid(meta.title_id) %}
-			<div class="title-header with-header-banner">
-				<div class="header-banner-container post-subtype-default-container">
-					<img src="/img/banners/{{ meta.banner }}" height="168" width="400">
-				</div>
+			<div class="title-header{% if meta.banner is not empty %} with-header-banner{% endif %}">
+				{% if meta.banner is not empty %}
+					<div class="header-banner-container post-subtype-default-container">
+						<img src="/img/banners/{{ meta.banner }}" height="168" width="400">
+					</div>
+				{% endif %}
 				<h1 class="info-content">
 					<span class="icon-container"><img src="/img/icons/{{ meta.icon }}" class="icon" width="48" height="48"></span>
 					<span class="title-container">

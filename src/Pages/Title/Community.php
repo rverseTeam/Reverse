@@ -10,7 +10,7 @@ use Miiverse\DB;
 use Miiverse\User;
 
 /**
- * Community page for rtitles.
+ * Community page for titles.
  *
  * @author Repflez
  */
@@ -77,7 +77,7 @@ class Community extends Page
         $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
         $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', 'Yeah...'];
 
-        return view('titles/view', compact('meta', 'posts', 'feeling', 'feelingText'));
+        return view('titles/view_redesign', compact('meta', 'posts', 'feeling', 'feelingText'));
     }
 
     /**
