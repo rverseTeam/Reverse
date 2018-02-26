@@ -207,7 +207,7 @@ class Post extends Page
                     ->where('post', $post->id)
                     ->orderBy('created', 'asc')
                     ->limit(20)
-                    ->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler', 'likes']);
+                    ->get(['id', 'created', 'edited', 'deleted', 'user', 'content', 'type', 'image', 'feeling', 'spoiler', 'empathies']);
 
         $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
         $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', 'Yeah...'];
