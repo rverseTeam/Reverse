@@ -44,40 +44,52 @@ class Community extends Page
             return view('errors/404');
         }
 
-        $posts_pre = DB::table('posts')
-                    ->where('community', $community)
-                    ->orderBy('created', 'desc')
-                    ->limit(10)
-                    ->get();
+        if ($meta->is_redesign) {
+            $topicCategories = DB::table('topic_categories')
+                                ->where('bundle_id', $meta->topic_bundle)
+                                ->get();
 
-        foreach ($posts_pre as $post) {
-            $user = User::construct($post->user_id);
+            if (!$topicCategories) {
+                return view('errors/404');
+            }
 
-            $posts[] = [
-                'id'       => hashid($post->id),
-                'user'     => $user,
-                'created'  => $post->created,
-                'content'  => $post->content,
-                'image'    => $post->image,
-                'feeling'  => intval($post->feeling),
-                'spoiler'  => $post->spoiler,
-                'comments' => intval($post->comments),
-                'likes'    => intval($post->empathies),
-                'liked'    => (bool) DB::table('empathies')
-                                    ->where([
-                                        ['type', 0], // Posts are type 0
-                                        ['id', $post->id],
-                                        ['user', CurrentSession::$user->id],
-                                    ])
-                                    ->count(),
-                'verified' => $user->hasRanks($verified_ranks),
-            ];
+            return view('titles/view_redesign', compact('meta', 'topicCategories'));
+        } else {
+            $posts_pre = DB::table('posts')
+                        ->where('community', $community)
+                        ->orderBy('created', 'desc')
+                        ->limit(10)
+                        ->get();
+
+            foreach ($posts_pre as $post) {
+                $user = User::construct($post->user_id);
+
+                $posts[] = [
+                    'id'       => hashid($post->id),
+                    'user'     => $user,
+                    'created'  => $post->created,
+                    'content'  => $post->content,
+                    'image'    => $post->image,
+                    'feeling'  => intval($post->feeling),
+                    'spoiler'  => $post->spoiler,
+                    'comments' => intval($post->comments),
+                    'likes'    => intval($post->empathies),
+                    'liked'    => (bool) DB::table('empathies')
+                                        ->where([
+                                            ['type', 0], // Posts are type 0
+                                            ['id', $post->id],
+                                            ['user', CurrentSession::$user->id],
+                                        ])
+                                        ->count(),
+                    'verified' => $user->hasRanks($verified_ranks),
+                ];
+            }
+
+            $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+            $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', 'Yeah...'];
+
+            return view('titles/view', compact('meta', 'posts', 'feeling', 'feelingText'));
         }
-
-        $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
-        $feelingText = ['Yeah!', 'Yeah!', 'Yeah♥', 'Yeah!?', 'Yeah...', 'Yeah...'];
-
-        return view('titles/view_redesign', compact('meta', 'posts', 'feeling', 'feelingText'));
     }
 
     /**

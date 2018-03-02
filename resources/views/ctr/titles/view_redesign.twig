@@ -73,24 +73,12 @@
 									<option class="open-topic-posts" value="/titles/14938538520099162231/14938538520099162232/topic/open">
 										Open Discussion
 									</option>
-									<option class="topic-category-posts-4490545270232910107" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910107">
-										Hint
-									</option>
-									<option class="topic-category-posts-4490545270232910106" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910106">
-										Question
-									</option>
-									<option class="topic-category-posts-4490545270232910105" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910105">
-										Looking for Teammate
-									</option>
-									<option class="topic-category-posts-4490545270232910104" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910104">
-										Looking for Opponent
-									</option>
-									<option class="topic-category-posts-4490545270232910103" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910103">
-										Tournament
-									</option>
-									<option class="topic-category-posts-4490545270232910102" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910102">
-										Event
-									</option>
+									{% for topicCategory in topicCategories %}
+										{% set id = hashid(topicCategory.id) %}
+										<option class="topic-category-posts-{{ id }}" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910107">
+											{{ topicCategory.name }}
+										</option>
+									{% endfor %}
 								</select>
 							</div>
 							<a href="/titles/14938538520099162231/14938538520099162232/topic/post" class="post-button js-post-button " data-pjax="1"><span class="symbol">Post</span></a>
