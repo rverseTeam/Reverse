@@ -126,7 +126,7 @@ class Community extends Page
 
             return view('errors/debug', ['data' => $discussions]);
 
-            //return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'discussions', 'feeling'));
+        //return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'discussions', 'feeling'));
         } else {
             $posts_pre = DB::table('posts')
                         ->where([
