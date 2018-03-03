@@ -15,7 +15,7 @@ class AddDrawingsTable extends Migration
     {
         $schema = DB::getSchemaBuilder();
 
-        $schema->create('posts', function (Blueprint $table) {
+        $schema->create('drawings', function (Blueprint $table) {
             $table->increments('id');
 
             $table->timestampTz('created')
@@ -31,13 +31,24 @@ class AddDrawingsTable extends Migration
                 ->unsigned()
                 ->default(0);
 
-            $table->text('content')
-                ->nullable();
-
             $table->string('image', 250)
                 ->nullable();
 
             $table->tinyInteger('feeling')
+                ->default(0);
+
+            $table->integer('user_id')
+                ->unsigned();
+
+            $table->boolean('spoiler')
+                ->default(0);
+
+            $table->integer('comments')
+                ->unsigned()
+                ->default(0);
+
+            $table->integer('empathies')
+                ->unsigned()
                 ->default(0);
         });
     }
@@ -51,6 +62,6 @@ class AddDrawingsTable extends Migration
     {
         $schema = DB::getSchemaBuilder();
 
-        $schema->drop('posts');
+        $schema->drop('drawings');
     }
 }

@@ -76,7 +76,19 @@ class Post extends Page
                     break;
                 case 'painting':
                     if ($meta->is_redesign) {
-                        //
+                        $painting = base64_decode($_POST['painting']);
+                        $painting_name = $userid.'-'.time().'.png';
+
+                        file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
+
+                        $postId = DB::table('drawings')
+                            ->insertGetId([
+                                'community' => $id,
+                                'image'     => $painting_name,
+                                'feeling'   => $feeling,
+                                'user_id'   => $userid,
+                                'spoiler'   => intval($spoiler),
+                            ]);
                     } else {
                         $painting = base64_decode($_POST['painting']);
                         $painting_name = $userid.'-'.time().'.png';
