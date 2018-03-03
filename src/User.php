@@ -310,9 +310,23 @@ class User
             $this->registerIp = Net::ntop($userRow->register_ip);
             $this->lastIp = Net::ntop($userRow->last_ip);
 
-            $this->mii = get_object_vars(DB::table('mii_mappings')
+            $mii_mappings = DB::table('mii_mappings')
                 ->where('user_id', $this->id)
-                ->first());
+                ->first();
+
+            if ($mii_mappings) {
+                $this->mii = get_object_vars($mii_mappings);
+            } else {
+                $this->mii = [
+                    'user_id'    => intval($userRow->user_id),
+                    'normal'     => '/img/default_mii/normal_face.png',
+                    'like'       => '/img/default_mii/like_face.png',
+                    'happy'      => '/img/default_mii/happy_face.png',
+                    'frustrated' => '/img/default_mii/frustrated_face.png',
+                    'puzzled'    => '/img/default_mii/puzzled_face.png',
+                    'surprised'  => '/img/default_mii/surprised_face.png',
+                ];
+            }
         }
 
         // Get all ranks
