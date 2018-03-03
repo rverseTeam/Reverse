@@ -45,12 +45,12 @@
 						<div class="{% if drawings is not empty %}multi-{% endif %}post-list{% if drawings is empty %} empty{% endif %}">
 							{% for drawing in drawings %}
 								{% set mii = _context.drawing.user.mii[_context.feeling[drawing.feeling]] %}
-								<div id="post-{{ drawing.id }}" data-href="" class="multi-timeline-post scroll post-subtype-artwork test-post{% if drawing.spoiler %} hidden test-hidden{% endif %}">
+								<div id="post-{{ drawing.id }}"{% if drawing.spoiler %} data-href-hidden="{{ route('post.show', [ drawing.id ]) }}"{% else %} data-href="{{ route('post.show', [ drawing.id ]) }}"{% endif %} class="multi-timeline-post scroll post-subtype-artwork test-post{% if drawing.spoiler %} hidden test-hidden{% endif %}">
 									<div class="body">
 										<div class="post-content">
 											<div class="tag-container"></div>
 											<p class="post-content-memo">
-												<a href="" class="to-permalink-button" data-pjax="1" tabindex="0">
+												<a href="{{ route('post.show', [ drawing.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">
 													<img src="/img/drawings/{{ drawing.image }}" class="post-memo" width="320" height="120">
 												</a>
 											</p>

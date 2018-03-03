@@ -53,8 +53,11 @@ class Community extends Page
                 return view('errors/404');
             }
 
-            $drawings_pre = DB::table('drawings')
-                        ->where('community', $community)
+            $drawings_pre = DB::table('posts')
+                        ->where([
+                            ['community', $community],
+                            ['content', NULL]
+                        ])
                         ->orderBy('created', 'desc')
                         ->limit(6)
                         ->get();
