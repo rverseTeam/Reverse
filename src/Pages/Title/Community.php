@@ -248,17 +248,17 @@ class Community extends Page
             return view('errors/404');
         }
 
-        if (!$meta->is_redesign) {
-            return view('errors/404');
-        }
+        // if (!$meta->is_redesign) {
+        //     return view('errors/404');
+        // }
 
         $topicCategories = DB::table('topic_categories')
                             ->where('bundle_id', $meta->topic_bundle)
                             ->get();
 
-        if (!$topicCategories) {
-            return view('errors/404');
-        }
+        // if (!$topicCategories) {
+        //     return view('errors/404');
+        // }
 
         return view('titles/topic_post', compact('meta', 'topicCategories'));
     }
