@@ -38,18 +38,44 @@ class Post extends Page
             $spoiler = $_POST['is_spoiler'] ?? 0;
             $type = $_POST['_post_type'];
 
+            $meta = DB::table('communities')
+                        ->where('id', $id)
+                        ->first();
+
+            if (!$meta) {
+                return view('errors/404');
+            }
+
             switch ($type) {
                 case 'body':
                     $body = $_POST['body'];
 
-                    $postId = DB::table('posts')
-                        ->insertGetId([
-                            'community' => $id,
-                            'content'   => $body,
-                            'feeling'   => $feeling,
-                            'user_id'   => $userid,
-                            'spoiler'   => intval($spoiler),
-                        ]);
+                    if (!$meta->is_redesign) {
+                        $postId = DB::table('posts')
+                            ->insertGetId([
+                                'community' => $id,
+                                'content'   => $body,
+                                'feeling'   => $feeling,
+                                'user_id'   => $userid,
+                                'spoiler'   => intval($spoiler),
+                            ]);
+                    } else {
+                        $category_id = $_POST['topic_category_id'];
+                        $title = $_POST['topic_title'];
+
+                        $postId = DB::table('posts')
+                            ->insertGetId([
+                                'community'   => $id,
+                                'content'     => $body,
+                                'feeling'     => $feeling,
+                                'user_id'     => $userid,
+                                'spoiler'     => intval($spoiler),
+                                'category_id' => $category_id,
+                                'title'       => $title,
+                                'is_open'     => 1,
+                                'is_redesign' => 1,
+                            ]);
+                    }
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
@@ -57,14 +83,26 @@ class Post extends Page
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
-                    $postId = DB::table('posts')
-                        ->insertGetId([
-                            'community' => $id,
-                            'image'     => $painting_name,
-                            'feeling'   => $feeling,
-                            'user_id'   => $userid,
-                            'spoiler'   => intval($spoiler),
-                        ]);
+                    if (!$meta->is_redesign) {
+                        $postId = DB::table('posts')
+                            ->insertGetId([
+                                'community' => $id,
+                                'image'     => $painting_name,
+                                'feeling'   => $feeling,
+                                'user_id'   => $userid,
+                                'spoiler'   => intval($spoiler),
+                            ]);
+                    } else {
+                        $postId = DB::table('posts')
+                            ->insertGetId([
+                                'community'   => $id,
+                                'image'       => $painting_name,
+                                'feeling'     => $feeling,
+                                'user_id'     => $userid,
+                                'spoiler'     => intval($spoiler),
+                                'is_redesign' => 1,
+                            ]);
+                    }
                     break;
                 default:
                     break;

@@ -110,10 +110,55 @@
 									{% endfor %}
 								</select>
 							</div>
-							<a href="/titles/14938538520099162231/14938538520099162232/topic/post" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
+							<a href="{{ route('title.topicpost', [ title_id, id ]) }}" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
 						</div>
-						<div class="post-list empty">
-							No discussions have been started for this title yet. Why not start one of your own?
+						<div class="{% if discussions is not empty %}multi-{% endif %}post-list{% if discussions is empty %} empty{% endif %}">
+							{% for discussion in discussions %}
+								{% set mii = _context.discussion.user.mii[_context.feeling[discussion.feeling]] %}
+								<div id="post-{{ discussion.id }}" data-href="{{ route('post.show', [ discussion.id ]) }}" class="multi-timeline-post scroll post-subtype-topic test-post">
+									<div class="body">
+										<div class="post-content">
+											<div class="tag-container">
+												<a href="" data-pjax="1" class="test-post-topic-category post-tag post-topic-category symbol">{{ allTopicCategories[discussion.category].name }}</a>
+											</div>
+											<p class="post-content-text">
+												<a href="{{ route('post.show', [ discussion.id ]) }}" class="to-permalink-button" data-pjax="1" tabindex="0">
+													<span>
+														<span class="topic-title test-topic-title">{{ discussion.title }}</span>
+													</span>
+												</a>
+											</p>
+										</div>
+										<div class="post-meta">
+											<div class="js-topic-answer-accepting-status test-topic-answer-accepting-status{% if discussion.open == 0 %} not-accepting{% else %} accepting{% endif %}" data-test-accepting-status="{{ discussion.open }}">
+												<span class="accepting">Open</span>
+												<span class="not-accepting">Closed</span>
+											</div>
+											<span class="empathy symbol">
+												<span class="symbol-label">Yeahs</span>
+												<span class="empathy-count">{{ discussion.likes }}</span>
+											</span>
+											<span class="reply symbol">
+												<span class="symbol-label">Comment</span>
+												<span class="reply-count">{{ discussion.comments }}</span>
+											</span>
+										</div>
+										<div class="user-container">
+											<a href="{{ route('user.profile', [ discussion.user.username ]) }}" data-pjax="1" class="user-icon-container scroll-focus">
+												<img src="{{ mii }}" class="user-icon" width="32" height="32">
+											</a>      
+											<div class="post-info">
+												<a href="{{ route('user.profile', [ discussion.user.username ]) }}" data-pjax="1" class="user-name">{{ discussion.user.displayName }}</a>
+												·
+												<span class="timestamp">{{ discussion.created }}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							{% if discussions is empty %}
+								No discussions have been started for this title yet. Why not start one of your own?
+							{% endif %}
 						</div>
 					</div>
 				</div>

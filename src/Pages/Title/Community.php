@@ -53,10 +53,14 @@ class Community extends Page
                 return view('errors/404');
             }
 
+            $allTopicCategories = DB::table('topic_categories')
+                                ->get();
+
             $drawings_pre = DB::table('posts')
                         ->where([
                             ['community', $community],
                             ['content', null],
+                            ['is_redesign', 1],
                         ])
                         ->orderBy('created', 'desc')
                         ->limit(6)
@@ -75,12 +79,60 @@ class Community extends Page
                 ];
             }
 
+            // WTF LARAVEL?
+            if ($drawings == null) {
+                $drawings = null;
+            }
+
+            $discussions_pre = DB::table('posts')
+                        ->where([
+                            ['community', $community],
+                            ['image', null],
+                            ['is_redesign', 1],
+                        ])
+                        ->orderBy('created', 'desc')
+                        ->limit(5)
+                        ->get();
+
+            foreach ($discussions_pre as $discussion) {
+                $user = User::construct($discussion->user_id);
+
+                $discussions[] = [
+                    'id'       => hashid($discussion->id),
+                    'user'     => $user,
+                    'title'    => $discussion->title,
+                    'created'  => $discussion->created,
+                    'content'  => $discussion->content,
+                    'feeling'  => intval($discussion->feeling),
+                    'spoiler'  => $discussion->spoiler,
+                    'comments' => intval($discussion->comments),
+                    'category' => intval($discussion->category),
+                    'open'     => intval($discussion->is_open),
+                    'likes'    => intval($discussion->empathies),
+                    'liked'    => (bool) DB::table('empathies')
+                                        ->where([
+                                            ['type', 0], // Posts are type 0
+                                            ['id', $discussion->id],
+                                            ['user', CurrentSession::$user->id],
+                                        ])
+                                        ->count(),
+                ];
+            }
+
+            // WTF LARAVEL?
+            if ($discussions == null) {
+                $discussions = null;
+            }
+
             $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
 
-            return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'feeling'));
+            return view('titles/view_redesign', compact('meta', 'topicCategories', 'allTopicCategories', 'drawings', 'discussions', 'feeling'));
         } else {
             $posts_pre = DB::table('posts')
-                        ->where('community', $community)
+                        ->where([
+                            ['community', $community],
+                            ['is_redesign', 0],
+                        ])
                         ->orderBy('created', 'desc')
                         ->limit(10)
                         ->get();
@@ -172,6 +224,43 @@ class Community extends Page
         }
 
         return view('titles/artwork_post', compact('meta'));
+    }
+
+    /**
+     * Topic post form for communities.
+     *
+     * @return string
+     */
+    public function topicPost($tid, $id) : string
+    {
+        $community = dehashid($id);
+        $titleId = dehashid($tid);
+
+        if (!is_array($community) || !is_array($titleId)) {
+            return view('errors/404');
+        }
+
+        $meta = DB::table('communities')
+                    ->where('id', $community)
+                    ->first();
+
+        if (!$meta) {
+            return view('errors/404');
+        }
+
+        if (!$meta->is_redesign) {
+            return view('errors/404');
+        }
+
+        $topicCategories = DB::table('topic_categories')
+                            ->where('bundle_id', $meta->topic_bundle)
+                            ->get();
+
+        if (!$topicCategories) {
+            return view('errors/404');
+        }
+
+        return view('titles/topic_post', compact('meta', 'topicCategories'));
     }
 
     /**

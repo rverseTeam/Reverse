@@ -51,6 +51,7 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/{tid:a}/{id:a}', 'Title.Community@show', 'title.community');
             Router::get('/{tid:a}/{id:a}/post', 'Title.Community@post', 'title.post');
             Router::get('/{tid:a}/{id:a}/artwork/post', 'Title.Community@artworkPost', 'title.artworkpost');
+            Router::get('/{tid:a}/{id:a}/topic/post', 'Title.Community@topicPost', 'title.topicpost');
             Router::get('/{tid:a}/{id:a}/post_memo', 'Title.Community@post_memo', 'title.postmemo');
             Router::get('/{tid:a}/{id:a}/post_memo.check.json', 'Title.Community@check_memo', 'title.checkmemo');
         });
