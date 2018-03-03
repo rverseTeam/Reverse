@@ -120,6 +120,8 @@ class Community extends Page
                 $drawings = null;
             }
 
+            var_dump($discussion->category);
+
             $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
 
             return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'discussions', 'feeling'));
