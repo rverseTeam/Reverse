@@ -248,7 +248,7 @@ class Community extends Page
             return view('errors/404');
         }
 
-        var_dump($meta);
+        var_dump($community);
 
         if (!$meta->is_redesign) {
             return view('errors/404');
