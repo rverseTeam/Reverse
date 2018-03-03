@@ -53,7 +53,28 @@ class Community extends Page
                 return view('errors/404');
             }
 
-            return view('titles/view_redesign', compact('meta', 'topicCategories'));
+            $drawings_pre = DB::table('drawings')
+                        ->where('community', $community)
+                        ->orderBy('created', 'desc')
+                        ->limit(6)
+                        ->get();
+
+            foreach ($drawings_pre as $drawing) {
+                $user = User::construct($drawing->user_id);
+
+                $drawings[] = [
+                    'id'       => hashid($drawing->id),
+                    'user'     => $user,
+                    'created'  => $drawing->created,
+                    'image'    => $drawing->image,
+                    'feeling'  => intval($drawing->feeling),
+                    'spoiler'  => $drawing->spoiler,
+                ];
+            }
+
+            $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
+
+            return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'feeling'));
         } else {
             $posts_pre = DB::table('posts')
                         ->where('community', $community)
