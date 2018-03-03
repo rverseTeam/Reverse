@@ -103,8 +103,8 @@
 										Open Discussion
 									</option>
 									{% for topicCategory in topicCategories %}
-										{% set id = hashid(topicCategory.id) %}
-										<option class="topic-category-posts-{{ id }}" value="">
+										{% set topicId = hashid(topicCategory.id) %}
+										<option class="topic-category-posts-{{ topicId }}" value="">
 											{{ topicCategory.name }}
 										</option>
 									{% endfor %}
