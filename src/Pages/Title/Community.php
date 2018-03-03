@@ -88,7 +88,6 @@ class Community extends Page
 
             foreach ($discussions_pre as $discussion) {
                 $user = User::construct($discussion->user_id);
-                var_dump($discussion->category_id);
 
                 $discussions[] = [
                     'id'           => hashid($discussion->id),
