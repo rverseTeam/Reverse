@@ -56,7 +56,7 @@ class Community extends Page
             $drawings_pre = DB::table('posts')
                         ->where([
                             ['community', $community],
-                            ['content', NULL]
+                            ['content', null],
                         ])
                         ->orderBy('created', 'desc')
                         ->limit(6)
