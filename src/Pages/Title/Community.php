@@ -100,7 +100,7 @@ class Community extends Page
                     'comments'     => intval($discussion->comments),
                     'categoryName' => DB::table('topic_categories')
                                     ->where('id', $discussion->category_id)
-                                    ->pluck('name'),
+                                    ->value('name'),
                     'open'         => intval($discussion->is_open),
                     'likes'        => intval($discussion->empathies),
                     'liked'        => (bool) DB::table('empathies')
