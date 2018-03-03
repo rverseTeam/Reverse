@@ -22,8 +22,6 @@ class Post extends Page
      */
     public function submit()
     {
-        $kind = $_POST['kind'] ?? null;
-
         $user = CurrentSession::$user;
         $userid = $user->id;
 
@@ -31,13 +29,38 @@ class Post extends Page
             exit;
         }
 
-        if ($kind == 'post') {
-            $title_id = $_POST['olive_title_id'];
-            $id = $_POST['olive_community_id'];
-            $feeling = $_POST['feeling_id'];
-            $spoiler = $_POST['is_spoiler'] ?? 0;
-            $type = $_POST['_post_type'];
+        $kind = $_POST['kind'] ?? null;
 
+        if ($kind == 'post') {
+            $title_id = intval(dehashid($_POST['olive_title_id'])) ?? 0;
+            $id = intval(dehashid($_POST['olive_community_id'])) ?? 0;
+        } elseif ($kind = 'reply') {
+            $post_id = intval(dehashid($_POST['olive_post_id'])) ?? 0;
+        }
+
+        $feeling = $_POST['feeling_id'];
+        $spoiler = $_POST['is_spoiler'] ?? 0;
+        $type = $_POST['_post_type'];
+
+        if ($kind == 'post') {
+            $meta = DB::table('communities')
+                        ->where('id', $id)
+                        ->first();
+
+            if (!$meta) {
+                return view('errors/404');
+            }
+        } elseif ($kind = 'reply') {
+            $meta = DB::table('posts')
+                        ->where('id', $post_id)
+                        ->first();
+
+            if (!$meta) {
+                return view('errors/404');
+            }
+        }
+
+        if ($kind == 'post') {
             switch ($type) {
                 case 'body':
                     $body = $_POST['body'];
@@ -52,19 +75,23 @@ class Post extends Page
                         ]);
                     break;
                 case 'painting':
-                    $painting = base64_decode($_POST['painting']);
-                    $painting_name = $userid.'-'.time().'.png';
+                    if ($meta->is_redesign) {
+                        //
+                    } else {
+                        $painting = base64_decode($_POST['painting']);
+                        $painting_name = $userid.'-'.time().'.png';
 
-                    file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
+                        file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
-                    $postId = DB::table('posts')
-                        ->insertGetId([
-                            'community' => $id,
-                            'image'     => $painting_name,
-                            'feeling'   => $feeling,
-                            'user_id'   => $userid,
-                            'spoiler'   => intval($spoiler),
-                        ]);
+                        $postId = DB::table('posts')
+                            ->insertGetId([
+                                'community' => $id,
+                                'image'     => $painting_name,
+                                'feeling'   => $feeling,
+                                'user_id'   => $userid,
+                                'spoiler'   => intval($spoiler),
+                            ]);
+                    }
                     break;
                 default:
                     break;
@@ -82,11 +109,6 @@ class Post extends Page
 
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
-            $post_id = $_POST['olive_post_id'];
-            $feeling = $_POST['feeling_id'];
-            $spoiler = $_POST['is_spoiler'] ?? 0;
-            $type = $_POST['_post_type'];
-
             switch ($type) {
                 case 'body':
                     $body = $_POST['body'];

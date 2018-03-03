@@ -114,7 +114,40 @@ class Community extends Page
             return view('errors/404');
         }
 
+        if ($meta->is_redesign) {
+            return view('errors/404');
+        }
+
         return view('titles/post', compact('meta'));
+    }
+
+    /**
+     * Artwork post form for communities.
+     *
+     * @return string
+     */
+    public function artworkPost($tid, $id) : string
+    {
+        $community = dehashid($id);
+        $titleId = dehashid($tid);
+
+        if (!is_array($community) || !is_array($titleId)) {
+            return view('errors/404');
+        }
+
+        $meta = DB::table('communities')
+                    ->where('id', $community)
+                    ->first();
+
+        if (!$meta) {
+            return view('errors/404');
+        }
+
+        if (!$meta->is_redesign) {
+            return view('errors/404');
+        }
+
+        return view('titles/artwork_post', compact('meta'));
     }
 
     /**

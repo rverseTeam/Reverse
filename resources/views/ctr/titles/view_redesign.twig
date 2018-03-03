@@ -38,7 +38,7 @@
 						<h2 class="symbol">
 							Recent Popular Drawings
 						</h2>
-						<a class="test-artwork_post-post-link multitimeline-post-button js-post-button symbol" href="/titles/14938538520099162231/14938538520099162232/artwork/post">Post
+						<a class="test-artwork_post-post-link multitimeline-post-button js-post-button symbol" href="{{ route('title.artworkpost', [ title_id, id ]) }}">Post
 						</a>    
 					</div>
 					<div class="body">
@@ -46,7 +46,7 @@
 							The popular drawings for this software haven't been calculated yet.
 						</div>
 						<div class="more-button-container">
-							<a href="/titles/14938538520099162231/14938538520099162232/artwork/new" data-pjax="1" class="more-button newest-more-button symbol test-newest-artwork-button">
+							<a href="" data-pjax="1" class="more-button newest-more-button symbol test-newest-artwork-button">
 							Recent Posts
 							</a>
 						</div>
@@ -67,21 +67,21 @@
 								<span class="select-button-content">Filter Discussions</span>
 								<select class="scroll-focus">
 									<option value="" selected="">Please make a selection.</option>
-									<option class="new-posts" value="/titles/14938538520099162231/14938538520099162232/topic/new">
+									<option class="new-posts" value="">
 										All
 									</option>
-									<option class="open-topic-posts" value="/titles/14938538520099162231/14938538520099162232/topic/open">
+									<option class="open-topic-posts" value="">
 										Open Discussion
 									</option>
 									{% for topicCategory in topicCategories %}
 										{% set id = hashid(topicCategory.id) %}
-										<option class="topic-category-posts-{{ id }}" value="/titles/14938538520099162231/14938538520099162232/topic?topic_category_id=4490545270232910107">
+										<option class="topic-category-posts-{{ id }}" value="">
 											{{ topicCategory.name }}
 										</option>
 									{% endfor %}
 								</select>
 							</div>
-							<a href="/titles/14938538520099162231/14938538520099162232/topic/post" class="post-button js-post-button " data-pjax="1"><span class="symbol">Post</span></a>
+							<a href="/titles/14938538520099162231/14938538520099162232/topic/post" class="post-button js-post-button" data-pjax="1"><span class="symbol">Post</span></a>
 						</div>
 						<div class="post-list empty">
 							No discussions have been started for this title yet. Why not start one of your own?

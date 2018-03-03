@@ -14,7 +14,6 @@
 						<img src="/img/icons/{{ meta.icon }}" class="icon" width="48" height="48">
 					</span>
 					<span class="title-container">
-						<span class="news-community-badge">Main Community</span>
 						<span class="title">{{ meta.name }}</span>
 					</span>
 				</h1>
@@ -31,7 +30,7 @@
 					<div class="tab-body">
 						<div class="post-list list">
 							<div id="post-0" class="post none scroll">
-								<form method="post" action="{{ route('post.submit') }}" data-redirect-to="{{ route('title.community', [ title_id, id ]) }}" data-title-ids="0005000010101d00,0005000010142300,000500001014b700" enctype="multipart/form-data">
+								<form method="post" action="{{ route('post.submit') }}" data-redirect-to="{{ route('title.community', [ title_id, id ]) }}" enctype="multipart/form-data">
 									<input type="hidden" name="memo_title_id" value="">
 									<input type="hidden" name="is_memo" value="1">
 									<input type="hidden" name="memo_region_id" value="2">
