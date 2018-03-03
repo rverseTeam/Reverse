@@ -32,8 +32,8 @@ class Post extends Page
         }
 
         if ($kind == 'post') {
-            $title_id = $_POST['olive_title_id'];
-            $id = $_POST['olive_community_id'];
+            $title_id = intval(dehashid($_POST['olive_title_id']));
+            $id = intval(dehashid($_POST['olive_community_id']));
             $feeling = $_POST['feeling_id'];
             $spoiler = $_POST['is_spoiler'] ?? 0;
             $type = $_POST['_post_type'];
@@ -82,7 +82,7 @@ class Post extends Page
 
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
-            $post_id = $_POST['olive_post_id'];
+            $post_id = intval(dehashid($_POST['olive_post_id']));
             $feeling = $_POST['feeling_id'];
             $spoiler = $_POST['is_spoiler'] ?? 0;
             $type = $_POST['_post_type'];
