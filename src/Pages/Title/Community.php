@@ -122,8 +122,6 @@ class Community extends Page
 
             $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
 
-            var_dump($discussions);
-
             return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'discussions', 'feeling'));
         } else {
             $posts_pre = DB::table('posts')
