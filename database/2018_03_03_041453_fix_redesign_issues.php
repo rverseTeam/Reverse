@@ -29,6 +29,6 @@ class FixRedesignIssues extends Migration
      */
     public function down()
     {
-        echo('eat penile');
+        echo 'eat penile';
     }
 }
