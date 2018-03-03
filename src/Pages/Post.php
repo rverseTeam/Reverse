@@ -325,7 +325,7 @@ class Post extends Page
 
             DB::table('posts')
                 ->where('id', $post_id)
-                ->increment('likes');
+                ->increment('empathies');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
@@ -359,7 +359,7 @@ class Post extends Page
 
             DB::table('posts')
                 ->where('id', $post_id)
-                ->decrement('likes');
+                ->decrement('empathies');
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
