@@ -53,9 +53,6 @@ class Community extends Page
                 return view('errors/404');
             }
 
-            $allTopicCategories = DB::table('topic_categories')
-                                ->get();
-
             $drawings_pre = DB::table('posts')
                         ->where([
                             ['community', $community],
@@ -79,20 +76,15 @@ class Community extends Page
                 ];
             }
 
-            // WTF LARAVEL?
-            if ($drawings == null) {
-                $drawings = null;
-            }
-
             $discussions_pre = DB::table('posts')
-                        ->where([
-                            ['community', $community],
-                            ['image', null],
-                            ['is_redesign', 1],
-                        ])
-                        ->orderBy('created', 'desc')
-                        ->limit(5)
-                        ->get();
+                                ->where([
+                                    ['community', $community],
+                                    ['image', null],
+                                    ['is_redesign', 1],
+                                ])
+                                ->orderBy('created', 'desc')
+                                ->limit(5)
+                                ->get();
 
             foreach ($discussions_pre as $discussion) {
                 $user = User::construct($discussion->user_id);
@@ -106,7 +98,9 @@ class Community extends Page
                     'feeling'  => intval($discussion->feeling),
                     'spoiler'  => $discussion->spoiler,
                     'comments' => intval($discussion->comments),
-                    'category' => intval($discussion->category),
+                    'category' => DB::table('topic_categories')
+                                    ->where('id', $discussion->category)
+                                    ->first();
                     'open'     => intval($discussion->is_open),
                     'likes'    => intval($discussion->empathies),
                     'liked'    => (bool) DB::table('empathies')
@@ -122,11 +116,13 @@ class Community extends Page
             // WTF LARAVEL?
             if ($discussions == null) {
                 $discussions = null;
+            } elseif ($drawings == null) {
+                $drawings = null;
             }
 
             $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
 
-            return view('titles/view_redesign', compact('meta', 'topicCategories', 'allTopicCategories', 'drawings', 'discussions', 'feeling'));
+            return view('titles/view_redesign', compact('meta', 'topicCategories', 'drawings', 'discussions', 'feeling'));
         } else {
             $posts_pre = DB::table('posts')
                         ->where([

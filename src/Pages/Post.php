@@ -62,6 +62,7 @@ class Post extends Page
                     } else {
                         $category_id = $_POST['topic_category_id'];
                         $title = $_POST['topic_title'];
+                        $is_open = 1;
 
                         $postId = DB::table('posts')
                             ->insertGetId([
@@ -72,8 +73,8 @@ class Post extends Page
                                 'spoiler'     => intval($spoiler),
                                 'category_id' => $category_id,
                                 'title'       => $title,
-                                'is_open'     => 1,
-                                'is_redesign' => 1,
+                                'is_open'     => $is_open,
+                                'is_redesign' => $meta->is_redesign,
                             ]);
                     }
                     break;
@@ -100,7 +101,7 @@ class Post extends Page
                                 'feeling'     => $feeling,
                                 'user_id'     => $userid,
                                 'spoiler'     => intval($spoiler),
-                                'is_redesign' => 1,
+                                'is_redesign' => $meta->is_redesign,
                             ]);
                     }
                     break;
