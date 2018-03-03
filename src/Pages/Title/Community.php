@@ -88,6 +88,7 @@ class Community extends Page
 
             foreach ($discussions_pre as $discussion) {
                 $user = User::construct($discussion->user_id);
+                var_dump($discussion->category_id);
 
                 $discussions[] = [
                     'id'           => hashid($discussion->id),
@@ -99,7 +100,7 @@ class Community extends Page
                     'spoiler'      => $discussion->spoiler,
                     'comments'     => intval($discussion->comments),
                     'categoryName' => DB::table('topic_categories')
-                                    ->where('id', $discussion->category)
+                                    ->where('id', $discussion->category_id)
                                     ->first(['name']),
                     'open'         => intval($discussion->is_open),
                     'likes'        => intval($discussion->empathies),
@@ -119,8 +120,6 @@ class Community extends Page
             } elseif ($drawings == null) {
                 $drawings = null;
             }
-
-            var_dump($discussion->category);
 
             $feeling = ['normal', 'happy', 'like', 'surprised', 'frustrated', 'puzzled'];
 
