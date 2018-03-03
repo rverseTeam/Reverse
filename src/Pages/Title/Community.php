@@ -90,26 +90,26 @@ class Community extends Page
                 $user = User::construct($discussion->user_id);
 
                 $discussions[] = [
-                    'id'       => hashid($discussion->id),
-                    'user'     => $user,
-                    'title'    => $discussion->title,
-                    'created'  => $discussion->created,
-                    'content'  => $discussion->content,
-                    'feeling'  => intval($discussion->feeling),
-                    'spoiler'  => $discussion->spoiler,
-                    'comments' => intval($discussion->comments),
-                    'category' => DB::table('topic_categories')
+                    'id'           => hashid($discussion->id),
+                    'user'         => $user,
+                    'title'        => $discussion->title,
+                    'created'      => $discussion->created,
+                    'content'      => $discussion->content,
+                    'feeling'      => intval($discussion->feeling),
+                    'spoiler'      => $discussion->spoiler,
+                    'comments'     => intval($discussion->comments),
+                    'categoryName' => DB::table('topic_categories')
                                     ->where('id', $discussion->category)
-                                    ->first(),
-                    'open'     => intval($discussion->is_open),
-                    'likes'    => intval($discussion->empathies),
-                    'liked'    => (bool) DB::table('empathies')
-                                        ->where([
-                                            ['type', 0], // Posts are type 0
-                                            ['id', $discussion->id],
-                                            ['user', CurrentSession::$user->id],
-                                        ])
-                                        ->count(),
+                                    ->get(['name']),
+                    'open'         => intval($discussion->is_open),
+                    'likes'        => intval($discussion->empathies),
+                    'liked'        => (bool) DB::table('empathies')
+                                            ->where([
+                                                ['type', 0], // Posts are type 0
+                                                ['id', $discussion->id],
+                                                ['user', CurrentSession::$user->id],
+                                            ])
+                                            ->count(),
                 ];
             }
 
