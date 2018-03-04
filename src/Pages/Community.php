@@ -163,4 +163,151 @@ class Community extends Page
 
         return view('community/listing', compact('console', 'communities'));
     }
+
+    /**
+     * Exclusive console title index.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function consoleGames(string $page) : string
+    {
+        $mappings = [];
+        $console = [];
+        $communities = [];
+
+        switch ($page) {
+            case '3ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => '3DS',
+                ];
+                $mappings = [1, 3];
+                break;
+            case 'wiiu':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii U',
+                ];
+                $mappings = [2, 3];
+                break;
+            default:
+                return view('errors/404');
+                break;
+        }
+
+        $console['filter'] = $console['name'].' Games';
+
+        $communities = DB::table('communities')
+                        ->where('type', 0)
+                        ->whereIn('platform', $mappings)
+                        ->latest('created')
+                        ->get(['id', 'title_id', 'name', 'icon', 'platform']);
+
+        $console['count'] = DB::table('communities')
+                                ->where('type', 0)
+                                ->whereIn('platform', $mappings)
+                                ->count();
+
+        return view('community/listing', compact('console', 'communities'));
+    }
+
+    /**
+     * Virtual console title index.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function consoleVirtualConsole(string $page) : string
+    {
+        $mappings = [];
+        $console = [];
+        $communities = [];
+
+        switch ($page) {
+            case '3ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => '3DS',
+                ];
+                $mappings = [1, 3];
+                break;
+            case 'wiiu':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii U',
+                ];
+                $mappings = [2, 3];
+                break;
+            default:
+                return view('errors/404');
+                break;
+        }
+
+        $console['filter'] = 'Virtual Console';
+
+        $communities = DB::table('communities')
+                        ->where('type', 1)
+                        ->whereIn('platform', $mappings)
+                        ->latest('created')
+                        ->get(['id', 'title_id', 'name', 'icon', 'platform']);
+
+        $console['count'] = DB::table('communities')
+                                ->where('type', 1)
+                                ->whereIn('platform', $mappings)
+                                ->count();
+
+        return view('community/listing', compact('console', 'communities'));
+    }
+
+    /**
+     * Others title index.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function consoleOther(string $page) : string
+    {
+        $mappings = [];
+        $console = [];
+        $communities = [];
+
+        switch ($page) {
+            case '3ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => '3DS',
+                ];
+                $mappings = [1, 3];
+                break;
+            case 'wiiu':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii U',
+                ];
+                $mappings = [2, 3];
+                break;
+            default:
+                return view('errors/404');
+                break;
+        }
+
+        $console['filter'] = 'Virtual Console';
+
+        $communities = DB::table('communities')
+                        ->where('type', 2)
+                        ->whereIn('platform', $mappings)
+                        ->latest('created')
+                        ->get(['id', 'title_id', 'name', 'icon', 'platform']);
+
+        $console['count'] = DB::table('communities')
+                                ->where('type', 2)
+                                ->whereIn('platform', $mappings)
+                                ->count();
+
+        return view('community/listing', compact('console', 'communities'));
+    }
 }
