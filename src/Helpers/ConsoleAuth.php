@@ -52,6 +52,11 @@ class ConsoleAuth
                 redirect(route('welcome.guest'));
             }
 
+            if ($_SERVER['HTTP_X_NINTENDO_SERVICETOKEN'] == 'pretendo_test') {
+                http_response_code(403);
+                die('Pretendo test service token found. Access denied.');
+            }
+
             // Check if we don't have a valid session data
             if (!isset($_SESSION['authData'])) {
                 $storage = [];
