@@ -94,7 +94,7 @@ class Community extends Page
 
         $communities['special'] = [
             'titles' => DB::table('communities')
-                            ->whereIn('type', 3)
+                            ->where('type', 3)
                             ->whereIn('platform', $mappings)
                             ->latest('created')
                             ->limit(10)
