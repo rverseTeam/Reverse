@@ -159,7 +159,6 @@ class Community extends Page
         $console['count'] = DB::table('communities')
                                 ->where('type', [0, 1, 2])
                                 ->whereIn('platform', $mappings)
-                                ->latest('created')
                                 ->count();
 
         return view('community/listing', compact('console', 'communities'));
