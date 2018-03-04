@@ -295,7 +295,7 @@ class Community extends Page
                 break;
         }
 
-        $console['filter'] = 'Virtual Console';
+        $console['filter'] = 'Others';
 
         $communities = DB::table('communities')
                         ->where('type', 2)
