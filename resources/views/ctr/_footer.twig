@@ -1,1 +1,7 @@
-Running {{ config('general.name') }} preview.
+					<label id="view-region-selector" class="selected">
+						<select name="type">
+							<option value="" selected="">Please make a selection.</option>
+							<option value="{{ route('console.index', [ '3ds' ]) }}">3DS Communities</option>
+							<option value="{{ route('console.index', [ 'wiiu' ]) }}">Wii U Communities</option>
+						</select>
+					</label>

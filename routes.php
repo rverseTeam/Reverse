@@ -28,6 +28,14 @@ Router::group(['before' => 'maintenance'], function () {
         // Communities
         Router::group(['prefix' => 'communities'], function () {
             Router::get('/', 'Community@index', 'community.index');
+
+            Router::group(['prefix' => 'categories'], function () {
+                Router::get('/{console:a}', 'Community@consoleIndex', 'console.index');
+                Router::get('/{console:a}_all', 'Community@consoleEverything', 'console.all');
+                Router::get('/{console:a}_games', 'Community@consoleGames', 'console.games');
+                Router::get('/{console:a}_virtualconsole', 'Community@consoleVirtualConsole', 'console.vc');
+                Router::get('/{console:a}_other', 'Community@consoleOther', 'console.other');
+            });
         });
 
         // Users
