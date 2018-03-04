@@ -156,6 +156,12 @@ class Community extends Page
                         ->latest('created')
                         ->get(['id', 'title_id', 'name', 'icon', 'platform']);
 
+        $console['count'] = DB::table('communities')
+                                ->where('type', [0, 1, 2])
+                                ->whereIn('platform', $mappings)
+                                ->latest('created')
+                                ->count();
+
         return view('community/listing', compact('console', 'communities'));
     }
 }
