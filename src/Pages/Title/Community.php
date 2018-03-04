@@ -116,7 +116,8 @@ class Community extends Page
             // WTF LARAVEL?
             if ($discussions == null) {
                 $discussions = null;
-            } elseif ($drawings == null) {
+            }
+            if ($drawings == null) {
                 $drawings = null;
             }
 
