@@ -71,7 +71,7 @@ class Community extends Page
 
         $communities['newest'] = [
             'titles' => DB::table('communities')
-                            ->where('type', 0)
+                            ->whereIn('type', [0, 1, 2])
                             ->whereIn('platform', $mappings)
                             ->latest('created')
                             ->limit(10)
@@ -80,7 +80,7 @@ class Community extends Page
         ];
 
         $more = DB::table('communities')
-                    ->where('type', 0)
+                    ->where('type', [0, 1, 2])
                     ->whereIn('platform', $mappings)
                     ->latest('created')
                     ->count();
@@ -89,9 +89,12 @@ class Community extends Page
             $communities['newest']['more'] = true;
         }
 
+        // This creates the case of global communities for special types
+        $mappings = array_merge($mappings, [0]);
+
         $communities['special'] = [
             'titles' => DB::table('communities')
-                            ->where('type', 1)
+                            ->whereIn('type', 3)
                             ->whereIn('platform', $mappings)
                             ->latest('created')
                             ->limit(10)
@@ -100,7 +103,7 @@ class Community extends Page
         ];
 
         $more = DB::table('communities')
-                    ->where('type', 1)
+                    ->where('type', 3)
                     ->whereIn('platform', $mappings)
                     ->latest('created')
                     ->count();
@@ -110,5 +113,49 @@ class Community extends Page
         }
 
         return view('community/index', compact('console', 'communities'));
+    }
+
+    /**
+     * Full console title index.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public function consoleEverything(string $page) : string
+    {
+        $mappings = [];
+        $console = [];
+        $communities = [];
+
+        switch ($page) {
+            case '3ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => '3DS',
+                ];
+                $mappings = [1, 3];
+                break;
+            case 'wiiu':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii U',
+                ];
+                $mappings = [2, 3];
+                break;
+            default:
+                return view('errors/404');
+                break;
+        }
+
+        $console['filter'] = 'All Software';
+
+        $communities = DB::table('communities')
+                        ->whereIn('type', [0, 1, 2])
+                        ->whereIn('platform', $mappings)
+                        ->latest('created')
+                        ->get(['id', 'title_id', 'name', 'icon', 'platform']);
+
+        return view('community/listing', compact('console', 'communities'));
     }
 }
