@@ -102,7 +102,7 @@ class Community
     /**
      * The topic bundle of the community.
      */
-     public $topicBundle;
+    public $topicBundle;
 
     /**
      * Constructor.
@@ -111,7 +111,7 @@ class Community
      *
      * @return Community
      */
-    public function __construct(int $communityId = 0) : Community
+    public function __construct(int $communityId = 0) : self
     {
         // Get the row from the database
         $communityRow = DB::table('communities')
@@ -124,8 +124,8 @@ class Community
             $this->titleID = intval($communityRow->title_id);
             $this->name = $communityRow->name;
             $this->description = $communityRow->description;
-            $this->icon = '/img/icons/' . $communityRow->icon;
-            $this->banner = '/img/banners/' . $communityRow->banner;
+            $this->icon = '/img/icons/'.$communityRow->icon;
+            $this->banner = '/img/banners/'.$communityRow->banner;
             $this->category = intval($communityRow->category);
             $this->type = intval($communityRow->type);
             $this->created = $communityRow->created;
@@ -146,7 +146,6 @@ class Community
             $this->topicBundle = DB::table('topic_categories')
                                     ->where('bundle_id', $communityRow->topic_bundle)
                                     ->get();
-
         } elseif ($communityId !== 0) {
             $this->id = -1;
         }

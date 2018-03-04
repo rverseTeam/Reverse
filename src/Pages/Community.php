@@ -25,10 +25,10 @@ class Community extends Page
         // Check current console, and redirect to the currect index page
         switch (ConsoleAuth::$paramPack['platform_id']) {
             case 0:
-                return redirect(route('console.index', [ '3ds' ]));
+                return redirect(route('console.index', ['3ds']));
                 break;
             case 1:
-                return redirect(route('console.index', [ 'wiiu' ]));
+                return redirect(route('console.index', ['wiiu']));
                 break;
             default:
                 return view('errors/404');
@@ -37,7 +37,7 @@ class Community extends Page
     }
 
     /**
-     * Console index
+     * Console index.
      *
      * @var string
      *
@@ -55,14 +55,14 @@ class Community extends Page
                     'id'   => $page,
                     'name' => '3DS',
                 ];
-                $mappings = [1,3];
+                $mappings = [1, 3];
                 break;
             case 'wiiu':
                 $console = [
                     'id'   => $page,
                     'name' => 'Wii U',
                 ];
-                $mappings = [2,3];
+                $mappings = [2, 3];
                 break;
             default:
                 return view('errors/404');
