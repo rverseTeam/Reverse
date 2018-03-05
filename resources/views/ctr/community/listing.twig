@@ -23,7 +23,7 @@
 									<select name="filter">
 										<option value="" selected="">Please make a selection.</option>
 										<option value="{{ route('console.all', [ console.id ]) }}">All Software</option>
-										<option value="{{ route('console.games', [ console.id ]) }}">3DS Games</option>
+										<option value="{{ route('console.games', [ console.id ]) }}">{{ console.name }} Games</option>
 										<option value="{{ route('console.vc', [ console.id ]) }}">Virtual Console</option>
 										<option value="{{ route('console.other', [ console.id ]) }}">Others</option>
 									</select>
