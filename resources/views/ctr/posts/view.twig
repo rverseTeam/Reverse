@@ -2,7 +2,7 @@
 {% extends '@ctr/_master.twig' %}
 
 {% block content %}
-{% set id,title_id,post_id = hashid(post.community.id), hashid(post.community.title_id), hashid(post.id) %}
+{% set id,title_id,post_id = hashid(post.community.id), hashid(post.community.titleID), hashid(post.id) %}
 {% set mii = _context.post.user.mii[_context.feeling[post.feeling]] %}
 			<div id="header">
 				<div id="header-body">
