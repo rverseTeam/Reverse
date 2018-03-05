@@ -84,26 +84,15 @@ class Post extends Page
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
-                    if (!$meta->is_redesign) {
-                        $postId = DB::table('posts')
-                            ->insertGetId([
-                                'community' => $id,
-                                'image'     => $painting_name,
-                                'feeling'   => $feeling,
-                                'user_id'   => $userid,
-                                'spoiler'   => intval($spoiler),
-                            ]);
-                    } else {
-                        $postId = DB::table('posts')
-                            ->insertGetId([
-                                'community'   => $id,
-                                'image'       => $painting_name,
-                                'feeling'     => $feeling,
-                                'user_id'     => $userid,
-                                'spoiler'     => intval($spoiler),
-                                'is_redesign' => $meta->is_redesign,
-                            ]);
-                    }
+                    $postId = DB::table('posts')
+                        ->insertGetId([
+                            'community'   => $id,
+                            'image'       => $painting_name,
+                            'feeling'     => $feeling,
+                            'user_id'     => $userid,
+                            'spoiler'     => intval($spoiler),
+                            'is_redesign' => $meta->is_redesign,
+                        ]);
                     break;
                 default:
                     break;
