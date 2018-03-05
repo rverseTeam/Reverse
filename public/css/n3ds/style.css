@@ -2653,6 +2653,21 @@ ul + .headline {
     width: 56px;
     background-position: -205px 0;
 }
+.platform-ds .category-header .header-banner:after {
+    height: 17px;
+    width: 82px;
+    background-position: -37px -145px;
+}
+.platform-wii .category-header .header-banner:after {
+    height: 17px;
+    width: 37px;
+    background-position: 0px -150px;
+}
+.platform-switch .category-header .header-banner:after {
+    height: 17px;
+    width: 76px;
+    background-position: -119px -150px;
+}
 .platform-wiiu .category-header .info-content {
     background: #1193c4;
 }
