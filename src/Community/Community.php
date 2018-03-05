@@ -111,7 +111,7 @@ class Community
      *
      * @return Community
      */
-    public function __construct(int $communityId = 0) : self
+    public function __construct(int $communityId = 0)
     {
         // Get the row from the database
         $communityRow = DB::table('communities')
