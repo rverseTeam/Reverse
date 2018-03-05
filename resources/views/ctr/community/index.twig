@@ -102,7 +102,7 @@
 								{% set id,title_id = hashid(community.id), hashid(community.title_id) %}
 								<li id="community-{{ id }}" class="">
 									<span class="icon-container">
-										<img src="{{ community.icon }}" class="icon" width="48" height="48">
+										<img src="/img/icons/{{ community.icon }}" class="icon" width="48" height="48">
 									</span>
 									<a href="{{ route('title.community', [ title_id, id ]) }}" class="arrow-button scroll" data-pjax="1"></a>
 									<div class="body">
