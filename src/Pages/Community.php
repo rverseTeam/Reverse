@@ -50,6 +50,13 @@ class Community extends Page
         $communities = [];
 
         switch ($page) {
+            case 'switch':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Switch',
+                ];
+                $mappings = [4, 5];
+                break;
             case '3ds':
                 $console = [
                     'id'   => $page,
@@ -63,6 +70,20 @@ class Community extends Page
                     'name' => 'Wii U',
                 ];
                 $mappings = [2, 3];
+                break;
+            case 'wii':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii',
+                ];
+                $mappings = [6, 8];
+                break;
+            case 'ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'DS',
+                ];
+                $mappings = [7, 8];
                 break;
             default:
                 return view('errors/404');
@@ -129,6 +150,13 @@ class Community extends Page
         $communities = [];
 
         switch ($page) {
+            case 'switch':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Switch',
+                ];
+                $mappings = [4, 5];
+                break;
             case '3ds':
                 $console = [
                     'id'   => $page,
@@ -142,6 +170,20 @@ class Community extends Page
                     'name' => 'Wii U',
                 ];
                 $mappings = [2, 3];
+                break;
+            case 'wii':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii',
+                ];
+                $mappings = [6, 8];
+                break;
+            case 'ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'DS',
+                ];
+                $mappings = [7, 8];
                 break;
             default:
                 return view('errors/404');
@@ -178,6 +220,13 @@ class Community extends Page
         $communities = [];
 
         switch ($page) {
+            case 'switch':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Switch',
+                ];
+                $mappings = [4, 5];
+                break;
             case '3ds':
                 $console = [
                     'id'   => $page,
@@ -191,6 +240,20 @@ class Community extends Page
                     'name' => 'Wii U',
                 ];
                 $mappings = [2, 3];
+                break;
+            case 'wii':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii',
+                ];
+                $mappings = [6, 8];
+                break;
+            case 'ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'DS',
+                ];
+                $mappings = [7, 8];
                 break;
             default:
                 return view('errors/404');
@@ -227,6 +290,13 @@ class Community extends Page
         $communities = [];
 
         switch ($page) {
+            case 'switch':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Switch',
+                ];
+                $mappings = [4, 5];
+                break;
             case '3ds':
                 $console = [
                     'id'   => $page,
@@ -240,6 +310,20 @@ class Community extends Page
                     'name' => 'Wii U',
                 ];
                 $mappings = [2, 3];
+                break;
+            case 'wii':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii',
+                ];
+                $mappings = [6, 8];
+                break;
+            case 'ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'DS',
+                ];
+                $mappings = [7, 8];
                 break;
             default:
                 return view('errors/404');
@@ -276,6 +360,13 @@ class Community extends Page
         $communities = [];
 
         switch ($page) {
+            case 'switch':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Switch',
+                ];
+                $mappings = [4, 5];
+                break;
             case '3ds':
                 $console = [
                     'id'   => $page,
@@ -289,6 +380,20 @@ class Community extends Page
                     'name' => 'Wii U',
                 ];
                 $mappings = [2, 3];
+                break;
+            case 'wii':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'Wii',
+                ];
+                $mappings = [6, 8];
+                break;
+            case 'ds':
+                $console = [
+                    'id'   => $page,
+                    'name' => 'DS',
+                ];
+                $mappings = [7, 8];
                 break;
             default:
                 return view('errors/404');
