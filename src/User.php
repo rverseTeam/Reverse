@@ -546,8 +546,8 @@ class User
         // Add follower
         DB::table('followers')
             ->insert([
-                'user_id' => $this->id,
-                'follower_id' => $uid
+                'user_id'     => $this->id,
+                'follower_id' => $uid,
             ]);
     }
 
@@ -570,6 +570,7 @@ class User
      * 0 = no, 1 = yes, 2 = mutual.
      *
      * @param int $with
+     *
      * @return int
      */
     public function isFollower(int $with) : int
@@ -598,8 +599,10 @@ class User
 
     /**
      * Get all the followers from this user.
-     * @param int $level
+     *
+     * @param int  $level
      * @param bool $noObj
+     *
      * @return array
      */
     public function followers(int $level = 0, bool $noObj = false): array
@@ -667,7 +670,7 @@ class User
         // Create the user objects
         foreach ($users as $user) {
             // Create new object
-            $objects[$user] = User::construct($user);
+            $objects[$user] = self::construct($user);
         }
 
         // Return the objects
