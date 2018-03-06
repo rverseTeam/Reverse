@@ -108,7 +108,7 @@ class Post extends Page
                 ->where('user_id', '=', $userid)
                 ->increment('posts');
 
-            echo '<script>window.location.href = "' + route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]) + '";</script>';
+            echo '<script>window.location.href = "/";</script>';
         } elseif ($kind = 'reply') {
             $post_id = $_POST['olive_post_id'];
             $feeling = $_POST['feeling_id'];
@@ -155,7 +155,7 @@ class Post extends Page
                 ->where('id', '=', $post_id)
                 ->increment('comments');
 
-            echo '<script>window.location.href = "' + route('post.show', ['id' => hashid($post_id)]) + '";</script>';
+            echo '<script>window.location.href = "/";</script>';
         }
         exit;
     }
