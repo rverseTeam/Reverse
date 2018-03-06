@@ -537,6 +537,144 @@ class User
     }
 
     /**
+     * Add a new follower.
+     *
+     * @param int $uid
+     */
+    public function addFollower(int $uid) : void
+    {
+        // Add follower
+        DB::table('followers')
+            ->insert([
+                'user_id' => $this->id,
+                'follower_id' => $uid
+            ]);
+    }
+
+    /**
+     * Remove a follower.
+     *
+     * @param int $uid
+     */
+    public function removeFollower(int $uid) : void
+    {
+        // Remove follower
+        DB::table('followers')
+            ->where('user_id', $this->id)
+            ->where('follower_id', $uid)
+            ->delete();
+    }
+
+    /**
+     * Check if this user follows another user.
+     * 0 = no, 1 = yes, 2 = mutual.
+     *
+     * @param int $with
+     * @return int
+     */
+    public function isFollower(int $with) : int
+    {
+        // Following from this user
+        $user = DB::table('followers')
+            ->where('user_id', $this->id)
+            ->where('follower_id', $with)
+            ->count();
+
+        // And the other user
+        $follower = DB::table('followers')
+            ->where('user_id', $with)
+            ->where('follower_id', $this->id)
+            ->count();
+
+        if ($user && $follower) {
+            return 2; // Mutual followers
+        } elseif ($user) {
+            return 1; // Following
+        }
+
+        // Else return 0
+        return 0;
+    }
+
+    /**
+     * Get all the followers from this user.
+     * @param int $level
+     * @param bool $noObj
+     * @return array
+     */
+    public function followers(int $level = 0, bool $noObj = false): array
+    {
+        // User ID container
+        $users = [];
+
+        // Select the correct level
+        switch ($level) {
+            // Mutual
+            case 2:
+                // Get all the current user's followers
+                $self = DB::table('followers')
+                    ->where('user_id', $this->id)
+                    ->get(['follower_id']);
+                $self = array_column($self, 'follower_id');
+
+                // Get all the people that are following this user
+                $others = DB::table('followers')
+                    ->where('follower_id', $this->id)
+                    ->get(['user_id']);
+                $others = array_column($others, 'user_id');
+
+                // Create a difference map
+                $users = array_intersect($self, $others);
+                break;
+
+            // Non-mutual (from user perspective)
+            case 1:
+                $users = DB::table('followers')
+                    ->where('user_id', $this->id)
+                    ->get(['follower_id']);
+                $users = array_column($users, 'follower_id');
+                break;
+
+            // All follower cases
+            case 0:
+            default:
+                // Get all the current user's followers
+                $self = DB::table('followers')
+                    ->where('user_id', $this->id)
+                    ->get(['follower_id']);
+                $self = array_column($self, 'follower_id');
+
+                // Get all the people that are following this user
+                $others = DB::table('followers')
+                    ->where('follower_id', $this->id)
+                    ->get(['user_id']);
+                $others = array_column($others, 'user_id');
+
+                // Create a difference map
+                $users = array_merge($others, $self);
+                break;
+        }
+
+        // Check if we only requested the IDs
+        if ($noObj) {
+            // If so just return $users
+            return $users;
+        }
+
+        // Create the storage array
+        $objects = [];
+
+        // Create the user objects
+        foreach ($users as $user) {
+            // Create new object
+            $objects[$user] = User::construct($user);
+        }
+
+        // Return the objects
+        return $objects;
+    }
+
+    /**
      * Gets the user's proper (highest) hierarchy.
      *
      * @return int
