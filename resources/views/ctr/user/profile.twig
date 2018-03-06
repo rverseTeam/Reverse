@@ -43,7 +43,7 @@
 					<span class="name">Posts</span>
 				</a>
 				<a href="{{ route('user.following', [ profile.username ]) }}" data-pjax="1" class="user-followings-count ">
-					<span class="number">{{ profile.follows }} / 1000</span>
+					<span class="number">{{ profile.follows }}</span>
 					<span class="name">Following</span>
 				</a>
 				<a href="{{ route('user.followers', [ profile.username ]) }}" data-pjax="1" class="user-followers-count ">
