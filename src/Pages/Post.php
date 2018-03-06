@@ -109,6 +109,7 @@ class Post extends Page
                 ->increment('posts');
 
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
+            echo 'OK';
         } elseif ($kind = 'reply') {
             $post_id = $_POST['olive_post_id'];
             $feeling = $_POST['feeling_id'];
@@ -156,6 +157,7 @@ class Post extends Page
                 ->increment('comments');
 
             redirect(route('post.show', ['id' => hashid($post_id)]));
+            echo 'OK';
         }
         exit;
     }
