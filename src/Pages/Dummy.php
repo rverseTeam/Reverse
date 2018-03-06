@@ -13,7 +13,7 @@ namespace Miiverse\Pages;
 class Dummy extends Page
 {
     /**
-     * Serves an empty page, for thosse cases it's needed.
+     * Serves an empty page, in case it's needed.
      *
      * @return string
      */

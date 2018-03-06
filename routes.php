@@ -16,14 +16,13 @@ Router::group(['before' => 'maintenance'], function () {
     Router::get('/', 'Index@index', 'index.index');
 
     // Welcome guest AKA "you need a NNID to use this"
-    // Needsto be outside the group so it doesn't get caught by auth
+    // Needs to be outside the group so it doesn't get caught by auth
     Router::get('/welcome_guest', 'Gate@guest', 'welcome.guest');
 
     // 3DS required to load these pages
     Router::group(['before' => 'auth'], function () {
-        // Dummied out pages
-        Router::get('/local_list.json', 'Dummy@dummy', 'local.list');
-        Router::get('/check_update.json', 'Dummy@dummy', 'check.update');
+        Router::get('/local_list.json', 'Json@localList', 'local.list');
+        Router::get('/check_update.json', 'Json@checkUpdate', 'check.update');
 
         // Communities
         Router::group(['prefix' => 'communities'], function () {
@@ -83,6 +82,7 @@ Router::group(['before' => 'maintenance'], function () {
         Router::group(['prefix' => 'settings'], function () {
             Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
             Router::get('/profile', 'Settings@profile', 'settings.profile');
+            Router::post('/played_title_ids', 'Json@stub', 'settings.playedtitles');
         });
 
         // Welcome
