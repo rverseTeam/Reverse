@@ -42,8 +42,8 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/{id}', 'User@profile', 'user.profile');
             Router::get('/{id}/violators.create', 'Dummy@dummy', 'user.report');
             Router::get('/{id}/blacklist.confirm', 'Dummy@dummy', 'user.block');
-            Router::post('/{id}.follow.json', 'Dummy@dummy', 'user.follow');
-            Router::post('/{id}.unfollow.json', 'Dummy@dummy', 'user.unfollow');
+            Router::post('/{id}.follow.json', 'User@follow', 'user.follow');
+            Router::post('/{id}.unfollow.json', 'User@unfollow', 'user.unfollow');
             Router::get('/{id}/favorites', 'Dummy@dummy', 'user.favorites');
             Router::get('/{id}/posts', 'Dummy@dummy', 'user.posts');
             Router::get('/{id}/following', 'Dummy@dummy', 'user.following');
