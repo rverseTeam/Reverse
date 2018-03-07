@@ -543,12 +543,15 @@ class User
      */
     public function addFollower(int $uid) : bool
     {
+        // Why the fuck are you trying to follow yourself?
         if ($this->id == $uid) {
             return false;
-        } // Why the fuck are you trying to follow yourself?
+        }
+
+        // You are already following
         if (isFollower($uid) != 0) {
             return false;
-        } // You are already following
+        }
 
         // Add follower
         DB::table('followers')
@@ -575,12 +578,15 @@ class User
      */
     public function removeFollower(int $uid) : bool
     {
+        // Why the fuck are you trying to unfollow yourself?
         if ($this->id == $uid) {
             return false;
-        } // Why the fuck are you trying to unfollow yourself?
-        if (isFollower($uid) > 1) {
+        }
+
+        // You aren't following
+        if (isFollower($uid) < 1) {
             return false;
-        } // You aren't following
+        }
 
         // Remove follower
         DB::table('followers')
