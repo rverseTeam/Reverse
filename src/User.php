@@ -541,7 +541,7 @@ class User
      *
      * @param int $uid
      */
-    public function addFollower(int $uid) : void
+    public function addFollower(int $uid) : bool
     {
         if ($this->id == $uid) {
             return false;
@@ -573,7 +573,7 @@ class User
      *
      * @param int $uid
      */
-    public function removeFollower(int $uid) : void
+    public function removeFollower(int $uid) : bool
     {
         if ($this->id == $uid) {
             return false;
