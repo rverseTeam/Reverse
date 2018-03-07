@@ -543,12 +543,25 @@ class User
      */
     public function addFollower(int $uid) : void
     {
+        if ($this->id == $uid) return false; // Why the fuck are you trying to follow yourself?
+        if (isFollower($uid) != 0) return false; // You are already following
+
         // Add follower
         DB::table('followers')
             ->insert([
                 'user_id'     => $this->id,
                 'follower_id' => $uid,
             ]);
+
+        // Increment followers
+        DB::table('users')
+            ->where('user_id', $this->id)
+            ->increment('follow_count');
+        DB::table('users')
+            ->where('user_id', $uid)
+            ->increment('follow_back_count');
+
+        return true;
     }
 
     /**
@@ -558,11 +571,24 @@ class User
      */
     public function removeFollower(int $uid) : void
     {
+        if ($this->id == $uid) return false; // Why the fuck are you trying to unfollow yourself?
+        if (isFollower($uid) > 1) return false; // You aren't following
+
         // Remove follower
         DB::table('followers')
             ->where('user_id', $this->id)
             ->where('follower_id', $uid)
             ->delete();
+
+        // Decrement followers
+        DB::table('users')
+            ->where('user_id', $this->id)
+            ->decrement('follow_count');
+        DB::table('users')
+            ->where('user_id', $uid)
+            ->decrement('follow_back_count');
+
+        return true;
     }
 
     /**

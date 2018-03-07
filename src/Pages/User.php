@@ -29,4 +29,42 @@ class User extends Page
 
         return view('user/profile', compact('profile'));
     }
+
+    /**
+     * Follows a user.
+     *
+     * @return string
+     */
+    public function follow(string $name) : string
+    {
+        $profile = Profile::construct(urldecode($name));
+
+        header('Content-Type: application/json; charset=utf-8');
+        if ($profile->addFollower(CurrentSession::$user->id)) {
+            return '{"success":1}';
+        } else {
+            return '{"success":0}';
+        }
+
+        return '{"success":0}';
+    }
+
+    /**
+     * Unfollows a user.
+     *
+     * @return string
+     */
+    public function unfollow(string $name) : string
+    {
+        $profile = Profile::construct(urldecode($name));
+
+        header('Content-Type: application/json; charset=utf-8');
+        if ($profile->removeFollower(CurrentSession::$user->id)) {
+            return '{"success":1}';
+        } else {
+            return '{"success":0}';
+        }
+
+        return '{"success":0}';
+    }
 }
