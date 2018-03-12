@@ -1,4 +1,4 @@
-# foxverse
+# miiverse
 [![StyleCI](https://styleci.io/repos/118067535/shield?branch=master)](https://styleci.io/repos/118067535)
 
 ## Requirements
