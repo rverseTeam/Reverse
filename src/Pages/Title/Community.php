@@ -325,7 +325,7 @@ class Community extends Page
             'message'             => 'OK',
         ];
 
-        http_response_code(201);
+        sleep(1000);
         return $this->json($data);
     }
 }
