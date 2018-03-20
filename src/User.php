@@ -584,9 +584,9 @@ class User
         }
 
         // You aren't following
-        if ($this->isFollower($uid) < 1) {
-            return false;
-        }
+        //if ($this->isFollower($uid) < 1) {
+        //    return false;
+        //}
 
         // Remove follower
         DB::table('followers')
