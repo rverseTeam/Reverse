@@ -556,8 +556,8 @@ class User
         // Add follower
         DB::table('followers')
             ->insert([
-                'user_id'     => $uid,
-                'follower_id' => $this->id,
+                'user_id'     => $this->id,
+                'follower_id' => $uid,
             ]);
 
         // Increment followers
@@ -590,8 +590,8 @@ class User
 
         // Remove follower
         DB::table('followers')
-            ->where('user_id', $uid)
-            ->where('follower_id', $this->id)
+            ->where('user_id', $this->id)
+            ->where('follower_id', $uid)
             ->delete();
 
         // Decrement followers
