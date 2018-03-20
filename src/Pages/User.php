@@ -5,6 +5,7 @@
 
 namespace Miiverse\Pages;
 
+use Miiverse\CurrentSession;
 use Miiverse\User as Profile;
 
 /**
