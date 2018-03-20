@@ -549,7 +549,7 @@ class User
         }
 
         // You are already following
-        if (isFollower($uid) != 0) {
+        if ($this->isFollower($uid) != 0) {
             return false;
         }
 
@@ -584,7 +584,7 @@ class User
         }
 
         // You aren't following
-        if (isFollower($uid) < 1) {
+        if ($this->isFollower($uid) < 1) {
             return false;
         }
 
