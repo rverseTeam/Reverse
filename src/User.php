@@ -584,7 +584,7 @@ class User
         }
 
         // You aren't following
-        if ($this->isFollower($uid) < 1) {
+        if ($this->isFollower($uid) == 0) {
             return false;
         }
 

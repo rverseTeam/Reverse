@@ -30,8 +30,8 @@
 						</div>
 						{% if profile.id != user.id %}
 							<div class="toggle-follow-button">
-								<button type="button" data-action="{{ route('user.follow', [ profile.username ]) }}" class="follow-button {% if follower > 0 %}none{% endif %}">Follow</button>
-								<button type="button" data-action="{{ route('user.unfollow', [ profile.username ]) }}" class="unfollow-button {% if follower == 0 %}none{% endif %}" data-screen-name="{{ profile.username }}">Follow</button>
+								<button type="button" data-action="{{ route('user.follow', [ profile.username ]) }}" class="follow-button {% if follower == 0 %}none{% endif %}">Follow</button>
+								<button type="button" data-action="{{ route('user.unfollow', [ profile.username ]) }}" class="unfollow-button {% if follower > 0 %}none{% endif %}" data-screen-name="{{ profile.username }}">Follow</button>
 							</div>
 						{% endif %}
 					</div>
