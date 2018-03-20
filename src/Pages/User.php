@@ -28,7 +28,7 @@ class User extends Page
             return view('errors/404');
         }
 
-        $follower = Profile::isFollower($profile->id);
+        $follower = User::isFollower($profile->id);
 
         return view('user/profile', compact('profile', 'follower'));
     }
