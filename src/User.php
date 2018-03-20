@@ -563,10 +563,10 @@ class User
         // Increment followers
         DB::table('users')
             ->where('user_id', $this->id)
-            ->increment('follow_count');
+            ->increment('follow_back_count');
         DB::table('users')
             ->where('user_id', $uid)
-            ->increment('follow_back_count');
+            ->increment('follow_count');
 
         return true;
     }
@@ -597,10 +597,10 @@ class User
         // Decrement followers
         DB::table('users')
             ->where('user_id', $this->id)
-            ->decrement('follow_count');
+            ->decrement('follow_back_count');
         DB::table('users')
             ->where('user_id', $uid)
-            ->decrement('follow_back_count');
+            ->decrement('follow_count');
 
         return true;
     }
