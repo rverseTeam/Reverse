@@ -51,7 +51,7 @@ class News extends Page
                 'type'      => $notification->type,
                 'user'      => $user,
                 'post'      => $post,
-                'comment'   => $comment
+                'comment'   => $comment,
                 'date'      => $notification->date,
             ];
         }
