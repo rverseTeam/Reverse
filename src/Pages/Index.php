@@ -59,7 +59,8 @@ class Index extends Page
      */
     public function latestActivityFeed() : string
     {
-        return '<div class="js-latest-following-relation-profile-post scroll">
+        return '<div data-latest-following-relation-profile-post-placeholder>
+        <div class="js-latest-following-relation-profile-post scroll">
 
   <div class="acted-user-name-content">
     <span class="user-icon-container">
@@ -117,6 +118,7 @@ Since Miiverse is probably closing, I put my main chromtacts in my PFP.
       </div>
     </li>
   </ul>
+</div>
 </div>';
     }
 }
