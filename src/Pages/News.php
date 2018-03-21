@@ -24,6 +24,7 @@ class News extends Page
     public function my_news() : string
     {
         $local_user = CurrentSession::$user;
+        $notifications = [];
 
         $notifications_pre = DB::table('notifications')
                     ->where('to', $user->id)
@@ -57,8 +58,6 @@ class News extends Page
                 'date'      => $notification->date,
             ];
         }
-
-        var_dump($notifications);
 
         DB::table('notifications')
                     ->where([
