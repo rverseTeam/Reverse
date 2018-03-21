@@ -17,10 +17,12 @@
 			</div>
 			<div class="body-content">
 				<div class="tab-body">
-					<div id="news-tutorial" class="tutorial-window">
-						<p>New notifications are marked with an orange dot.</p>
-						<a href="#" class="button tutorial-close-button" data-tutorial-name="my_news">Close</a>
-					</div>
+					{% if user.news_dot == 0 %}
+						<div id="news-tutorial" class="tutorial-window">
+							<p>New notifications are marked with an orange dot.</p>
+							<a href="#" class="button tutorial-close-button" data-tutorial-name="my_news">Close</a>
+						</div>
+					{% endif %}
 					<div class="no-content-window">
 						<div class="window">
 							<p>No updates.</p>

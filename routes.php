@@ -21,8 +21,8 @@ Router::group(['before' => 'maintenance'], function () {
 
     // 3DS required to load these pages
     Router::group(['before' => 'auth'], function () {
-        Router::get('/local_list.json', 'Json@localList', 'local.list');
-        Router::get('/check_update.json', 'Json@checkUpdate', 'check.update');
+        Router::get('/local_list.json', 'Dummy@dummy', 'local.list');
+        Router::get('/check_update.json', 'Dummy@dummy', 'news.checkupdate');
 
         // Communities
         Router::group(['prefix' => 'communities'], function () {
@@ -91,8 +91,9 @@ Router::group(['before' => 'maintenance'], function () {
         // Settings
         Router::group(['prefix' => 'settings'], function () {
             Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
-            Router::get('/profile', 'Settings@profile', 'settings.profile');
-            Router::post('/played_title_ids', 'Json@stub', 'settings.playedtitles');
+            Router::get('/profile', 'Dummy@dummy', 'settings.profile');
+            Router::get('/tutorial_post', 'Settings@tutorial_post', 'settings.tutorialpost');
+            Router::post('/played_title_ids', 'Dummy@dummy', 'settings.playedtitles');
         });
 
         // Welcome

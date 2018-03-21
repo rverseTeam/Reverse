@@ -22,6 +22,7 @@ class News extends Page
      */
     public function my_news() : string
     {
-        return view('news/my_news', compact('communities'));
+        $user = CurrentSession::$user;
+        return view('news/my_news', compact('user'));
     }
 }
