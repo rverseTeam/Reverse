@@ -155,9 +155,9 @@ class Post extends Page
                 ->where('id', '=', $post_id)
                 ->increment('comments');
 
-            header('Content-Length: 0');
-            header('Connection: Keep-Alive');
-            header('Keep-Alive: timeout=5, max=100');
+            header('Content-Length: 0', true);
+            header('Connection: Keep-Alive', true);
+            header('Keep-Alive: timeout=5, max=100', true);
             redirect(route('post.show', ['id' => hashid($post_id)]));
         }
         exit;
