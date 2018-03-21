@@ -29,6 +29,8 @@ class News extends Page
                     ->where('to', $user->id)
                     ->orderBy('date', 'desc');
 
+        var_dump($notifications_pre);
+
         foreach ($notifications_pre as $notification) {
             $user = User::construct($notification->from);
             $post = null;
@@ -57,6 +59,8 @@ class News extends Page
             ];
         }
 
+        var_dump($notifications);
+
         DB::table('notifications')
                     ->where([
                         ['to', $user->id],
@@ -65,9 +69,9 @@ class News extends Page
                     ->update(['seen' => 1]);
 
         // laravel being a piece of shit
-        //if ($notifications == null) {
-        //    $notifications = null;
-        //}
+        if ($notifications == null) {
+            $notifications = null;
+        }
 
         return view('news/my_news', compact('local_user', 'notifications'));
     }
