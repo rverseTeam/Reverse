@@ -68,6 +68,11 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/latest_following_related_profile_posts', 'Index@latestActivityFeed', 'activity.latestactivityfeed');
         });
 
+        // News
+        Router::group(['prefix' => 'news'], function () {
+            Router::get('/my_news', 'News@my_news', 'news.mynews');
+        });
+
         // Posts
         Router::group(['prefix' => 'posts'], function () {
             Router::get('/{id:a}', 'Post@show', 'post.show');
