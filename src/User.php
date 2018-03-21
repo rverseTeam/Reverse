@@ -616,7 +616,7 @@ class User
             ->where('user_id', $uid)
             ->increment('follow_count');
 
-        $this->emitNotification($uid, 1);
+        $this->emitNotification($this->id, 1);
         return true;
     }
 
