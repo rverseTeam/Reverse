@@ -63,6 +63,11 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/{tid:a}/{id:a}/post_memo.check.json', 'Title.Community@check_memo', 'title.checkmemo');
         });
 
+        // Me
+        Router::group(['prefix' => 'me'], function () {
+            Router::get('/latest_following_related_profile_posts', 'Index@latestActivityFeed', 'activity.latestactivityfeed');
+        });
+
         // Posts
         Router::group(['prefix' => 'posts'], function () {
             Router::get('/{id:a}', 'Post@show', 'post.show');

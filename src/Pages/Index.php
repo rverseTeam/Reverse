@@ -51,4 +51,14 @@ class Index extends Page
 
         return view('index/index', compact('communities'));
     }
+
+    /**
+     * Latest activity feed data for activity feed.
+     *
+     * @return string
+     */
+    public function latestActivityFeed() : string
+    {
+        return 'testo';
+    }
 }
