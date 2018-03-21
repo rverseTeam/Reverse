@@ -15,7 +15,7 @@ class AddNotificationsTable extends Migration
     {
         $schema = DB::getSchemaBuilder();
 
-        $schema->table('notifications', function (Blueprint $table) {
+        $schema->create('notifications', function (Blueprint $table) {
             $table->integer('from')
                 ->unsigned();
 
