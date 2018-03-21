@@ -29,7 +29,7 @@
 								<p>No updates.</p>
 							</div>
 						</div>
-					{% elseif %}
+					{% else %}
 						<ul class="list-content-with-icon-and-text arrow-list" id="news-list-content">
 							{% for notification in notifications %}
 								{% set mii = _context.notification.user.mii['normal'] %}
