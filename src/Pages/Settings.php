@@ -28,7 +28,7 @@ class Settings extends Page
         $database_key = '';
 
         // database key to put to true
-        switch ($tutorial) {
+        switch ($tutorial_name) {
             case 'my_news':
                 $database_key = 'news_dot';
                 break;
