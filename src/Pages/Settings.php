@@ -7,7 +7,6 @@ namespace Miiverse\Pages;
 
 use Miiverse\DB;
 use Miiverse\CurrentSession;
-use Miiverse\User;
 
 /**
  * Settings page.
@@ -23,7 +22,8 @@ class Settings extends Page
      */
     public function tutorial_post() : string
     {
-        $user = User::construct(urldecode(CurrentSession::$user->username));
+        $user = CurrentSession::$user;
+        $userid = $user->id;
         $tutorial_name = $_POST['tutorial_name'];
         $database_key = '';
 

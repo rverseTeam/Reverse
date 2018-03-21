@@ -6,7 +6,8 @@
 namespace Miiverse\Pages;
 
 use Miiverse\DB;
-use Miiverse\Helpers\ConsoleAuth;
+use Miiverse\CurrentSession;
+use Miiverse\User;
 
 /**
  * News page.
@@ -22,7 +23,7 @@ class News extends Page
      */
     public function my_news() : string
     {
-        $user = CurrentSession::$user;
+        $user = User::construct(urldecode(CurrentSession::$user->username));
         return view('news/my_news', compact('user'));
     }
 }
