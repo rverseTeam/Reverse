@@ -59,6 +59,6 @@ class Index extends Page
      */
     public function latestActivityFeed() : string
     {
-        return '1<div data-latest-following-relation-profile-post-placeholder>nope</div><div data-latest-following-relation-profile-post-placeholder>nope</div>';
+        return '<div data-latest-following-relation-profile-post-placeholder>nope</div><div data-latest-following-relation-profile-post-placeholder>nope</div>';
     }
 }
