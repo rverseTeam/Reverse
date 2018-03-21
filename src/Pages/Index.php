@@ -22,7 +22,7 @@ class Index extends Page
      */
     public function index() : string
     {
-        // Normally on Wii U and 3DS this would be Activity Feed but since it isn't implemented we're just going to return
+        // Activity Feed
         if (ConsoleAuth::$paramPack['platform_id'] != 2) {
             return view('index/index');
         }
