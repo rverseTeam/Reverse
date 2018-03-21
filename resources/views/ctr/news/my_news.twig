@@ -32,11 +32,10 @@
 					{% else %}
 						<ul class="list-content-with-icon-and-text arrow-list" id="news-list-content">
 							{% for notification in notifications %}
-								{% set mii = "http://mii-images.cdn.nintendo.net/3o7et7rykh4fh_normal_face.png" %}
 								{% if notification.type == 1 %}
 									<li>
 										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="icon-container">
-											<img src="{{ mii }}" class="icon">
+											<img src="{{ notification.user.mii.normal }}" class="icon">
 										</a>
 										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="arrow-button scroll"></a>
 										<div class="body">
