@@ -322,10 +322,9 @@ class Community extends Page
             'can_post'            => $has_screenshot ? false : $can_post,
             'olive_community_id'  => $community[0],
             'olive_title_id'      => $title_id[0],
-            'message'             => 'OK',
+            'message'             => '',
         ];
 
-        sleep(1);
         return $this->json($data);
     }
 }
