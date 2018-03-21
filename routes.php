@@ -63,8 +63,8 @@ Router::group(['before' => 'maintenance'], function () {
             Router::get('/{tid:a}/{id:a}/post_memo.check.json', 'Title.Community@check_memo', 'title.checkmemo');
         });
 
-        // Me
-        Router::group(['prefix' => 'me'], function () {
+        // My
+        Router::group(['prefix' => 'my'], function () {
             Router::get('/latest_following_related_profile_posts', 'Index@latestActivityFeed', 'activity.latestactivityfeed');
         });
 
