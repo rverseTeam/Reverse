@@ -311,10 +311,10 @@ class User
             $this->restricted = boolval($userRow->user_restricted);
             $this->posted = boolval($userRow->posted);
             $this->favorited = boolval($userRow->favorited);
-            $this->news_dot = boolval($userRow->news_dot);
             $this->posts = intval($userRow->posts);
             $this->follows = intval($userRow->follow_count);
             $this->followers = intval($userRow->follow_back_count);
+            $this->news_dot = boolval($userRow->news_dot);
             $this->registerIp = Net::ntop($userRow->register_ip);
             $this->lastIp = Net::ntop($userRow->last_ip);
 
@@ -545,9 +545,49 @@ class User
     }
 
     /**
+     * Emit a notification.
+     *
+     * @param int $uid
+     * @param int $type
+     * @param int $post_id
+     * @param int $comment_id
+     *
+     * @return bool
+     */
+    public function emitNotification(int $uid, int $type, int $post_id = 0, int $comment_id = 0) : bool
+    {
+        /*
+         * Notification types:
+         * 0 = Administrator
+         * 1 = Followed
+         * 2 = Post yeah
+         * 3 = Comment yeah
+         * 4 = Commented on post
+         */
+        // You arent going to emit a notification to yourself, now are you?
+        if ($this->id == $uid) {
+            return false;
+        }
+
+        // Add notification
+        DB::table('notifications')
+            ->insert([
+                'from'          => $this->id,
+                'to'            => $uid,
+                'type'          => $type,
+                'post_id'       => $post_id,
+                'comment_id'    => $comment_id,
+            ]);
+
+        return true;
+    }
+
+    /**
      * Add a new follower.
      *
      * @param int $uid
+     *
+     * @return bool
      */
     public function addFollower(int $uid) : bool
     {
@@ -576,6 +616,7 @@ class User
             ->where('user_id', $uid)
             ->increment('follow_count');
 
+        $this->emitNotification($uid, 1);
         return true;
     }
 
@@ -583,6 +624,8 @@ class User
      * Remove a follower.
      *
      * @param int $uid
+     *
+     * @return bool
      */
     public function removeFollower(int $uid) : bool
     {

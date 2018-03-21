@@ -17,17 +17,36 @@
 			</div>
 			<div class="body-content">
 				<div class="tab-body">
-					{% if user.news_dot == 0 %}
+					{% if session.user.news_dot == 0 %}
 						<div id="news-tutorial" class="tutorial-window">
 							<p>New notifications are marked with an orange dot.</p>
 							<a href="#" class="button tutorial-close-button" data-tutorial-name="my_news">Close</a>
 						</div>
 					{% endif %}
-					<div class="no-content-window">
-						<div class="window">
-							<p>No updates.</p>
+					{% if notifications == null %}
+						<div class="no-content-window">
+							<div class="window">
+								<p>No updates.</p>
+							</div>
 						</div>
-					</div>
+					{% elseif %}
+						<ul class="list-content-with-icon-and-text arrow-list" id="news-list-content">
+							{% for notification in notifications %}
+								{% set mii = _context.notification.user.mii['normal'] %}
+								{% if notification.type == 1 %}
+									<li>
+										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="icon-container">
+											<img src="{{ mii }}" class="icon">
+										</a>
+										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="arrow-button scroll"></a>
+										<div class="body">
+											<p class="text">Followed by <span class="nick-name">{{ notification.user.nickname }}</span>. <span class="timestamp">{{ notification.date }}</span></p>
+										</div>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 {% endblock %}
