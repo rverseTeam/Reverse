@@ -59,6 +59,10 @@ class Index extends Page
      */
     public function latestActivityFeed() : string
     {
-        return 'testo';
+        return '
+    <div class="no-content-window"><div class="window">
+      <p>There are no posts to display.</p>
+    </div></div>
+        ';
     }
 }
