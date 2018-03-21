@@ -59,7 +59,7 @@ class Index extends Page
      */
     public function latestActivityFeed() : string
     {
-        return '<div class="js-latest-following-relation-profile-post scroll">
+        return '<div class="js-latest-following-relation-profile-post no-content-window content-loading-window">
 
   <div class="acted-user-name-content">
     <span class="user-icon-container">
