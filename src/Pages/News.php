@@ -65,9 +65,9 @@ class News extends Page
                     ->update(['seen' => 1]);
 
         // laravel being a piece of shit
-        if ($notifications == null) {
-            $notifications = null;
-        }
+        //if ($notifications == null) {
+        //    $notifications = null;
+        //}
 
         return view('news/my_news', compact('local_user', 'notifications'));
     }

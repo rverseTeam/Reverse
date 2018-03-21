@@ -23,6 +23,13 @@
 							<a href="#" class="button tutorial-close-button" data-tutorial-name="my_news">Close</a>
 						</div>
 					{% endif %}
+					{% if notifications is null and notifications is empty %}
+						<div class="no-content-window">
+							<div class="window">
+								<p>No updates.</p>
+							</div>
+						</div>
+					{% else %}
 						<ul class="list-content-with-icon-and-text arrow-list" id="news-list-content">
 							{% for notification in notifications %}
 								{% set mii = "http://mii-images.cdn.nintendo.net/3o7et7rykh4fh_normal_face.png" %}
@@ -39,6 +46,7 @@
 								{% endif %}
 							{% endfor %}
 						</ul>
+					{% endif %}
 				</div>
 			</div>
 {% endblock %}
