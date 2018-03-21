@@ -23,6 +23,8 @@ class News extends Page
      */
     public function my_news() : string
     {
+        $local_user = CurrentSession::$user;
+
         $notifications_pre = DB::table('notifications')
                     ->where('to', $user->id)
                     ->orderBy('date', 'desc');
@@ -67,6 +69,6 @@ class News extends Page
             $notifications = null;
         }
 
-        return view('news/my_news', compact('notifications'));
+        return view('news/my_news', compact('local_user', 'notifications'));
     }
 }
