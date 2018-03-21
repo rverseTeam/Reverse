@@ -32,7 +32,7 @@
 					{% else %}
 						<ul class="list-content-with-icon-and-text arrow-list" id="news-list-content">
 							{% for notification in notifications %}
-								{% set mii = _context.notification.user.mii['normal'] %}
+								{% set mii = notification.user.mii['normal'] %}
 								{% if notification.type == 1 %}
 									<li>
 										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="icon-container">
