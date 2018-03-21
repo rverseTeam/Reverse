@@ -27,14 +27,14 @@ class News extends Page
         $notifications = [];
 
         $notifications_pre = DB::table('notifications')
-                    ->where('from', $local_user->id)
+                    ->where('to', $local_user->id)
                     ->orderBy('date', 'desc')
                     ->get();
 
         //var_dump($notifications_pre);
 
         foreach ($notifications_pre as $notification) {
-            $user = User::construct($notification->to);
+            $user = User::construct($notification->from);
             $post = null;
             $comment = null;
 

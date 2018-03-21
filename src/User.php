@@ -572,8 +572,8 @@ class User
         // Add notification
         DB::table('notifications')
             ->insert([
-                'from'          => $this->id,
-                'to'            => $uid,
+                'from'          => $uid,
+                'to'            => $this->id,
                 'type'          => $type,
                 'post_id'       => $post_id,
                 'comment_id'    => $comment_id,
