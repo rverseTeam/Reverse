@@ -27,9 +27,8 @@ class News extends Page
 
         $notifications_pre = DB::table('notifications')
                     ->where('to', $user->id)
-                    ->orderBy('date', 'desc');
-
-        var_dump($notifications_pre);
+                    ->orderBy('date', 'desc')
+                    ->get();
 
         foreach ($notifications_pre as $notification) {
             $user = User::construct($notification->from);
