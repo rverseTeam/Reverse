@@ -92,7 +92,7 @@ Router::group(['before' => 'maintenance'], function () {
         Router::group(['prefix' => 'settings'], function () {
             Router::post('/struct_post', 'Dummy@dummy', 'struct.post');
             Router::get('/profile', 'Dummy@dummy', 'settings.profile');
-            Router::get('/tutorial_post', 'Settings@tutorial_post', 'settings.tutorialpost');
+            Router::post('/tutorial_post', 'Settings@tutorial_post', 'settings.tutorialpost');
             Router::post('/played_title_ids', 'Dummy@dummy', 'settings.playedtitles');
         });
 
