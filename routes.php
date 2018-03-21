@@ -65,7 +65,7 @@ Router::group(['before' => 'maintenance'], function () {
 
         // My
         Router::group(['prefix' => 'my'], function () {
-            Router::get('/latest_following_related_profile_posts', 'Index@latestActivityFeed', 'activity.latestactivityfeed');
+            Router::get('/latest_following_related_profile_posts', 'Dummy@dummy', 'activity.latestfollowingrelatedprofileposts');
         });
 
         // News

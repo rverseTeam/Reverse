@@ -24,10 +24,7 @@ class Post extends Page
     {
         $kind = $_POST['kind'] ?? null;
 
-        $user = CurrentSession::$user;
-        $userid = $user->id;
-
-        if (!$userid) {
+        if (!CurrentSession::$user->id) {
             exit;
         }
 
@@ -56,7 +53,7 @@ class Post extends Page
                                 'community' => $id,
                                 'content'   => $body,
                                 'feeling'   => $feeling,
-                                'user_id'   => $userid,
+                                'user_id'   => CurrentSession::$user->id,
                                 'spoiler'   => intval($spoiler),
                             ]);
                     } else {
@@ -69,7 +66,7 @@ class Post extends Page
                                 'community'   => $id,
                                 'content'     => $body,
                                 'feeling'     => $feeling,
-                                'user_id'     => $userid,
+                                'user_id'     => CurrentSession::$user->id,
                                 'spoiler'     => intval($spoiler),
                                 'category_id' => $category_id,
                                 'title'       => $title,
@@ -80,7 +77,7 @@ class Post extends Page
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
-                    $painting_name = $userid.'-'.time().'.png';
+                    $painting_name = CurrentSession::$user->id.'-'.time().'.png';
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
@@ -89,7 +86,7 @@ class Post extends Page
                             'community'   => $id,
                             'image'       => $painting_name,
                             'feeling'     => $feeling,
-                            'user_id'     => $userid,
+                            'user_id'     => CurrentSession::$user->id,
                             'spoiler'     => intval($spoiler),
                             'is_redesign' => $meta->is_redesign,
                         ]);
@@ -100,17 +97,14 @@ class Post extends Page
 
             if (!$user->posted) {
                 DB::table('users')
-                    ->where('user_id', '=', $userid)
+                    ->where('user_id', '=', CurrentSession::$user->id)
                     ->update(['posted' => 1]);
             }
 
             DB::table('users')
-                ->where('user_id', '=', $userid)
+                ->where('user_id', '=', CurrentSession::$user->id)
                 ->increment('posts');
 
-            header('Content-Length: 0', true);
-            header('Connection: Keep-Alive', true);
-            header('Keep-Alive: timeout=5, max=100', true);
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
             $post_id = $_POST['olive_post_id'];
@@ -127,13 +121,13 @@ class Post extends Page
                             'post'    => $post_id,
                             'content' => $body,
                             'feeling' => $feeling,
-                            'user'    => $userid,
+                            'user'    => CurrentSession::$user->id,
                             'spoiler' => intval($spoiler),
                         ]);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
-                    $painting_name = $userid.'-'.time().'.png';
+                    $painting_name = CurrentSession::$user->id.'-'.time().'.png';
 
                     file_put_contents(path('public/img/drawings/'.$painting_name), $painting);
 
@@ -142,7 +136,7 @@ class Post extends Page
                             'post'    => $post_id,
                             'image'   => $painting_name,
                             'feeling' => $feeling,
-                            'user'    => $userid,
+                            'user'    => CurrentSession::$user->id,
                             'spoiler' => intval($spoiler),
                         ]);
                     break;
@@ -150,17 +144,14 @@ class Post extends Page
 
             if (!$user->posted) {
                 DB::table('users')
-                    ->where('user_id', '=', $userid)
+                    ->where('user_id', '=', CurrentSession::$user->id)
                     ->update(['posted' => 1]);
             }
 
             DB::table('posts')
                 ->where('id', '=', $post_id)
                 ->increment('comments');
-
-            header('Content-Length: 0', true);
-            header('Connection: Keep-Alive', true);
-            header('Keep-Alive: timeout=5, max=100', true);
+                
             redirect(route('post.show', ['id' => hashid($post_id)]));
         }
         exit;

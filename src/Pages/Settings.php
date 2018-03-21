@@ -22,8 +22,6 @@ class Settings extends Page
      */
     public function tutorial_post() : string
     {
-        $user = CurrentSession::$user;
-        $userid = $user->id;
         $tutorial_name = $_POST['tutorial_name'];
         $database_key = '';
 
@@ -41,7 +39,7 @@ class Settings extends Page
         if ($database_key == 'nokey') return '{"success":0}';
 
         DB::table('users')
-            ->where('user_id', '=', $userid)
+            ->where('user_id', '=', CurrentSession::$user->id)
             ->update([$database_key => 1]);
 
         return '{"success":1}';
