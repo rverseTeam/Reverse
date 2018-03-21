@@ -40,7 +40,7 @@
 										</a>
 										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="arrow-button scroll"></a>
 										<div class="body">
-											<p class="text">Followed by <span class="nick-name">{{ notification.user.nickname }}</span>. <span class="timestamp">{{ notification.date }}</span></p>
+											<p class="text">Followed by <span class="nick-name">{{ notification.user.display_name }}</span>. <span class="timestamp">{{ notification.date }}</span></p>
 										</div>
 									</li>
 								{% endif %}
