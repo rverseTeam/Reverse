@@ -58,7 +58,7 @@ class News extends Page
             ];
         }
 
-        //var_dump($notifications);
+        var_dump($notifications);
 
         DB::table('notifications')
                     ->where([
