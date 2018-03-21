@@ -19,7 +19,7 @@ class AddNotificationsTable extends Migration
             $table->integer('from')
                 ->unsigned();
 
-            $table->integer('to');
+            $table->integer('to')
                 ->unsigned();
 
             $table->integer('type');
