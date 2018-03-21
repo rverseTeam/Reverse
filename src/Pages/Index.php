@@ -111,9 +111,6 @@ I&#39;m ok with whatever.
 
 Since Miiverse is probably closing, I put my main chromtacts in my PFP.
           </p>
-          <div class="user-profile-memo-content">
-            <img src="http://d1akpag8su1p2e.cloudfront.net/pab/WVW69j_Ar7cyqD0xTC" class="user-profile-memo">
-          </div>
         </div>
       </div>
     </li>
