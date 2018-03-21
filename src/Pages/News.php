@@ -31,7 +31,7 @@ class News extends Page
                     ->orderBy('date', 'desc')
                     ->get();
 
-        var_dump($notifications_pre);
+        //var_dump($notifications_pre);
 
         foreach ($notifications_pre as $notification) {
             $user = User::construct($notification->from);
@@ -61,7 +61,7 @@ class News extends Page
             ];
         }
 
-        var_dump($notifications);
+        //var_dump($notifications);
 
         DB::table('notifications')
                     ->where([
