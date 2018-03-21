@@ -108,6 +108,9 @@ class Post extends Page
                 ->where('user_id', '=', $userid)
                 ->increment('posts');
 
+            header('Content-Length: 0', true);
+            header('Connection: Keep-Alive', true);
+            header('Keep-Alive: timeout=5, max=100', true);
             redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
             $post_id = $_POST['olive_post_id'];
