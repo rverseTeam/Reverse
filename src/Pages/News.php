@@ -45,11 +45,11 @@ class News extends Page
                             ->get()[0];
 
                 // Checking if it exists and if string is above 17 chars, minify it
-                if ($post->content) {
-                    if (strlen($post->content) > 17) {
-                        $post->content = substr($post->content, 0, 17).'...';
-                    }
-                }
+                //if ($post->content) {
+                //    if (strlen($post->content) > 17) {
+                //        $post->content = substr($post->content, 0, 17).'...';
+                //    }
+                //}
             //}
 
             var_dump($post);
