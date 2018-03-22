@@ -41,7 +41,7 @@ class News extends Page
             // Post
             //if ($notification->type == 4) {
                 $post = DB::table('posts')
-                            ->where('id', 1)
+                            ->where('id', $notification->$post_id)
                             ->first();
 
                 // Checking if it exists and if string is above 17 chars, minify it
