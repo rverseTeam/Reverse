@@ -39,7 +39,7 @@ class News extends Page
             $comment = [];
 
             // Post
-            if ($notification->type == 4) {
+            //if ($notification->type == 4) {
                 $post = DB::table('posts')
                             ->where('id', $notification->$post_id)
                             ->first();
@@ -50,7 +50,7 @@ class News extends Page
                         $post->content = substr($post->content, 0, 17).'...';
                     }
                 }
-            }
+            //}
 
             var_dump($post);
 
