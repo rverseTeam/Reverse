@@ -39,18 +39,18 @@ class News extends Page
             $comment = [];
 
             // Post
-            //if ($notification->type == 4) {
+            if ($notification->type == 4) {
                 $post = DB::table('posts')
-                            ->where('id', $notification->$post_id)
-                            ->get()[0];
+                            ->where('id', 1)
+                            ->first();
 
                 // Checking if it exists and if string is above 17 chars, minify it
-                //if ($post->content) {
-                //    if (strlen($post->content) > 17) {
-                //        $post->content = substr($post->content, 0, 17).'...';
-                //    }
-                //}
-            //}
+                if ($post->content) {
+                    if (strlen($post->content) > 17) {
+                        $post->content = substr($post->content, 0, 17).'...';
+                    }
+                }
+            }
 
             var_dump($post);
 
