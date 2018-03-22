@@ -129,7 +129,7 @@ class Post extends Page
                                 ->where('id', $post_id)
                                 ->first();
 
-                    CurrentSession::$user->emitNotification($post->user_id, 4);
+                    CurrentSession::$user->emitNotification($post->user_id, 4, $post_id);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
