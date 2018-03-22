@@ -45,6 +45,19 @@
 										</div>
 									</li>
 								{% endif %}
+								{% if notification.type == 4 %}
+									<li>
+										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="icon-container">
+											<img src="{{ notification.user.mii.normal }}" class="icon">
+										</a>
+										<a href="{{ route('user.profile', [ notification.user.username ]) }}" data-pjax="#body" class="arrow-button scroll"></a>
+										<div class="body">
+											<p class="text">
+												<span class="nick-name">{{ notification.user.displayName }}</span> gave <span class="link">your Comment ({{ notification.post.content }})</span> a Yeah. <span class="timestamp">{{ notification.date }}</span>
+											</p>
+										</div>
+									</li>
+								{% endif %}
 							{% endfor %}
 						</ul>
 					{% endif %}
