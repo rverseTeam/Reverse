@@ -44,8 +44,6 @@ class News extends Page
                             ->where('id', $notification->$post_id)
                             ->first();
 
-                var_dump($post);
-
                 // Checking if it exists and if string is above 17 chars, minify it
                 if ($post->content) {
                     if (strlen($post->content) > 17) {
@@ -53,6 +51,8 @@ class News extends Page
                     }
                 }
             }
+
+            var_dump($post);
 
             // Comment
             if ($notification->comment_id > 0) {
