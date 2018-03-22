@@ -129,7 +129,12 @@ class Post extends Page
                                 ->where('id', $post_id)
                                 ->first();
 
-                    CurrentSession::$user->emitNotification($post->user_id, 4, $post_id);
+                    $user = DB::table('users')
+                                ->where('user_id', $post->user_id)
+                                ->first();
+                                
+                    $user = User::construct(urldecode($user->username));
+                    $user->emitNotification(CurrentSession::$user->id, 4, $post_id);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
