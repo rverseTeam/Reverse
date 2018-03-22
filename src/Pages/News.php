@@ -39,7 +39,7 @@ class News extends Page
             $comment = [];
 
             // Post
-            if ($notification->post_id > 0) {
+            if ($notification->type == 4) {
                 $post = DB::table('posts')
                             ->where('id', $notification->$post_id)
                             ->first();
