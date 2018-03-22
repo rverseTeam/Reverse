@@ -44,7 +44,7 @@ class News extends Page
                             ->where('id', $notification->$post_id)
                             ->first();
 
-                var($post);
+                var_dump($post);
 
                 // Checking if it exists and if string is above 17 chars, minify it
                 if ($post->content) {
