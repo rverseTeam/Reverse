@@ -35,9 +35,11 @@ class News extends Page
 
         foreach ($notifications_pre as $notification) {
             $user = User::construct($notification->from);
+            $post = null;
+            $comment = null;
 
             // Post
-            if ($notification->post_id != 0) {
+            if ($notification->post_id > 0) {
                 $post = DB::table('posts')
                             ->where('id', $notification->$post_id)
                             ->first();
@@ -51,7 +53,7 @@ class News extends Page
             }
 
             // Comment
-            if ($notification->comment_id != 0) {
+            if ($notification->comment_id > 0) {
                 $comment = DB::table('comments')
                             ->where('id', $notification->$comment_id)
                             ->first();
