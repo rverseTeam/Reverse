@@ -13,7 +13,9 @@
 		<meta name="theme-color" content="#ffffff">
 		<link rel="stylesheet" type="text/css" href="/css/n3ds/style.css">
 		<script src="/js/src/cave-emulation.js"></script>
-		<script src="/js/n3ds/complete-en.js"></script>
+		<script src="/js/n3ds/libs.js"></script>
+		<script src="/js/n3ds/olv.js"></script>
+		<script src="/js/n3ds/olv.locale-en.js"></script>
 	</head>
 	<body data-user-id="{{ user.username }}" data-is-first-post="{% if user.posted %}0{% else %}1{% endif %}" data-is-first-favorite="{% if user.favorited %}0{% else %}1{% endif %}" data-profile-url="/users/{{ user.username }}">
 		<div id="body" {% if class is defined %}class="{{ class }}" {% endif %}data-region-id="2">
