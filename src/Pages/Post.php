@@ -105,7 +105,7 @@ class Post extends Page
                 ->where('user_id', '=', CurrentSession::$user->id)
                 ->increment('posts');
 
-            redirect('/');
+            redirect(route('title.community', ['tid' => hashid($title_id), 'id' => hashid($id)]));
         } elseif ($kind = 'reply') {
             $post_id = $_POST['olive_post_id'];
             $feeling = $_POST['feeling_id'];
@@ -124,6 +124,12 @@ class Post extends Page
                             'user'    => CurrentSession::$user->id,
                             'spoiler' => intval($spoiler),
                         ]);
+
+                    $post = DB::table('posts')
+                                ->where('id', $post_id)
+                                ->first();
+
+                    CurrentSession::$user->emitNotification($post->user_id, 4);
                     break;
                 case 'painting':
                     $painting = base64_decode($_POST['painting']);
@@ -152,7 +158,7 @@ class Post extends Page
                 ->where('id', '=', $post_id)
                 ->increment('comments');
                 
-            redirect('/');
+            redirect(route('post.show', ['id' => hashid($post_id)]));
         }
         exit;
     }

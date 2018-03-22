@@ -43,6 +43,13 @@ class News extends Page
                 $post = DB::table('posts')
                             ->where('id', $notification->$post_id)
                             ->first();
+
+                // Checking if it exists and if string is above 17 chars, minify it
+                if ($post->content) {
+                    if (strlen($post->content) > 17) {
+                        $post->content = substr($post->content, 0, 17).'...';
+                    }
+                }
             }
 
             // Comment
@@ -50,6 +57,13 @@ class News extends Page
                 $comment = DB::table('comments')
                             ->where('id', $notification->$comment_id)
                             ->first();
+
+                // Checking if it exists and if string is above 17 chars, minify it
+                if ($comment->content) {
+                    if (strlen($comment->content) > 17) {
+                        $comment->content = substr($comment->content, 0, 17).'...';
+                    }
+                }
             }
 
             $notifications[] = [
@@ -65,7 +79,7 @@ class News extends Page
 
         DB::table('notifications')
                     ->where([
-                        ['to', $user->id],
+                        ['to', $local_user->id],
                         ['seen', 0],
                     ])
                     ->update(['seen' => 1]);
