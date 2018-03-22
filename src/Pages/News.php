@@ -35,8 +35,6 @@ class News extends Page
 
         foreach ($notifications_pre as $notification) {
             $user = User::construct($notification->from);
-            $post = null;
-            $comment = null;
 
             // Post
             if ($notification->post_id != 0) {
