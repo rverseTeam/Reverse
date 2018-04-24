@@ -5,8 +5,8 @@
 
 namespace Miiverse\Pages;
 
-use Miiverse\DB;
 use Miiverse\CurrentSession;
+use Miiverse\DB;
 
 /**
  * Settings page.
