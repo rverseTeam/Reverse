@@ -617,6 +617,7 @@ class User
             ->increment('follow_count');
 
         $this->emitNotification($uid, 1);
+
         return true;
     }
 

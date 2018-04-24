@@ -36,7 +36,9 @@ class Settings extends Page
         }
 
         header('Content-Type: application/json; charset=utf-8');
-        if ($database_key == 'nokey') return '{"success":0}';
+        if ($database_key == 'nokey') {
+            return '{"success":0}';
+        }
 
         DB::table('users')
             ->where('user_id', '=', CurrentSession::$user->id)

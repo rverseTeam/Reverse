@@ -132,7 +132,7 @@ class Post extends Page
                     $user = DB::table('users')
                                 ->where('user_id', $post->user_id)
                                 ->first();
-                                
+
                     $user = User::construct(urldecode($user->username));
                     $user->emitNotification(CurrentSession::$user->id, 4, $post_id);
                     break;
@@ -162,7 +162,7 @@ class Post extends Page
             DB::table('posts')
                 ->where('id', '=', $post_id)
                 ->increment('comments');
-                
+
             redirect(route('post.show', ['id' => hashid($post_id)]));
         }
         exit;
