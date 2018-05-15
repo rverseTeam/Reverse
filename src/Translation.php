@@ -8,7 +8,6 @@ namespace Miiverse;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\Translator;
-use Miiverse\CurrentSession;
 
 /**
  * Translation system.
@@ -45,10 +44,10 @@ class Translation
     }
 
     /**
-     * Get a string from the translation
+     * Get a string from the translation.
      *
      * @param string $key
-     * @param array $replace
+     * @param array  $replace
      *
      * @return string|array|null
      */
