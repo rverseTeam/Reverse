@@ -5,3 +5,7 @@ finder:
     - store
     - vendor
   name: "*.php"
+
+finder:
+  not-path:
+    - resources/lang/en
