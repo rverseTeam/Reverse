@@ -8,4 +8,4 @@ finder:
 
 finder:
   not-path:
-    - resources/lang/en
+    - resources/lang
