@@ -12,7 +12,8 @@
         "symfony/console": "^3.3",
         "twig/extensions": "~1.0",
         "twig/twig": "~2.0",
-        "cloudinary/cloudinary_php": "^1.8"
+        "cloudinary/cloudinary_php": "^1.8",
+        "illuminate/translation": "^5.5"
     },
     "autoload": {
         "classmap": [
