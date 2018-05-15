@@ -4,8 +4,6 @@ finder:
   exclude:
     - store
     - vendor
-  name: "*.php"
-
-finder:
   not-path:
     - resources/lang
+  name: "*.php"
