@@ -25,5 +25,9 @@
         "files": [
             "utility.php"
         ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
