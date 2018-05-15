@@ -45,4 +45,30 @@ return [
             'console' => ':console Communities',
         ],
     ],
+
+    'listing' => [
+        'filter' => [
+            'name' => 'Filter',
+            'select' => 'Please make a selection.',
+            'options' => [
+                'all' => 'All Software',
+                'games' => ':console Games',
+                'vc' => 'Virtual Console',
+                'other' => 'Others',
+            ],
+        ],
+        'communities' => [
+            'platforms' => [
+                '3ds' => '3DS Games',
+                'wiiu' => 'Wii U Games',
+                'wiiu-3ds' => 'Wii U Games・3DS Games',
+                'switch' => 'Switch Games',
+                'switch-wiiu' => 'Switch Games・Wii U Games',
+                'wii' => 'Wii Games',
+                'ds' => 'DS Games',
+                'wii-ds' => 'Wii Games・DS Games',
+            ],
+            'empty' => 'There are no communities in this category.',
+        ],
+    ],
 ];
