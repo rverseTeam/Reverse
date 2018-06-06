@@ -11,6 +11,7 @@ use Miiverse\Helpers\ConsoleAuth;
 use Miiverse\Net;
 use Miiverse\Router;
 use Miiverse\Template;
+use Miiverse\Translation;
 
 // Sort of alias for Config::get
 function config($value)
@@ -264,6 +265,11 @@ function hashid($items)
 function dehashid($hash)
 {
     return Hashid::decode($hash);
+}
+
+function __(string $key, array $replace = [])
+{
+    return Translation::get($key, $replace);
 }
 
 function createToken(string $action, string $type = 'post') : array

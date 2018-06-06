@@ -61,6 +61,7 @@ class Template
         'session_id',
         'hashid',
         'dehashid',
+        '__',
     ];
 
     /**

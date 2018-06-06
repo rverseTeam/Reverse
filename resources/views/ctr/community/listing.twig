@@ -19,13 +19,13 @@
 						<div class="with-filter-right">
 							<div class="select-button">
 								<label id="community-filter" class="">
-									<span class="select-button-content">Filter</span>
+									<span class="select-button-content">{{ __('community.listing.filter.name') }}</span>
 									<select name="filter">
-										<option value="" selected="">Please make a selection.</option>
-										<option value="{{ route('console.all', [ console.id ]) }}">All Software</option>
-										<option value="{{ route('console.games', [ console.id ]) }}">{{ console.name }} Games</option>
-										<option value="{{ route('console.vc', [ console.id ]) }}">Virtual Console</option>
-										<option value="{{ route('console.other', [ console.id ]) }}">Others</option>
+										<option value="" selected="">{{ __('community.listing.filter.select') }}</option>
+										<option value="{{ route('console.all', [ console.id ]) }}">{{ __('community.listing.filter.options.all') }}</option>
+										<option value="{{ route('console.games', [ console.id ]) }}">{{ __('community.listing.filter.options.games', { console: console.name }) }}</option>
+										<option value="{{ route('console.vc', [ console.id ]) }}">{{ __('community.listing.filter.options.vc') }}</option>
+										<option value="{{ route('console.other', [ console.id ]) }}">{{ __('community.listing.filter.options.other') }}</option>
 									</select>
 								</label>
 							</div>
@@ -44,28 +44,28 @@
 										<span class="community-name title">{{ community.name }}</span>
 									{% if community.platform == 1 %}
 										<span class="platform-tag platform-tag-3ds"></span>
-										<span class="text">3DS Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.3ds') }}</span>
 									{% elseif community.platform == 2 %}
 										<span class="platform-tag platform-tag-wiiu"></span>
-										<span class="text">Wii U Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.wiiu') }}</span>
 									{% elseif community.platform == 3 %}
 										<span class="platform-tag platform-tag-wiiu-3ds"></span>
-										<span class="text">Wii U Games・3DS Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.wiiu-3ds') }}</span>
 									{% elseif community.platform == 4 %}
 										<span class="platform-tag platform-tag-switch"></span>
-										<span class="text">Switch Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.switch') }}</span>
 									{% elseif community.platform == 5 %}
 										<span class="platform-tag platform-tag-switch-wiiu"></span>
-										<span class="text">Switch Games・Wii U Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.switch-wiiu') }}</span>
 									{% elseif community.platform == 6 %}
 										<span class="platform-tag platform-tag-wii"></span>
-										<span class="text">Wii Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.wii') }}</span>
 									{% elseif community.platform == 7 %}
 										<span class="platform-tag platform-tag-ds"></span>
-										<span class="text">DS Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.ds') }}</span>
 									{% elseif community.platform == 8 %}
 										<span class="platform-tag platform-tag-wii-ds"></span>
-										<span class="text">Wii Games・DS Games</span>
+										<span class="text">{{ __('community.listing.communities.platforms.wii-ds') }}</span>
 									{% endif %}
 									</div>
 								</li>
@@ -74,19 +74,19 @@
 					{% else %}
 						<div class="no-content-window">
 							<div class="window">
-								<p>There are no communities in this category.</p>
+								<p>{{ __('community.listing.communities.empty') }}</p>
 							</div>
 						</div>
 					{% endif %}
-					<h2 class="headline headline-{{ console.id }}">Filter</h2>
+					<h2 class="headline headline-{{ console.id }}">{{ __('community.listing.filter.name') }}</h2>
 					<div class="filter-button">
 						<div class="filter-button-Inner">
-							<a href="{{ route('console.all', [ console.id ]) }}" data-pjax="1">All Software</a>
-							<a href="{{ route('console.games', [ console.id ]) }}" data-pjax="1">{{ console.name }} Games</a>
+							<a href="{{ route('console.all', [ console.id ]) }}" data-pjax="1">{{ __('community.listing.filter.options.all') }}</a>
+							<a href="{{ route('console.games', [ console.id ]) }}" data-pjax="1">{{ __('community.listing.filter.options.games', { console: console.name }) }}</a>
 						</div>
 						<div class="filter-button-Inner">
-							<a href="{{ route('console.vc', [ console.id ]) }}" data-pjax="1">Virtual Console</a>
-							<a href="{{ route('console.other', [ console.id ]) }}" data-pjax="1">Others</a>
+							<a href="{{ route('console.vc', [ console.id ]) }}" data-pjax="1">{{ __('community.listing.filter.options.vc') }}</a>
+							<a href="{{ route('console.other', [ console.id ]) }}" data-pjax="1">{{ __('community.listing.filter.options.other') }}</a>
 						</div>
 					</div>
 				</div>

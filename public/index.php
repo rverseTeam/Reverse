@@ -24,6 +24,8 @@ CurrentSession::start(
 );
 ConsoleAuth::check();
 
+Translation::init();
+
 // Set base variables
 $templateBases = [
     'ctr',
