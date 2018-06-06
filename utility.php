@@ -268,21 +268,21 @@ function dehashid($hash)
 
 function createToken(string $action, string $type = 'post') : array
 {
-    $token = md5(mt_rand() . session_id() . (string) microtime() . config('keys.nonce') . config('salts.nonce') . $type);
-    $token_var = substr(preg_replace('~^\d+~', '', md5(mt_rand() . (string) microtime() . mt_rand())), 0, mt_rand(7, 12));
+    $token = md5(mt_rand().session_id().(string) microtime().config('keys.nonce').config('salts.nonce').$type);
+    $token_var = substr(preg_replace('~^\d+~', '', md5(mt_rand().(string) microtime().mt_rand())), 0, mt_rand(7, 12));
 
-    $_SESSION['token'][$type . '-' . $action] = [$token_var, md5($token . $_SERVER['HTTP_USER_AGENT']), time(), $token];
+    $_SESSION['token'][$type.'-'.$action] = [$token_var, md5($token.$_SERVER['HTTP_USER_AGENT']), time(), $token];
 
-    return [$action . '_token_var' => $token_var, $action . '_token' => $token];
+    return [$action.'_token_var' => $token_var, $action.'_token' => $token];
 }
 
 function validateToken(string $action, string $type = 'post', bool $reset = true)
 {
     $type = $type == 'get' || $type == 'request' ? $type : 'post';
 
-    if (isset($_SESSION['token'][$type . '-' . $action], $GLOBALS['_' . strtoupper($type)][$_SESSION['token'][$type . '-' . $action][0]]) && md5($GLOBALS['_' . strtoupper($type)][$_SESSION['token'][$type . '-' . $action][0]] . $_SERVER['HTTP_USER_AGENT']) == $_SESSION['token'][$type . '-' . $action][1]) {
+    if (isset($_SESSION['token'][$type.'-'.$action], $GLOBALS['_'.strtoupper($type)][$_SESSION['token'][$type.'-'.$action][0]]) && md5($GLOBALS['_'.strtoupper($type)][$_SESSION['token'][$type.'-'.$action][0]].$_SERVER['HTTP_USER_AGENT']) == $_SESSION['token'][$type.'-'.$action][1]) {
         // Invalidate this token now.
-        unset($_SESSION['token'][$type . '-' . $action]);
+        unset($_SESSION['token'][$type.'-'.$action]);
 
         return true;
     }
@@ -294,22 +294,26 @@ function validateToken(string $action, string $type = 'post', bool $reset = true
 
         http_response_code(400);
         die('Invalid token');
+    } else {
+        unset($_SESSION['token'][$type.'-'.$action]);
     }
-    else
-        unset($_SESSION['token'][$type . '-' . $action]);
 
-    if (mt_rand(0, 138) == 23)
+    if (mt_rand(0, 138) == 23) {
         cleanTokens();
+    }
 
     return false;
 }
 
 function cleanTokens(bool $complete = false) : void
 {
-    if (!isset($_SESSION['token']))
+    if (!isset($_SESSION['token'])) {
         return;
+    }
 
-    foreach ($_SESSION['token'] as $key => $data)
-        if ($data[2] + 10800 < time() || $complete)
+    foreach ($_SESSION['token'] as $key => $data) {
+        if ($data[2] + 10800 < time() || $complete) {
             unset($_SESSION['token'][$key]);
+        }
+    }
 }
