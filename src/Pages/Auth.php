@@ -94,6 +94,7 @@ class Auth extends Page
         // Check if the user that's trying to log in actually exists
         if ($user->id === 0) {
             $this->touchRateLimit($user->id);
+
             return redirect(route('auth.loginform').'?mes='.urlencode(__('auth.errors.invalid_details')));
         }
 
@@ -103,6 +104,7 @@ class Auth extends Page
 
         if (!$user->verifyPassword($password)) {
             $this->touchRateLimit($user->id);
+
             return redirect(route('auth.loginform').'?mes='.__('auth.errors.invalid_details'));
         }
 
@@ -112,7 +114,7 @@ class Auth extends Page
     }
 
     /**
-     * Serve the login form
+     * Serve the login form.
      *
      * @return string
      */
