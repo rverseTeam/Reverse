@@ -268,7 +268,7 @@ function dehashid($hash)
 
 function createToken(string $action, string $type = 'post') : array
 {
-    $token = md5(mt_rand().session_id().(string) microtime().config('keys.nonce').config('salts.nonce').$type);
+    $token = md5(mt_rand().session_id().(string) microtime().config('keys.tokens').$type);
     $token_var = substr(preg_replace('~^\d+~', '', md5(mt_rand().(string) microtime().mt_rand())), 0, mt_rand(7, 12));
 
     $_SESSION['token'][$type.'-'.$action] = [$token_var, md5($token.$_SERVER['HTTP_USER_AGENT']), time(), $token];
