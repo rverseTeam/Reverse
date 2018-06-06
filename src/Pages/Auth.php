@@ -20,19 +20,22 @@ class Auth extends Page
 {
     /**
      * Touch the login rate limit.
-     * @param int $user The ID of the user that attempted to log in.
+     *
+     * @param int  $user    The ID of the user that attempted to log in.
      * @param bool $success Whether the login attempt was successful.
      */
-    protected function touchRateLimit(int $user, bool $success = false) : void {
+    protected function touchRateLimit(int $user, bool $success = false) : void
+    {
         DB::table('login_attempts')->insert([
-                'attempt_success' => $success ? 1 : 0,
+                'attempt_success'   => $success ? 1 : 0,
                 'attempt_timestamp' => time(),
-                'attempt_ip' => Net::pton(Net::ip()),
-                'user_id' => $user,
+                'attempt_ip'        => Net::pton(Net::ip()),
+                'user_id'           => $user,
             ]);
     }
 
-    protected function authenticate(User $user) : void {
+    protected function authenticate(User $user) : void
+    {
         // Generate a session key
         $session = CurrentSession::create(
             $user->id,
@@ -49,11 +52,13 @@ class Auth extends Page
 
     /**
      * End the current session.
+     *
      * @throws HttpMethodNotAllowedException
      */
-    public function logout() {
+    public function logout()
+    {
         if (!session_check('z')) {
-            throw new HttpMethodNotAllowedException;
+            throw new HttpMethodNotAllowedException();
         }
 
         // Destroy the active session
@@ -64,11 +69,13 @@ class Auth extends Page
 
     /**
      * Login page.
+     *
      * @return string
      */
-    public function login() : string {
+    public function login() : string
+    {
         if (!validateToken('login', 'post', false)) {
-            return redirect(route('auth.loginform') . '?mes=' . urlencode(__('auth.errors.invalid_token')));
+            return redirect(route('auth.loginform').'?mes='.urlencode(__('auth.errors.invalid_token')));
         }
 
         // Get request variables
@@ -79,7 +86,7 @@ class Auth extends Page
         $rates = DB::table('login_attempts')->where('attempt_ip', Net::pton(Net::ip()))->where('attempt_timestamp', '>', time() - 1800)->where('attempt_success', '0')->count();
 
         if ($rates > 4) {
-            return redirect(route('auth.loginform') . '?mes=' . urlencode(__('auth.errors.too_many_attempts')));
+            return redirect(route('auth.loginform').'?mes='.urlencode(__('auth.errors.too_many_attempts')));
         }
 
         $user = User::construct(clean_string($username, true));
@@ -87,16 +94,16 @@ class Auth extends Page
         // Check if the user that's trying to log in actually exists
         if ($user->id === 0) {
             $this->touchRateLimit($user->id);
-            return redirect(route('auth.loginform') . '?mes=' . urlencode(__('auth.errors.invalid_details')));
+            return redirect(route('auth.loginform').'?mes='.urlencode(__('auth.errors.invalid_details')));
         }
 
         if ($user->passwordExpired()) {
-            return redirect(route('auth.loginform') . '?mes=' . urlencode(__('auth.errors.password_expired')));
+            return redirect(route('auth.loginform').'?mes='.urlencode(__('auth.errors.password_expired')));
         }
 
         if (!$user->verifyPassword($password)) {
             $this->touchRateLimit($user->id);
-            return redirect(route('auth.loginform') . '?mes=' . __('auth.errors.invalid_details'));
+            return redirect(route('auth.loginform').'?mes='.__('auth.errors.invalid_details'));
         }
 
         $this->authenticate($user);
@@ -106,9 +113,11 @@ class Auth extends Page
 
     /**
      * Serve the login form
+     *
      * @return string
      */
-    public function login_form() : string {
+    public function login_form() : string
+    {
         if (CurrentSession::$user->id !== 0) {
             return redirect(route('main.index'));
         }
