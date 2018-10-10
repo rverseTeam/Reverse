@@ -110,4 +110,9 @@ return [
         'admin'             => 4,
         'banned'            => 5,
     ],
+
+    // Secure keys
+    'keys'          => [
+        'tokens'            => '',
+    ],
 ];
